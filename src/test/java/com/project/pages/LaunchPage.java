@@ -1,11 +1,15 @@
 package com.project.pages;
 
 import com.project.common.util.RxNovaCommonUtil;
+
 import com.psqframework.core.element.BaseElement;
 import com.psqframework.core.page.BasePage;
 import com.psqframework.core.util.Project;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
+import net.thucydides.core.annotations.DefaultUrl;
+import net.thucydides.core.annotations.Managed;
+
 
 public class LaunchPage extends BasePage {
 	

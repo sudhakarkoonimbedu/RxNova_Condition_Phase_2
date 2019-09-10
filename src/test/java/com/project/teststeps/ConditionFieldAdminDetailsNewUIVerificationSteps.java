@@ -12,8 +12,7 @@ public class ConditionFieldAdminDetailsNewUIVerificationSteps {
 	@Steps
 	ActorConditionsFieldAdminNew actorOnFieldAdminDetails;
 	
-	@Steps
-	RxNovaCommonUtil rxNovaCommonUtil;
+
 	
 	
 	@Then("^They check if \"(.*)\" is showing by checking for \"(.*)\"$")

@@ -26,8 +26,7 @@ public class ActorConditionsMassChangePage extends BasePage {
 	RxNovaCommonUtil rxNovaCommonUtil;
 	@Steps
 	ConditionsMassChangePage conditionsMassChangePage;
-	@Steps
-	ActorConditionsHomePage actorOnConditionsHomePage;
+	
 	
 	@Step
 	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
