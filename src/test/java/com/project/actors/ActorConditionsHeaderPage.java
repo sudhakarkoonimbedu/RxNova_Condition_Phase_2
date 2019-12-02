@@ -27,7 +27,7 @@ public class ActorConditionsHeaderPage {
 	
 	@Step
 	public void objectIsCurrentlyEnabled(String ObjKey) {
-		boolean isEnabled = conditionsHeaderPage.ObjectIsCurrentlyEnabled(ObjKey);
+		boolean isEnabled = conditionsHeaderPage.objectIsCurrentlyEnabled(ObjKey);
 		Verify.actualExpected(isEnabled, true, "'" + ObjKey + "'" + " is not currently enabled");
 		if(isEnabled == true) {
 			System.out.println(ObjKey + " is currently enabled");
@@ -56,12 +56,12 @@ public class ActorConditionsHeaderPage {
 	
 	@Step
 	public void switchToMostRecentWindow() throws InterruptedException {
-		conditionsHeaderPage.SwitchToMostRecentWindow();
+		conditionsHeaderPage.switchToMostRecentWindow();
 	}
 	
 	@Step
 	public void sendKeysToField(String input, String ObjKey) {
-		conditionsHeaderPage.SendKeysToField(input, ObjKey);
+		conditionsHeaderPage.sendKeysToField(input, ObjKey);
 	}
 	
 	@Step
@@ -71,17 +71,17 @@ public class ActorConditionsHeaderPage {
 
 	@Step
 	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
-		boolean isDisplayed = conditionsHeaderPage.ObjectIsDisplayed(ObjKey);
+		boolean isDisplayed = conditionsHeaderPage.objectIsDisplayed(ObjKey);
 		Verify.actualExpected(isDisplayed, true, "'" + ObjKey + "'" + " is not Displayed");
 	}
 	
 	@Step
 	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		boolean isTabDisplayed = conditionsHeaderPage.IsTabProperlyDisplayed(ChildObjKey);
+		boolean isTabDisplayed = conditionsHeaderPage.isTabProperlyDisplayed(ChildObjKey);
 		String styleLoad = "";
 		while(isTabDisplayed == false && !styleLoad.contains("none;")) {
 			styleLoad = rxNovaCommonUtil.checkBusyState();
-			isTabDisplayed = conditionsHeaderPage.IsTabProperlyDisplayed(ChildObjKey);
+			isTabDisplayed = conditionsHeaderPage.isTabProperlyDisplayed(ChildObjKey);
 		}
 		rxNovaCommonUtil.checkBusyState();
 		Verify.actualExpected(isTabDisplayed, true, "'" + ObjKey + "'" + " is not Displayed");
@@ -89,25 +89,25 @@ public class ActorConditionsHeaderPage {
 	
 	@Step
 	public void objectIsDisabled(String ObjKey) {
-		boolean isDisabled = conditionsHeaderPage.ObjectIsDisabled(ObjKey);
+		boolean isDisabled = conditionsHeaderPage.objectIsDisabled(ObjKey);
 		Verify.actualExpected(isDisabled, true, "'" + ObjKey + "'" + " is disabled");
 	}
 	
 	@Step
 	public void enterIDs(int stringTargetLength, String ObjKey) {
 		String toEnter = rxNovaCommonUtil.fieldIDGenerator(stringTargetLength);
-		conditionsHeaderPage.EnterIDs(toEnter, ObjKey);
+		conditionsHeaderPage.enterIDs(toEnter, ObjKey);
 	}
 	
 	@Step
 	public void enterRandomWord(String ObjKey) {
 		String toEnter = rxNovaCommonUtil.wordGenerator();
-		conditionsHeaderPage.EnterIDs(toEnter, ObjKey);
+		conditionsHeaderPage.enterIDs(toEnter, ObjKey);
 	}
 	
 	@Step
 	public void selectRandomlyFromDropdown(String ObjKey) {
-		conditionsHeaderPage.SelectRandomlyFromDropdown(ObjKey);
+		conditionsHeaderPage.selectRandomlyFromDropdown(ObjKey);
 	}
 	
 	@Step
@@ -122,15 +122,15 @@ public class ActorConditionsHeaderPage {
 		else {
 			toEnter = data.get(1).get(0);
 		}
-		conditionsHeaderPage.SendKeysToField(toEnter, "Tracking ID:");
+		conditionsHeaderPage.sendKeysToField(toEnter, "Tracking ID:");
 		//Master customer set value is chosen
 		selectFromDropdown(data.get(1).get(1), "Master customer set:");
 		//Condition ID is entered
 		toEnter = data.get(1).get(2);
-		conditionsHeaderPage.SendKeysToField(toEnter, "Condition ID:");
+		conditionsHeaderPage.sendKeysToField(toEnter, "Condition ID:");
 		//Name is entered 
 		toEnter = data.get(1).get(3);
-		conditionsHeaderPage.SendKeysToField(toEnter, "Name:");
+		conditionsHeaderPage.sendKeysToField(toEnter, "Name:");
 		//Status value is chosen
 		selectFromDropdown(data.get(1).get(4), "Status:");
 		//Type value is chosen
@@ -155,7 +155,7 @@ public class ActorConditionsHeaderPage {
 		selectFromDropdown(toEnter, "Operator for Field");
 		//enter value information
 		toEnter = data.get(1).get(3);
-		conditionsHeaderPage.SendKeysToField(toEnter, "Value for Field");
+		conditionsHeaderPage.sendKeysToField(toEnter, "Value for Field");
 		clickIfClickable(ObjKey);
 
 	}
@@ -196,7 +196,7 @@ public class ActorConditionsHeaderPage {
 	
 	@Step
 	public void verifyingOperatorFieldwithoutEntry(String ObjKey, String expected) {
-		boolean exist = conditionsHeaderPage.DropdownCheckContents(ObjKey, expected);
+		boolean exist = conditionsHeaderPage.dropdownCheckContents(ObjKey, expected);
 		Verify.actualExpected(exist, true, ObjKey + "does not display any contents");
 	}
 	
@@ -215,7 +215,7 @@ public class ActorConditionsHeaderPage {
 	
 	@Step
 	public void isAssociationsEnabled() throws Throwable {
-		boolean isEnabled = conditionsHeaderPage.ObjectIsCurrentlyEnabled("Associations after Condition Creation");
+		boolean isEnabled = conditionsHeaderPage.objectIsCurrentlyEnabled("Associations after Condition Creation");
 		if(isEnabled == false) {
 			userDeletesCondition();
 			Verify.actualExpected(isEnabled, true, "Associations is not currently enabled");
@@ -276,7 +276,7 @@ public class ActorConditionsHeaderPage {
 	
 	@Step
 	public void dropdownCheckContents(String expected, String ObjKey) {
-		boolean hasCorrectContents = conditionsHeaderPage.DropdownCheckContents(ObjKey, expected);
+		boolean hasCorrectContents = conditionsHeaderPage.dropdownCheckContents(ObjKey, expected);
 		Verify.actualExpected(hasCorrectContents, true, ObjKey + "Drop-down list does not have expected contents");
 	}
 }

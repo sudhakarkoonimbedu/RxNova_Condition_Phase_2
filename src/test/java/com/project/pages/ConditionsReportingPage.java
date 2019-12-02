@@ -71,7 +71,7 @@ public class ConditionsReportingPage extends BasePage {
 		ConditionsReportingMap = Collections.unmodifiableMap(tmp);
 	}
 	
-	public boolean IsTabProperlyDisplayed(String ChildObjKey) {
+	public boolean isTabProperlyDisplayed(String ChildObjKey) {
 		String ChildObjPath = ConditionsReportingMap.get(ChildObjKey);
 		boolean IsTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		return(IsTabDisplayed);
@@ -91,14 +91,14 @@ public class ConditionsReportingPage extends BasePage {
 		return(labelMatch);
 	}
 	
-	public boolean DropdownCheckContents(String ObjKey, String expected) {
+	public boolean dropdownCheckContents(String ObjKey, String expected) {
 		String ObjPath = ConditionsReportingMap.get(ObjKey);
 		System.out.println("this is the object path" + ObjPath);
 		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
 	}
 	
-	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException{
+	public boolean objectIsDisplayed(String ObjKey) throws InterruptedException{
 		String ObjPath = ConditionsReportingMap.get(ObjKey);
 		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
@@ -111,7 +111,7 @@ public class ConditionsReportingPage extends BasePage {
 		rxNovaCommonUtil.checkBusyState();
 	}
 	
-	public boolean ObjectIsDisabled(String ObjKey) {
+	public boolean objectIsDisabled(String ObjKey) {
 		String ObjPath = ConditionsReportingMap.get(ObjKey);
 		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);
@@ -158,7 +158,7 @@ public class ConditionsReportingPage extends BasePage {
 		}
 	}
 	
-	public boolean ObjectContainsExpectedText(String ObjKey, String expectedDisplay) {
+	public boolean objectContainsExpectedText(String ObjKey, String expectedDisplay) {
 		String ObjPath = ConditionsReportingMap.get(ObjKey);
 		boolean match = rxNovaCommonUtil.objectContainsExpectedText(ObjPath, expectedDisplay);
 		return(match);

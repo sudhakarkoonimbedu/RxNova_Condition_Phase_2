@@ -56,24 +56,24 @@ public class ConditionsHomePage extends BasePage {
 		rxNovaCommonUtil.checkBusyState();
 	}
 	
-	public void SendKeysToField(String input, String ObjKey) {
+	public void sendKeysToField(String input, String ObjKey) {
 		String ObjPath = ConditionsHomeMap.get(ObjKey);
 		$(ObjPath).sendKeys(input);
 	}
 	
-	public boolean IsTabProperlyDisplayed(String ChildObjKey) {
+	public boolean isTabProperlyDisplayed(String ChildObjKey) {
 		String ChildObjPath = ConditionsHomeMap.get(ChildObjKey);
 		boolean IsTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		return(IsTabDisplayed);
 	}
 	
-	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException {
+	public boolean objectIsDisplayed(String ObjKey) throws InterruptedException {
 		String ObjPath = ConditionsHomeMap.get(ObjKey);
 		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 	
-	public boolean ObjectContainsExpectedText(String ObjKey, String expectedDisplay) {
+	public boolean objectContainsExpectedText(String ObjKey, String expectedDisplay) {
 		String ObjPath = ConditionsHomeMap.get(ObjKey);
 		boolean containsExpected = rxNovaCommonUtil.objectContainsExpectedText(ObjPath, expectedDisplay);
 		return(containsExpected);
@@ -116,7 +116,7 @@ public class ConditionsHomePage extends BasePage {
 		return(hasContents);
 	}
 
-	public boolean DropdownCheckContents(String expected, String ObjKey) {
+	public boolean dropdownCheckContents(String expected, String ObjKey) {
 		String ObjPath = ConditionsHomeMap.get(ObjKey);
 		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
@@ -146,7 +146,7 @@ public class ConditionsHomePage extends BasePage {
 		rxNovaCommonUtil.performClick(ObjPath);
 	}
 	
-	public boolean ObjectIsDisabled(String ObjKey) {
+	public boolean objectIsDisabled(String ObjKey) {
 		String ObjPath = ConditionsHomeMap.get(ObjKey);
 		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);

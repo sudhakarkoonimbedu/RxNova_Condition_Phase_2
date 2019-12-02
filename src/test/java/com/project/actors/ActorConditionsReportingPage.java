@@ -21,11 +21,11 @@ public class ActorConditionsReportingPage {
 	
 	@Step
 	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		boolean isTabDisplayed = conditionsReportingPage.IsTabProperlyDisplayed(ChildObjKey);
+		boolean isTabDisplayed = conditionsReportingPage.isTabProperlyDisplayed(ChildObjKey);
 		String styleLoad = "";
 		while(isTabDisplayed == false && !styleLoad.contains("none;")) {
 			styleLoad = rxNovaCommonUtil.checkBusyState();
-			isTabDisplayed = conditionsReportingPage.IsTabProperlyDisplayed(ChildObjKey);
+			isTabDisplayed = conditionsReportingPage.isTabProperlyDisplayed(ChildObjKey);
 		}
 		rxNovaCommonUtil.checkBusyState();
 		Verify.actualExpected(isTabDisplayed, true, "'" + ObjKey + "'" + " is not Displayed");
@@ -39,13 +39,13 @@ public class ActorConditionsReportingPage {
 	
 	@Step
 	public void verifyingDropdownContents(String ObjKey, String expected) {
-		boolean exist = conditionsReportingPage.DropdownCheckContents(ObjKey, expected);
+		boolean exist = conditionsReportingPage.dropdownCheckContents(ObjKey, expected);
 		Verify.actualExpected(exist, true, ObjKey + "does not display any contents");
 	}
 	
 	@Step
 	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
-		boolean isDisplayed = conditionsReportingPage.ObjectIsDisplayed(ObjKey);
+		boolean isDisplayed = conditionsReportingPage.objectIsDisplayed(ObjKey);
 		Verify.actualExpected(isDisplayed, true, "'" + ObjKey + "'" + " object is not displayed ");
 	}
 	
@@ -56,7 +56,7 @@ public class ActorConditionsReportingPage {
 	
 	@Step
 	public void objectIsDisabled(String ObjKey) {
-		boolean isDisabled = conditionsReportingPage.ObjectIsDisabled(ObjKey);
+		boolean isDisabled = conditionsReportingPage.objectIsDisabled(ObjKey);
 		Verify.actualExpected(isDisabled, false, "'" + ObjKey + "'" + " is enabled when it should be disabled");
 	}
 	
@@ -116,7 +116,7 @@ public class ActorConditionsReportingPage {
 	
 	@Step
 	public void objectContainsExpectedText(String ObjKey, String expectedDisplay) {
-		boolean matchesExpected = conditionsReportingPage.ObjectContainsExpectedText(ObjKey, expectedDisplay);
+		boolean matchesExpected = conditionsReportingPage.objectContainsExpectedText(ObjKey, expectedDisplay);
 		assertTrue("'" + ObjKey + "'" + "is not blank by default", matchesExpected);
 	}
 }

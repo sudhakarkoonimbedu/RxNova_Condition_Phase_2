@@ -61,7 +61,7 @@ public class ConditionsMassChangePage extends BasePage {
 		NewMassChangeMap = Collections.unmodifiableMap(tmp);
 	}
 	
-	public boolean IsTabProperlyDisplayed(String ChildObjKey) {
+	public boolean isTabProperlyDisplayed(String ChildObjKey) {
 		String ChildObjPath = NewMassChangeMap.get(ChildObjKey);
 		boolean IsTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		return(IsTabDisplayed);
@@ -78,7 +78,7 @@ public class ConditionsMassChangePage extends BasePage {
 		rxNovaCommonUtil.performClick(ObjPath);
 	}
 	
-	public boolean ObjectIsDisabled(String ObjKey) {
+	public boolean objectIsDisabled(String ObjKey) {
 		String ObjPath = NewMassChangeMap.get(ObjKey);
 		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);
@@ -115,7 +115,7 @@ public class ConditionsMassChangePage extends BasePage {
 		return(labelMatch);
 	}
 	
-	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException {
+	public boolean objectIsDisplayed(String ObjKey) throws InterruptedException {
 		String ObjPath = NewMassChangeMap.get(ObjKey);
 		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
@@ -141,7 +141,7 @@ public class ConditionsMassChangePage extends BasePage {
 		return(hasContents);
 	}
 	
-	public boolean DropdownCheckContents(String expected, String ObjKey) {
+	public boolean dropdownCheckContents(String expected, String ObjKey) {
 		String ObjPath = NewMassChangeMap.get(ObjKey);
 		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
@@ -154,7 +154,7 @@ public class ConditionsMassChangePage extends BasePage {
 		rxNovaCommonUtil.checkBusyState();
 	}
 	
-	public void SendKeysToField(String input, String ObjKey) {
+	public void sendKeysToField(String input, String ObjKey) {
 		String ObjPath = NewMassChangeMap.get(ObjKey);
 		$(ObjPath).sendKeys(input);
 	}

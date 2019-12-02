@@ -285,9 +285,9 @@ public class ActorConditionsDetailsPage {
 		rxNovaCommonUtil.checkBusyState();
 		conditionsHomePage.mySelectFromDropdown(data.get(1).get(5), "Type:");
 		rxNovaCommonUtil.checkBusyState();
-		conditionsHomePage.SendKeysToField(data.get(1).get(2), "Condition ID:");
+		conditionsHomePage.sendKeysToField(data.get(1).get(2), "Condition ID:");
 		rxNovaCommonUtil.checkBusyState();
-		conditionsHomePage.SendKeysToField(data.get(1).get(3), "Name:");
+		conditionsHomePage.sendKeysToField(data.get(1).get(3), "Name:");
 		rxNovaCommonUtil.checkBusyState();
 		conditionsHomePage.mySelectFromDropdown(data.get(1).get(4), "Status:");
 		rxNovaCommonUtil.checkBusyState();

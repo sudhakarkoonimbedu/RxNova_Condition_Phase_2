@@ -29,7 +29,7 @@ public class ActorConditionsFieldAdminSearch {
 	
 	@Step
 	public void dropdownCheckContents(String expected, String ObjKey) {
-		boolean hasCorrectContents = conditionsFieldAdmin.DropdownCheckContents(expected, ObjKey);
+		boolean hasCorrectContents = conditionsFieldAdmin.dropdownCheckContents(expected, ObjKey);
 		Verify.actualExpected(hasCorrectContents, true, ObjKey + " Drop-down list does not have expected contents");
 	}
 	
@@ -46,7 +46,7 @@ public class ActorConditionsFieldAdminSearch {
 	
 	@Step
 	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
-		boolean isDisplayed = conditionsFieldAdmin.ObjectIsDisplayed(ObjKey);
+		boolean isDisplayed = conditionsFieldAdmin.objectIsDisplayed(ObjKey);
 		Verify.actualExpected(isDisplayed, true, "'" + ObjKey + "'" + " object is not displayed ");
 	}
 }

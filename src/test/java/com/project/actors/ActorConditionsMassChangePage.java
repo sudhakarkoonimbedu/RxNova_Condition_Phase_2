@@ -30,11 +30,11 @@ public class ActorConditionsMassChangePage extends BasePage {
 	
 	@Step
 	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		boolean isTabDisplayed = conditionsMassChangePage.IsTabProperlyDisplayed(ChildObjKey);
+		boolean isTabDisplayed = conditionsMassChangePage.isTabProperlyDisplayed(ChildObjKey);
 		String styleLoad = "";
 		while(isTabDisplayed == false && !styleLoad.contains("none;")) {
 			styleLoad = rxNovaCommonUtil.checkBusyState();
-			isTabDisplayed = conditionsMassChangePage.IsTabProperlyDisplayed(ChildObjKey);
+			isTabDisplayed = conditionsMassChangePage.isTabProperlyDisplayed(ChildObjKey);
 		}
 		rxNovaCommonUtil.checkBusyState();
 		Verify.actualExpected(isTabDisplayed, true, "'" + ObjKey + "'" + " is not Displayed");
@@ -65,7 +65,7 @@ public class ActorConditionsMassChangePage extends BasePage {
 	
 	@Step
 	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
-		boolean isDisplayed = conditionsMassChangePage.ObjectIsDisplayed(ObjKey);
+		boolean isDisplayed = conditionsMassChangePage.objectIsDisplayed(ObjKey);
 		Verify.actualExpected(isDisplayed, true, "'" + ObjKey + "'" + " object is not displayed ");
 	}
 	
@@ -93,7 +93,7 @@ public class ActorConditionsMassChangePage extends BasePage {
 	
 	@Step
 	public void dropdownCheckContents(String expected, String ObjKey) {
-		boolean hasCorrectContents = conditionsMassChangePage.DropdownCheckContents(expected, ObjKey);
+		boolean hasCorrectContents = conditionsMassChangePage.dropdownCheckContents(expected, ObjKey);
 		Verify.actualExpected(hasCorrectContents, true, ObjKey + " Drop-down list does not have expected contents");
 	}
 	
@@ -111,7 +111,7 @@ public class ActorConditionsMassChangePage extends BasePage {
 	
 	@Step
 	public void sendKeysToField(String input, String ObjKey) {
-		conditionsMassChangePage.SendKeysToField(input, ObjKey);
+		conditionsMassChangePage.sendKeysToField(input, ObjKey);
 	}
 	
 	@Step
@@ -152,7 +152,7 @@ public class ActorConditionsMassChangePage extends BasePage {
 		rxNovaCommonUtil.checkBusyState();
 		clickIfClickable("Yes Delete Request");
 		rxNovaCommonUtil.checkBusyState();
-		boolean MassChangeHomeExists = conditionsMassChangePage.ObjectIsDisplayed("Mass Change Search Panel");
+		boolean MassChangeHomeExists = conditionsMassChangePage.objectIsDisplayed("Mass Change Search Panel");
 		Verify.actualExpected(MassChangeHomeExists, true, "Deletion of Mass Change Request did not occur properly");
 	}
 	
@@ -194,7 +194,7 @@ public class ActorConditionsMassChangePage extends BasePage {
 	
 	@Step
 	public void objectIsDisabled(String ObjKey) {
-		boolean isDisabled = conditionsMassChangePage.ObjectIsDisabled(ObjKey);
+		boolean isDisabled = conditionsMassChangePage.objectIsDisabled(ObjKey);
 		Verify.actualExpected(isDisabled, false, "'" + ObjKey + "'" + " is not disabled");
 	}
 	
@@ -228,7 +228,7 @@ public class ActorConditionsMassChangePage extends BasePage {
 	
 	@Step
 	public void checkingResultsPanelAfterSearch() throws NoSuchElementException, InterruptedException {
-		boolean resultsDisplayed = conditionsMassChangePage.ObjectIsDisplayed("Request Action Tab");
+		boolean resultsDisplayed = conditionsMassChangePage.objectIsDisplayed("Request Action Tab");
 		if(resultsDisplayed == false) {
 			resultsDisplayed = conditionsMassChangePage.checkingResultsPanelAfterSearch();
 		}

@@ -86,7 +86,7 @@ public class ActorConditionsDetailsCompoundPage {
 	
 	@Step
 	public void objectIsDisabled(String ObjKey) {
-		boolean isDisabled = conditionsHomePage.ObjectIsDisabled(ObjKey);
+		boolean isDisabled = conditionsHomePage.objectIsDisabled(ObjKey);
 		Verify.actualExpected(isDisabled, true, "'" + ObjKey + "'" + " is disabled");
 	}
 }

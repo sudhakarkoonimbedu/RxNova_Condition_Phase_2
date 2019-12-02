@@ -51,7 +51,7 @@ public class ConditionsFieldAdminPage extends BasePage {
 		return(labelMatch);
 	}
 	
-	public boolean DropdownCheckContents(String expected, String ObjKey) {
+	public boolean dropdownCheckContents(String expected, String ObjKey) {
 		String ObjPath = ConditionsFieldAdminSearchMap.get(ObjKey);
 		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
@@ -63,7 +63,7 @@ public class ConditionsFieldAdminPage extends BasePage {
 		return(hasContents);
 	}
 	
-	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException {
+	public boolean objectIsDisplayed(String ObjKey) throws InterruptedException {
 		String ObjPath = ConditionsFieldAdminSearchMap.get(ObjKey);
 		System.out.println("This is the current obj path " + ObjPath);
 		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);

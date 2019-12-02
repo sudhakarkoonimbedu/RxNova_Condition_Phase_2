@@ -20,7 +20,7 @@ public class ActorConditionsHomePage {
 	
 	@Step
 	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
-		boolean isDisplayed = conditionsHomePage.ObjectIsDisplayed(ObjKey);
+		boolean isDisplayed = conditionsHomePage.objectIsDisplayed(ObjKey);
 		assertTrue("'" + ObjKey + "'" + " object is not displayed ", isDisplayed);
 	}
 	
@@ -31,13 +31,13 @@ public class ActorConditionsHomePage {
 	
 	@Step
 	public void sendKeysToField(String input, String ObjKey) {
-		conditionsHomePage.SendKeysToField(input, ObjKey);
+		conditionsHomePage.sendKeysToField(input, ObjKey);
 	}
 	
 	@Step
 	public void objectContainsExpectedText(String ObjKey, String expectedDisplay) throws InterruptedException {
 		objectIsDisplayed(ObjKey);
-		boolean containsExpected = conditionsHomePage.ObjectContainsExpectedText(ObjKey, expectedDisplay);
+		boolean containsExpected = conditionsHomePage.objectContainsExpectedText(ObjKey, expectedDisplay);
 		assertTrue("'" + ObjKey + "'" + " does not contain " + expectedDisplay, containsExpected);
 		
 	}
@@ -68,7 +68,7 @@ public class ActorConditionsHomePage {
 	
 	@Step
 	public void dropdownCheckContents(String expected, String ObjKey) {
-		boolean hasCorrectContents = conditionsHomePage.DropdownCheckContents(expected, ObjKey);
+		boolean hasCorrectContents = conditionsHomePage.dropdownCheckContents(expected, ObjKey);
 		assertTrue(ObjKey + "Drop-down list does not have expected contents", hasCorrectContents);
 	}
 	
@@ -92,17 +92,17 @@ public class ActorConditionsHomePage {
 	
 	@Step
 	public void objectIsDisabled(String ObjKey) {
-		boolean isDisabled = conditionsHomePage.ObjectIsDisabled(ObjKey);
+		boolean isDisabled = conditionsHomePage.objectIsDisabled(ObjKey);
 		assertTrue("'" + ObjKey + "'" + " is disabled", isDisabled);
 	}
 	
 	@Step
 	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		boolean isTabDisplayed = conditionsHomePage.IsTabProperlyDisplayed(ChildObjKey);
+		boolean isTabDisplayed = conditionsHomePage.isTabProperlyDisplayed(ChildObjKey);
 		String styleLoad = "";
 		while(isTabDisplayed == false && !styleLoad.contains("none;")) {
 			styleLoad = rxNovaCommonUtil.checkBusyState();
-			isTabDisplayed = conditionsHomePage.IsTabProperlyDisplayed(ChildObjKey);
+			isTabDisplayed = conditionsHomePage.isTabProperlyDisplayed(ChildObjKey);
 		}
 		rxNovaCommonUtil.checkBusyState();
 		assertTrue("'" + ObjKey + "'" + " is not displayed", isTabDisplayed);

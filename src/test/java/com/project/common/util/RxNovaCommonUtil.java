@@ -193,7 +193,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void RxNova_PageSelection(String strAppName) throws Throwable
+	public void rxNova_PageSelection(String strAppName) throws Throwable
 	{
 		String SelectApp;
 		Boolean boolRxNova_PageSelection=false;
@@ -824,7 +824,7 @@ public class RxNovaCommonUtil extends BasePage{
 				{ System.out.println("Invalid Application selection - please check the application name");break;}				
 			}			
 			navigateApplicationMenu(APPPath);		
-			RxNova_PageSelection(APPPath);
+			rxNova_PageSelection(APPPath);
 			int cnt = 0;
 			while(cnt < 600) {
 				try {

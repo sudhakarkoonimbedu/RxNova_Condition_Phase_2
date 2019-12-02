@@ -28,19 +28,19 @@ public class ConditionsTagsNotesPage {
 		ConditionsTagsNotesMap = Collections.unmodifiableMap(tmp);
 	}	
 	
-	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException{
+	public boolean objectIsDisplayed(String ObjKey) throws InterruptedException{
 		String ObjPath = ConditionsTagsNotesMap.get(ObjKey);
 		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 	
-	public boolean ObjectContainsExpectedText(String ObjKey, String expectedDisplay) {
+	public boolean objectContainsExpectedText(String ObjKey, String expectedDisplay) {
 		String ObjPath = ConditionsTagsNotesMap.get(ObjKey);
 		boolean match = rxNovaCommonUtil.objectContainsExpectedText(ObjPath, expectedDisplay);
 		return(match);
 	}
 	
-	public boolean ObjectIsDisabled(String ObjKey) {
+	public boolean objectIsDisabled(String ObjKey) {
 		String ObjPath = ConditionsTagsNotesMap.get(ObjKey);
 		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);

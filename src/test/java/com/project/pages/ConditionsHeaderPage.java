@@ -45,12 +45,12 @@ public class ConditionsHeaderPage extends BasePage {
 
 	
 	
-	public boolean ObjectIsCurrentlyEnabled(String ObjKey) {
+	public boolean objectIsCurrentlyEnabled(String ObjKey) {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
 		return($(ObjPath).isCurrentlyEnabled());
 	}
 	
-	public void SendKeysToField(String input, String ObjKey) {
+	public void sendKeysToField(String input, String ObjKey) {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
 		$(ObjPath).sendKeys(input);
 	}
@@ -62,24 +62,24 @@ public class ConditionsHeaderPage extends BasePage {
 		rxNovaCommonUtil.checkBusyState();
 	}
 	
-	public void SwitchToMostRecentWindow() throws InterruptedException {
+	public void switchToMostRecentWindow() throws InterruptedException {
 		rxNovaCommonUtil.swithToMostRecentWindow();
 		rxNovaCommonUtil.switchToContentFrame();
 	}
 	
-	public boolean IsTabProperlyDisplayed(String ChildObjKey) {
+	public boolean isTabProperlyDisplayed(String ChildObjKey) {
 		String ChildObjPath = ConditionsHeaderMap.get(ChildObjKey);
 		boolean IsTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		return(IsTabDisplayed);
 	}
 	
-	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException{
+	public boolean objectIsDisplayed(String ObjKey) throws InterruptedException{
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
 		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 	
-	public boolean ObjectContainsExpectedText(String ObjKey, String expectedDisplay) {
+	public boolean objectContainsExpectedText(String ObjKey, String expectedDisplay) {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
 		boolean containsExpected = rxNovaCommonUtil.objectContainsExpectedText(ObjPath, expectedDisplay);
 		return(containsExpected);
@@ -123,7 +123,7 @@ public class ConditionsHeaderPage extends BasePage {
 		return(hasContents);
 	}
 	
-	public boolean DropdownCheckContents(String ObjKey, String expected) {
+	public boolean dropdownCheckContents(String ObjKey, String expected) {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
 		System.out.println("this is the object path" + ObjPath);
 		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
@@ -156,18 +156,18 @@ public class ConditionsHeaderPage extends BasePage {
 		rxNovaCommonUtil.performClick(ObjPath);
 	}
 	
-	public boolean ObjectIsDisabled(String ObjKey) {
+	public boolean objectIsDisabled(String ObjKey) {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
 		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);
 	}
 	
-	public void EnterIDs(String toEnter, String ObjKey) {
+	public void enterIDs(String toEnter, String ObjKey) {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
 		rxNovaCommonUtil.sendKeysToObject(ObjPath, toEnter);
 	}
 	
-	public void SelectRandomlyFromDropdown(String ObjKey) {
+	public void selectRandomlyFromDropdown(String ObjKey) {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
 		//determine maxValue variable -- this will be the size of the dropdown list; then select by integer
 		Select sel = new Select(getDriver().findElement(By.xpath(ObjPath)));
