@@ -29,14 +29,14 @@ public class ActorConditionsMassChangePage extends BasePage {
 	
 	
 	@Step
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
 		boolean isTabDisplayed = conditionsMassChangePage.IsTabProperlyDisplayed(ChildObjKey);
 		String styleLoad = "";
 		while(isTabDisplayed == false && !styleLoad.contains("none;")) {
-			styleLoad = rxNovaCommonUtil.CheckBusyState();
+			styleLoad = rxNovaCommonUtil.checkBusyState();
 			isTabDisplayed = conditionsMassChangePage.IsTabProperlyDisplayed(ChildObjKey);
 		}
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		Verify.actualExpected(isTabDisplayed, true, "'" + ObjKey + "'" + " is not Displayed");
 	}
 	
@@ -64,7 +64,7 @@ public class ActorConditionsMassChangePage extends BasePage {
 	}
 	
 	@Step
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
 		boolean isDisplayed = conditionsMassChangePage.ObjectIsDisplayed(ObjKey);
 		Verify.actualExpected(isDisplayed, true, "'" + ObjKey + "'" + " object is not displayed ");
 	}
@@ -92,7 +92,7 @@ public class ActorConditionsMassChangePage extends BasePage {
 	}
 	
 	@Step
-	public void DropdownCheckContents(String expected, String ObjKey) {
+	public void dropdownCheckContents(String expected, String ObjKey) {
 		boolean hasCorrectContents = conditionsMassChangePage.DropdownCheckContents(expected, ObjKey);
 		Verify.actualExpected(hasCorrectContents, true, ObjKey + " Drop-down list does not have expected contents");
 	}
@@ -100,22 +100,22 @@ public class ActorConditionsMassChangePage extends BasePage {
 	@Step 
 	public void createNewMassChange(String ObjKey, DataTable NewMassChangeData) throws InterruptedException {
 		List<List<String>> enterData = NewMassChangeData.raw();
-		SendKeysToField(enterData.get(1).get(0), "Tracking ID:");
-		SendKeysToField(enterData.get(1).get(1), "Reason:");
-		SendKeysToField(enterData.get(1).get(2), "Notes:");
-		SelectFromDropdown(enterData.get(1).get(3), "New Mass Change Master customer set:");
-		rxNovaCommonUtil.CheckBusyState();
-		SendKeysToField(enterData.get(1).get(4), "Name:");
-		SendKeysToField(enterData.get(1).get(7), "Description:");
+		sendKeysToField(enterData.get(1).get(0), "Tracking ID:");
+		sendKeysToField(enterData.get(1).get(1), "Reason:");
+		sendKeysToField(enterData.get(1).get(2), "Notes:");
+		selectFromDropdown(enterData.get(1).get(3), "New Mass Change Master customer set:");
+		rxNovaCommonUtil.checkBusyState();
+		sendKeysToField(enterData.get(1).get(4), "Name:");
+		sendKeysToField(enterData.get(1).get(7), "Description:");
 	}
 	
 	@Step
-	public void SendKeysToField(String input, String ObjKey) {
+	public void sendKeysToField(String input, String ObjKey) {
 		conditionsMassChangePage.SendKeysToField(input, ObjKey);
 	}
 	
 	@Step
-	public void SelectFromDropdown(String input, String ObjKey) throws InterruptedException {
+	public void selectFromDropdown(String input, String ObjKey) throws InterruptedException {
 		conditionsMassChangePage.mySelectFromDropdown(input, ObjKey);
 	}
 	
@@ -134,50 +134,50 @@ public class ActorConditionsMassChangePage extends BasePage {
 	public void searchRequest(DataTable enterData) throws InterruptedException {
 		//write a Search Mass Change Function to search for the created mass change requests
 		clickIfClickable("Cancel");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<List<String>> data = enterData.raw();
-		SelectFromDropdown(data.get(1).get(3), "Mass Change Master customer set:");
-		SendKeysToField(data.get(1).get(4), "Request name:");
-		SelectFromDropdown(data.get(1).get(5), "Request type:");
-		SelectFromDropdown(data.get(1).get(6), "Request status:");
+		selectFromDropdown(data.get(1).get(3), "Mass Change Master customer set:");
+		sendKeysToField(data.get(1).get(4), "Request name:");
+		selectFromDropdown(data.get(1).get(5), "Request type:");
+		selectFromDropdown(data.get(1).get(6), "Request status:");
 		clickIfClickable("Search");
 	}
 	
 	@Step public void deleteRequest() throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		WebElement RequestAction = getDriver().findElement(By.xpath(ConditionsMassChangePage.NewMassChangeMap.get("Request Action Tab")));
 		rxNovaCommonUtil.waitFor(RequestAction);
 		clickIfClickable("Request Action Tab");
 		clickIfClickable("Delete Request");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		clickIfClickable("Yes Delete Request");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		boolean MassChangeHomeExists = conditionsMassChangePage.ObjectIsDisplayed("Mass Change Search Panel");
 		Verify.actualExpected(MassChangeHomeExists, true, "Deletion of Mass Change Request did not occur properly");
 	}
 	
 	@Step public void searchRequestLastFirst(DataTable enterData) throws InterruptedException {
 		clickIfClickable("Cancel");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<List<String>> data = enterData.raw();
-		SelectFromDropdown(data.get(1).get(0), "Mass Change Master customer set:");
-		SendKeysToField(data.get(1).get(1), "Last name:");
-		SendKeysToField(data.get(1).get(2), "First name:");
+		selectFromDropdown(data.get(1).get(0), "Mass Change Master customer set:");
+		sendKeysToField(data.get(1).get(1), "Last name:");
+		sendKeysToField(data.get(1).get(2), "First name:");
 		clickIfClickable("Search");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 	}
 	
 	@Step 
 	public void searchRequestFromTo(DataTable enterData) throws InterruptedException {
 		clickIfClickable("Cancel");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<List<String>> data = enterData.raw();
 		DateFormat dateformat = new SimpleDateFormat("MM/dd/yyyy");
-		SelectFromDropdown(data.get(1).get(0), "Mass Change Master customer set:");
-		SendKeysToField(dateformat.format(new Date()), "From date:");
-		SendKeysToField(dateformat.format(new Date()), "To date:");
+		selectFromDropdown(data.get(1).get(0), "Mass Change Master customer set:");
+		sendKeysToField(dateformat.format(new Date()), "From date:");
+		sendKeysToField(dateformat.format(new Date()), "To date:");
 		clickIfClickable("Search");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 	}
 	
 	@Step
@@ -193,7 +193,7 @@ public class ActorConditionsMassChangePage extends BasePage {
 	}
 	
 	@Step
-	public void ObjectIsDisabled(String ObjKey) {
+	public void objectIsDisabled(String ObjKey) {
 		boolean isDisabled = conditionsMassChangePage.ObjectIsDisabled(ObjKey);
 		Verify.actualExpected(isDisabled, false, "'" + ObjKey + "'" + " is not disabled");
 	}

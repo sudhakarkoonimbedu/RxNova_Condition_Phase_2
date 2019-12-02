@@ -124,7 +124,7 @@ public class ConditionHeaderPage extends BasePage {
 	public boolean selectStatus(String strStatus) throws Throwable{
 		if (!strStatus.isEmpty() && ADD_HEADER_STATUS_LIST.isDisplayed()) {
 			rxNovaCommonUtil.selectFromDropdownUsingText(ADD_HEADER_STATUS_LIST,strStatus);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -143,7 +143,7 @@ public class ConditionHeaderPage extends BasePage {
 	public boolean clickOnNextButton() throws Throwable{
 		if (ADD_HEADER_NEXT_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(ADD_HEADER_NEXT_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

@@ -21,14 +21,14 @@ public class ActorConditionsDetailsCompoundPage {
 	@Steps
 	ActorConditionsHomePage actorOnConditionsHomePage;
 	
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
 		boolean isDisplayed = conditionsDetailsCompoundPage.IsTabProperlyDisplayed(ChildObjKey);
 		String styleLoad = "";
 		while(isDisplayed == false && !styleLoad.contains("none;")) {
-			styleLoad = rxNovaCommonUtil.CheckBusyState();
+			styleLoad = rxNovaCommonUtil.checkBusyState();
 			isDisplayed = conditionsDetailsCompoundPage.IsTabProperlyDisplayed(ChildObjKey);
 		}
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		Verify.actualExpected(isDisplayed, true, ObjKey + " is not properly displayed");
 	}
 	
@@ -39,7 +39,7 @@ public class ActorConditionsDetailsCompoundPage {
 	}
 	
 	@Step
-	public void DropdownCheckContents(String expected, String ObjKey) {
+	public void dropdownCheckContents(String expected, String ObjKey) {
 		boolean hasCorrectContents = conditionsDetailsCompoundPage.DropdownCheckContents(expected, ObjKey);
 		Verify.actualExpected(hasCorrectContents, true, ObjKey + " Drop-down list does not have expected contents");
 	}
@@ -51,7 +51,7 @@ public class ActorConditionsDetailsCompoundPage {
 	}
 	
 	@Step
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
 		boolean isDisplayed = conditionsDetailsCompoundPage.ObjectIsDisplayed(ObjKey);
 		Verify.actualExpected(isDisplayed, true, "'" + ObjKey + "'" + " object is not displayed");
 	}
@@ -85,7 +85,7 @@ public class ActorConditionsDetailsCompoundPage {
 	}
 	
 	@Step
-	public void ObjectIsDisabled(String ObjKey) {
+	public void objectIsDisabled(String ObjKey) {
 		boolean isDisabled = conditionsHomePage.ObjectIsDisabled(ObjKey);
 		Verify.actualExpected(isDisabled, true, "'" + ObjKey + "'" + " is disabled");
 	}

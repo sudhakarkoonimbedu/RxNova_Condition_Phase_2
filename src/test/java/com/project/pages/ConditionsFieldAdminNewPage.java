@@ -48,7 +48,7 @@ public class ConditionsFieldAdminNewPage extends BasePage {
 	
 	public boolean IsTabProperlyDisplayed(String ChildObjKey) {
 		String ChildObjPath = ConditionsFieldAdminDetailsMap.get(ChildObjKey);
-		boolean IsTabDisplayed = rxNovaCommonUtil.IsTabProperlyDisplayed(ChildObjPath);
+		boolean IsTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		return(IsTabDisplayed);
 	}
 	
@@ -72,7 +72,7 @@ public class ConditionsFieldAdminNewPage extends BasePage {
 		String ObjPath = ConditionsFieldAdminDetailsMap.get(ObjKey);
 		WebElement currElement = getDriver().findElement(By.xpath(ObjPath));
 		rxNovaCommonUtil.selectFromDropdown(currElement, input);
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 	}
 	
 	public boolean ObjectIsCurrentlyEnabled(String ObjKey) {
@@ -81,7 +81,7 @@ public class ConditionsFieldAdminNewPage extends BasePage {
 	}
 	
 	public boolean checkDetailsPanelForCorrectLabels(String label) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<WebElement> pageLabels = getDriver().findElements(By.className("firstCommonColumn"));
 		List<WebElement> newList = new ArrayList<WebElement>();
 		newList.addAll(pageLabels);
@@ -99,13 +99,13 @@ public class ConditionsFieldAdminNewPage extends BasePage {
 	
 	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException {
 		String ObjPath = ConditionsFieldAdminDetailsMap.get(ObjKey);
-		boolean isDisplayed = rxNovaCommonUtil.ObjectIsDisplayed(ObjPath);
+		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 	
 	public boolean DropdownCheckContents(String expected, String ObjKey) {
 		String ObjPath = ConditionsFieldAdminDetailsMap.get(ObjKey);
-		boolean hasContents = rxNovaCommonUtil.DropdownCheckContents(expected, ObjPath);
+		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
 	}
 	

@@ -79,7 +79,7 @@ public class ConditionHomePage extends BasePage {
 	public boolean selectMasterCustomerSet(String strMCS) throws Throwable {
 		if (!strMCS.isEmpty() && CONDITION_HOME_MASTER_CUISTOMER_SET_LIST.isDisplayed()) {
 			rxNovaCommonUtil.selectFromDropdownUsingText(CONDITION_HOME_MASTER_CUISTOMER_SET_LIST,strMCS);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -89,7 +89,7 @@ public class ConditionHomePage extends BasePage {
 	public boolean selectType(String strType) throws Throwable {
 		if (!strType.isEmpty() && CONDITION_HOME_TYPE_LIST.isDisplayed()) {
 			rxNovaCommonUtil.selectFromDropdownUsingText(CONDITION_HOME_TYPE_LIST,strType);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -187,7 +187,7 @@ public class ConditionHomePage extends BasePage {
 	public boolean clickOnSearchButton() throws Throwable {
 		if (CONDITION_HOME_SEARCH_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(CONDITION_HOME_SEARCH_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -197,7 +197,7 @@ public class ConditionHomePage extends BasePage {
 	public boolean clickOnAdvancedSearchLink() throws Throwable {
 		if (CONDITION_HOME_ADVANCEDSEARCH_LINK.isClickable()) {
 			rxNovaCommonUtil.performClick(CONDITION_HOME_ADVANCEDSEARCH_LINK);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

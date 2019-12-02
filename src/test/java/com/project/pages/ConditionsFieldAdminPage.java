@@ -35,7 +35,7 @@ public class ConditionsFieldAdminPage extends BasePage {
 	}	
 	
 	public boolean checkDetailsPanelForCorrectLabels(String label) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<WebElement> pageLabels = getDriver().findElements(By.className("firstCommonColumn"));
 		List<WebElement> newList = new ArrayList<WebElement>();
 		newList.addAll(pageLabels);
@@ -53,7 +53,7 @@ public class ConditionsFieldAdminPage extends BasePage {
 	
 	public boolean DropdownCheckContents(String expected, String ObjKey) {
 		String ObjPath = ConditionsFieldAdminSearchMap.get(ObjKey);
-		boolean hasContents = rxNovaCommonUtil.DropdownCheckContents(expected, ObjPath);
+		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
 	}
 	
@@ -66,7 +66,7 @@ public class ConditionsFieldAdminPage extends BasePage {
 	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException {
 		String ObjPath = ConditionsFieldAdminSearchMap.get(ObjKey);
 		System.out.println("This is the current obj path " + ObjPath);
-		boolean isDisplayed = rxNovaCommonUtil.ObjectIsDisplayed(ObjPath);
+		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 }

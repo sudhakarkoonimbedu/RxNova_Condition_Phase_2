@@ -19,13 +19,13 @@ public class ConditionHeaderUIVerificationSteps {
 	ActorConditionsHeaderPage actorOnConditionsHeaderPage;
 	
 	@Then("^They check if \"(.*)\" displays$")
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
-		actorOnConditionsHeaderPage.ObjectIsDisplayed(ObjKey);
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
+		actorOnConditionsHeaderPage.objectIsDisplayed(ObjKey);
 	}
 	
 	@Then("^They determine whether \"(.*)\" is currently showing by checking for \"(.*)\"$")
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		actorOnConditionsHeaderPage.IsTabDisplayed(ObjKey, ChildObjKey);
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+		actorOnConditionsHeaderPage.isTabDisplayed(ObjKey, ChildObjKey);
 	}
 	
 	@Then("^They determine whether the following \"([^\"]*)\" are displayed in the Header panel$")
@@ -54,7 +54,7 @@ public class ConditionHeaderUIVerificationSteps {
 	}
 	
 	@Then("^User should be able to view \"(.*)\" options for \"(.*)\" dropdown$")
-	public void DropdownCheckContents(String expected, String ObjKey) {
-		actorOnConditionsHeaderPage.DropdownCheckContents(expected, ObjKey);
+	public void dropdownCheckContents(String expected, String ObjKey) {
+		actorOnConditionsHeaderPage.dropdownCheckContents(expected, ObjKey);
 	}
 }

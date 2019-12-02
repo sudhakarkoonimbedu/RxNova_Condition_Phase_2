@@ -159,7 +159,7 @@ public class ConditionUpdateDetailsSinglePage extends BasePage {
 	public boolean clickOnTopSaveButton() throws Throwable {
 		if (UPDATE_DETAILS_TOP_SAVE_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(UPDATE_DETAILS_TOP_SAVE_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

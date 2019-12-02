@@ -52,7 +52,7 @@ public class ConditionDetailsCompoundPage extends BasePage {
 	public boolean selectCompoundOperator(String strCompoundOperator) throws Throwable{
 		if (!strCompoundOperator.isEmpty() && ADD_DETAILS_COMPOUND_OPERATOR_LIST.isDisplayed()) {
 			rxNovaCommonUtil.selectFromDropdownUsingText(ADD_DETAILS_COMPOUND_OPERATOR_LIST,strCompoundOperator);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -70,7 +70,7 @@ public class ConditionDetailsCompoundPage extends BasePage {
 	public boolean clickOnTopNextButton() throws Throwable {
 		if (ADD_DETAILS_TOP_NEXT_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(ADD_DETAILS_TOP_NEXT_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

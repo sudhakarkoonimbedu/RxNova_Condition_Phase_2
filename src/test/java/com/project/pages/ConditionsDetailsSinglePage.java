@@ -79,7 +79,7 @@ public class ConditionsDetailsSinglePage extends BasePage {
 	
 	public boolean ObjectIsCurrentlyEnabled(String ObjKey) throws InterruptedException {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		return($(ObjPath).isCurrentlyEnabled());
 	}
 	
@@ -92,29 +92,29 @@ public class ConditionsDetailsSinglePage extends BasePage {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
 		WebElement currElement = getDriver().findElement(By.xpath(ObjPath));
 		rxNovaCommonUtil.selectFromDropdown(currElement, input);
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 	}
 	
 	public void SwitchToMostRecentWindow() throws InterruptedException {
-		rxNovaCommonUtil.SwithToMostRecentWindow();
+		rxNovaCommonUtil.swithToMostRecentWindow();
 		rxNovaCommonUtil.switchToContentFrame();
 	}
 	
 	public boolean IsTabProperlyDisplayed(String ChildObjKey) {
 		String ChildObjPath = ConditionsHeaderMap.get(ChildObjKey);
-		boolean IsTabDisplayed = rxNovaCommonUtil.IsTabProperlyDisplayed(ChildObjPath);
+		boolean IsTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		return(IsTabDisplayed);
 	}
 	
 	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException{
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
-		boolean isDisplayed = rxNovaCommonUtil.ObjectIsDisplayed(ObjPath);
+		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 	
 	public boolean ObjectContainsExpectedText(String ObjKey, String expectedDisplay) {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
-		boolean containsExpected = rxNovaCommonUtil.ObjectContainsExpectedText(ObjPath, expectedDisplay);
+		boolean containsExpected = rxNovaCommonUtil.objectContainsExpectedText(ObjPath, expectedDisplay);
 		return(containsExpected);
 	}
 	
@@ -140,7 +140,7 @@ public class ConditionsDetailsSinglePage extends BasePage {
 		List<WebElement> pageLabels = getDriver().findElements(By.className("firstCommonColumn"));
 		boolean labelMatch = false;
 		for(WebElement i : pageLabels) {
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			String checkLabel = label + ":";
 			if(i.getText().equals(checkLabel)) {
 				labelMatch = true;
@@ -160,7 +160,7 @@ public class ConditionsDetailsSinglePage extends BasePage {
 	public boolean DropdownCheckContents(String ObjKey, String expected) {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
 		System.out.println("this is the object path" + ObjPath);
-		boolean hasContents = rxNovaCommonUtil.DropdownCheckContents(expected, ObjPath);
+		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
 	}
 	
@@ -190,7 +190,7 @@ public class ConditionsDetailsSinglePage extends BasePage {
 	
 	public boolean ObjectIsDisabled(String ObjKey) {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
-		boolean isDisabled = rxNovaCommonUtil.ObjectIsDisabled(ObjPath);
+		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);
 	}
 	
@@ -206,13 +206,13 @@ public class ConditionsDetailsSinglePage extends BasePage {
 		List<WebElement> list = sel.getOptions();
 		int rndInt = 1000;
 		while(rndInt >= list.size()) {
-			rndInt = rxNovaCommonUtil.RandomIntegerGenerator(list.size());
+			rndInt = rxNovaCommonUtil.randomIntegerGenerator(list.size());
 		}
 		rxNovaCommonUtil.selectFromDropdownUsingIndex(rndInt, ObjPath);
 	}
 	
 	public boolean checkPanelsForCorrectLabels(String label) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<WebElement> pageLabels = getDriver().findElements(By.cssSelector(".tdtop"));
 		boolean labelMatch = false;
 		for(WebElement i : pageLabels) {
@@ -227,8 +227,8 @@ public class ConditionsDetailsSinglePage extends BasePage {
 	
 	public boolean verifyingTableContents(String expected, String ObjKey) throws InterruptedException {
 		String ObjPath = ConditionsHeaderMap.get(ObjKey);
-		rxNovaCommonUtil.CheckBusyState();
-		boolean hasContents = rxNovaCommonUtil.TableCheckContents(expected, ObjPath);
+		rxNovaCommonUtil.checkBusyState();
+		boolean hasContents = rxNovaCommonUtil.tableCheckContents(expected, ObjPath);
 		return(hasContents);
 	}
 	

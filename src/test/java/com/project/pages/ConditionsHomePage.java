@@ -53,7 +53,7 @@ public class ConditionsHomePage extends BasePage {
 		String ObjPath = ConditionsHomeMap.get(ObjKey);
 		WebElement currElement = getDriver().findElement(By.xpath(ObjPath));
 		rxNovaCommonUtil.selectFromDropdown(currElement, input);
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 	}
 	
 	public void SendKeysToField(String input, String ObjKey) {
@@ -63,19 +63,19 @@ public class ConditionsHomePage extends BasePage {
 	
 	public boolean IsTabProperlyDisplayed(String ChildObjKey) {
 		String ChildObjPath = ConditionsHomeMap.get(ChildObjKey);
-		boolean IsTabDisplayed = rxNovaCommonUtil.IsTabProperlyDisplayed(ChildObjPath);
+		boolean IsTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		return(IsTabDisplayed);
 	}
 	
 	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException {
 		String ObjPath = ConditionsHomeMap.get(ObjKey);
-		boolean isDisplayed = rxNovaCommonUtil.ObjectIsDisplayed(ObjPath);
+		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 	
 	public boolean ObjectContainsExpectedText(String ObjKey, String expectedDisplay) {
 		String ObjPath = ConditionsHomeMap.get(ObjKey);
-		boolean containsExpected = rxNovaCommonUtil.ObjectContainsExpectedText(ObjPath, expectedDisplay);
+		boolean containsExpected = rxNovaCommonUtil.objectContainsExpectedText(ObjPath, expectedDisplay);
 		return(containsExpected);
 	}
 	
@@ -118,7 +118,7 @@ public class ConditionsHomePage extends BasePage {
 
 	public boolean DropdownCheckContents(String expected, String ObjKey) {
 		String ObjPath = ConditionsHomeMap.get(ObjKey);
-		boolean hasContents = rxNovaCommonUtil.DropdownCheckContents(expected, ObjPath);
+		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
 	}
 	
@@ -148,7 +148,7 @@ public class ConditionsHomePage extends BasePage {
 	
 	public boolean ObjectIsDisabled(String ObjKey) {
 		String ObjPath = ConditionsHomeMap.get(ObjKey);
-		boolean isDisabled = rxNovaCommonUtil.ObjectIsDisabled(ObjPath);
+		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);
 	}
 	

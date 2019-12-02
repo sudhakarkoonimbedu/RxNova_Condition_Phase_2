@@ -17,8 +17,8 @@ public class ConditionDetailsUIVerificationSteps {
 	RxNovaCommonUtil rxNovaCommonUtil;
 	
 	@Then("^They check whether the \"(.*)\" is currently enabled$")
-	public void ObjectIsCurrentlyEnabled(String ObjKey) throws InterruptedException {
-		actorOnConditionsDetailsPage.ObjectIsCurrentlyEnabled(ObjKey);
+	public void objectIsCurrentlyEnabled(String ObjKey) throws InterruptedException {
+		actorOnConditionsDetailsPage.objectIsCurrentlyEnabled(ObjKey);
 	}
 	
 	@Then("^They click \"(.*)\"$")
@@ -27,53 +27,53 @@ public class ConditionDetailsUIVerificationSteps {
 	}
 	
 	@Then("^They enter \"(.*)\" into \"(.*)\"$")
-	public void SendKeysToField(String input, String ObjKey) {
-		actorOnConditionsDetailsPage.SendKeysToField(input, ObjKey);
+	public void sendKeysToField(String input, String ObjKey) {
+		actorOnConditionsDetailsPage.sendKeysToField(input, ObjKey);
 	}
 	
 	@Then("^They specify \"(.*)\" for \"(.*)\"$")
-	public void SelectFromDropdown(String input, String ObjKey) throws InterruptedException {
-		actorOnConditionsDetailsPage.SelectFromDropdown(input, ObjKey);
+	public void selectFromDropdown(String input, String ObjKey) throws InterruptedException {
+		actorOnConditionsDetailsPage.selectFromDropdown(input, ObjKey);
 	}
 	
 	@Then("^User switches windows to most recent window$")
-	public void SwitchToMostRecentWindow() throws InterruptedException {
-		actorOnConditionsDetailsPage.SwitchToMostRecentWindow();
+	public void switchToMostRecentWindow() throws InterruptedException {
+		actorOnConditionsDetailsPage.switchToMostRecentWindow();
 	}
 	
 	@Then("^They check if the \"(.*)\" is currently showing by checking for \"(.*)\"$")
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		actorOnConditionsDetailsPage.IsTabDisplayed(ObjKey, ChildObjKey);
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+		actorOnConditionsDetailsPage.isTabDisplayed(ObjKey, ChildObjKey);
 	}
 	
 	@Then("^They check if \"(.*)\" is disabled$")
-	public void ObjectIsDisabled(String ObjKey) {
-		actorOnConditionsDetailsPage.ObjectIsDisabled(ObjKey);
+	public void objectIsDisabled(String ObjKey) {
+		actorOnConditionsDetailsPage.objectIsDisabled(ObjKey);
 	}
 	
 	@Then("^They enter a (\\d+) digit number into \"(.*)\"$")
-	public void EnterIDs(int stringTargetLength, String ObjKey) {
-		actorOnConditionsDetailsPage.EnterIDs(stringTargetLength, ObjKey);
+	public void enterIDs(int stringTargetLength, String ObjKey) {
+		actorOnConditionsDetailsPage.enterIDs(stringTargetLength, ObjKey);
 	}
 
 	@Then("^They enter a word into \"(.*)\"$")
-	public void EnterRandomWord(String ObjKey) {
-		actorOnConditionsDetailsPage.EnterRandomWord(ObjKey);
+	public void enterRandomWord(String ObjKey) {
+		actorOnConditionsDetailsPage.enterRandomWord(ObjKey);
 	}
 	
 	@Then("^They select a value for \"(.*)\" dropdown list$")
-	public void SelectRandomlyFromDropown(String ObjKey) {
-		actorOnConditionsDetailsPage.SelectRandomlyFromDropdown(ObjKey);
+	public void selectRandomlyFromDropown(String ObjKey) {
+		actorOnConditionsDetailsPage.selectRandomlyFromDropdown(ObjKey);
 	}
 	
 	@Then("^They enter the following header data and press \"(.*)\"$")
-	public void EnterRelevantHeaderData(String ObjKey, DataTable enterData) throws InterruptedException, Throwable {
-		actorOnConditionsDetailsPage.EnterRelevantHeaderData(ObjKey, enterData);
+	public void enterRelevantHeaderData(String ObjKey, DataTable enterData) throws InterruptedException, Throwable {
+		actorOnConditionsDetailsPage.enterRelevantHeaderData(ObjKey, enterData);
 	}
 	
 	@Then("^They enter the following details data and press \"(.*)\"$")
-	public void EnterRelevantDetailsDataFewerFields(String ObjKey, DataTable enterData) throws Throwable {
-		actorOnConditionsDetailsPage.EnterRelevantDetailsDataFewerFields(ObjKey, enterData);
+	public void enterRelevantDetailsDataFewerFields(String ObjKey, DataTable enterData) throws Throwable {
+		actorOnConditionsDetailsPage.enterRelevantDetailsDataFewerFields(ObjKey, enterData);
 	}
 	
 	@Then("^They determine whether the following \"([^\"]*)\" are displayed in the Details panel$")
@@ -113,7 +113,7 @@ public class ConditionDetailsUIVerificationSteps {
 	
 	@Then("^They check if the \"(.*)\" is currently showing by checking for \"(.*)\" after creating a condition$")
 	public void verifyAssociationsDisplay(String ObjKey, String ChildObjKey) throws Throwable {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		actorOnConditionsDetailsPage.verifyAssociationsDisplay(ObjKey, ChildObjKey);
 	}
 	
@@ -133,23 +133,23 @@ public class ConditionDetailsUIVerificationSteps {
 	}
 	
 	@Then("^They check whether the \"(.*)\" is currently enabled and delete$")
-	public void PreTestObjectEnabled(String ObjKey) throws Throwable {
-		actorOnConditionsDetailsPage.PreTestObjectEnabled(ObjKey);
+	public void preTestObjectEnabled(String ObjKey) throws Throwable {
+		actorOnConditionsDetailsPage.preTestObjectEnabled(ObjKey);
 	}
 	
 	@Then("^The user creates a condition with the following data$")
-	public void CreateCondition(DataTable conditionData) throws InterruptedException, Throwable {
-		actorOnConditionsDetailsPage.IsTabDisplayed("Header", "Tracking ID:");
-		actorOnConditionsDetailsPage.EnterRelevantHeaderData("Next", conditionData);
-		actorOnConditionsDetailsPage.IsTabDisplayed("Details", "Source:");
-		actorOnConditionsDetailsPage.EnterRelevantDetailsData("Next", conditionData);
-		actorOnConditionsDetailsPage.IsTabDisplayed("Tags/Notes", "Tags Panel");
+	public void createCondition(DataTable conditionData) throws InterruptedException, Throwable {
+		actorOnConditionsDetailsPage.isTabDisplayed("Header", "Tracking ID:");
+		actorOnConditionsDetailsPage.enterRelevantHeaderData("Next", conditionData);
+		actorOnConditionsDetailsPage.isTabDisplayed("Details", "Source:");
+		actorOnConditionsDetailsPage.enterRelevantDetailsData("Next", conditionData);
+		actorOnConditionsDetailsPage.isTabDisplayed("Tags/Notes", "Tags Panel");
 		actorOnConditionsDetailsPage.clickIfClickable("Conditions Tags/Notes Save");
 		waitForbusy();
 	}
 	
 	@Then("^The user searches conditions with the following data and deletes them$")
-	public void DeleteCondition(DataTable conditionData) throws Throwable {
+	public void deleteCondition(DataTable conditionData) throws Throwable {
 		actorOnConditionsDetailsPage.userDeletesCondition(conditionData);
 	}
 }

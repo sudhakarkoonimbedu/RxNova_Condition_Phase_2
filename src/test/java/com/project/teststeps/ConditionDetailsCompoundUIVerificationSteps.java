@@ -15,7 +15,7 @@ public class ConditionDetailsCompoundUIVerificationSteps {
 	
 	@Then("^They ensure that they are on \"(.*)\" by checking for \"(.*)\"$")
 	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		actorOnConditionsDetailsCompPage.IsTabDisplayed(ObjKey, ChildObjKey);
+		actorOnConditionsDetailsCompPage.isTabDisplayed(ObjKey, ChildObjKey);
 	}
 	
 	@Then("^They check whether \"([^\"]*)\" is displayed in the Details Panel$")
@@ -24,8 +24,8 @@ public class ConditionDetailsCompoundUIVerificationSteps {
 	}
 	
 	@Then("^They determine whether the \"(.*)\" dropdown list contains \"(.*)\" options$")
-	public void DropdownCheckContents(String ObjKey, String expected) {
-		actorOnConditionsDetailsCompPage.DropdownCheckContents(expected, ObjKey);
+	public void dropdownCheckContents(String ObjKey, String expected) {
+		actorOnConditionsDetailsCompPage.dropdownCheckContents(expected, ObjKey);
 	}
 	
 	@Then("^prefix \"(.*)\" should display beside \"(.*)\" edit field$")
@@ -34,8 +34,8 @@ public class ConditionDetailsCompoundUIVerificationSteps {
 	}
 	
 	@Then("^They ensure that \"(.*)\" is displayed$")
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
-		actorOnConditionsDetailsCompPage.ObjectIsDisplayed(ObjKey);
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
+		actorOnConditionsDetailsCompPage.objectIsDisplayed(ObjKey);
 	}
 	
 	@Then("^They ensure that \"(.*)\" are shown for \"(.*)\"$")
@@ -44,8 +44,8 @@ public class ConditionDetailsCompoundUIVerificationSteps {
 	}
 
 	@Then("^They ensure that \"(.*)\" is disabled by default$")
-	public void ObjectIsDisabled(String ObjKey) {
-		actorOnConditionsDetailsCompPage.ObjectIsDisabled(ObjKey);
+	public void objectIsDisabled(String ObjKey) {
+		actorOnConditionsDetailsCompPage.objectIsDisabled(ObjKey);
 	}
 	
 }

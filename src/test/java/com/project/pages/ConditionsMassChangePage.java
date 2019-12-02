@@ -63,7 +63,7 @@ public class ConditionsMassChangePage extends BasePage {
 	
 	public boolean IsTabProperlyDisplayed(String ChildObjKey) {
 		String ChildObjPath = NewMassChangeMap.get(ChildObjKey);
-		boolean IsTabDisplayed = rxNovaCommonUtil.IsTabProperlyDisplayed(ChildObjPath);
+		boolean IsTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		return(IsTabDisplayed);
 	}
 	
@@ -80,12 +80,12 @@ public class ConditionsMassChangePage extends BasePage {
 	
 	public boolean ObjectIsDisabled(String ObjKey) {
 		String ObjPath = NewMassChangeMap.get(ObjKey);
-		boolean isDisabled = rxNovaCommonUtil.ObjectIsDisabled(ObjPath);
+		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);
 	}
 	
 	public boolean checkPanelLabelsKnowingClass(String currClass, String label) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<WebElement> pageLabels = getDriver().findElements(By.className(currClass));
 		boolean labelMatch = false;
 		for(WebElement i: pageLabels) {
@@ -99,7 +99,7 @@ public class ConditionsMassChangePage extends BasePage {
 	}
 	
 	public boolean checkDetailsPanelForCorrectLabels(String label) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<WebElement> pageLabels = getDriver().findElements(By.className("firstCommonColumn"));
 		List<WebElement> newList = new ArrayList<WebElement>();
 		newList.addAll(pageLabels);
@@ -117,12 +117,12 @@ public class ConditionsMassChangePage extends BasePage {
 	
 	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException {
 		String ObjPath = NewMassChangeMap.get(ObjKey);
-		boolean isDisplayed = rxNovaCommonUtil.ObjectIsDisplayed(ObjPath);
+		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 	
 	public boolean checkingItemsInSearch(String label) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<WebElement> pageLabels = getDriver().findElements(By.className("firstCommonColumn"));
 		boolean labelMatch = false;
 		for(WebElement i : pageLabels) {
@@ -143,7 +143,7 @@ public class ConditionsMassChangePage extends BasePage {
 	
 	public boolean DropdownCheckContents(String expected, String ObjKey) {
 		String ObjPath = NewMassChangeMap.get(ObjKey);
-		boolean hasContents = rxNovaCommonUtil.DropdownCheckContents(expected, ObjPath);
+		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
 	}
 	
@@ -151,7 +151,7 @@ public class ConditionsMassChangePage extends BasePage {
 		String ObjPath = NewMassChangeMap.get(ObjKey);
 		WebElement currElement = getDriver().findElement(By.xpath(ObjPath));
 		rxNovaCommonUtil.selectFromDropdown(currElement, input);
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 	}
 	
 	public void SendKeysToField(String input, String ObjKey) {
@@ -160,7 +160,7 @@ public class ConditionsMassChangePage extends BasePage {
 	}
 	
 	public boolean checkRequestEditPanel(String label) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<WebElement> pageLabels = new ArrayList<WebElement>(getDriver().findElements(By.className("firstCommonColumn")));
 		pageLabels.addAll(getDriver().findElements(By.className("masschangeInformationfirstColumn")));
 		boolean labelMatch = false;

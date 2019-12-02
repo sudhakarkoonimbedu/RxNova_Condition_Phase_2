@@ -45,7 +45,7 @@ public class ConditionDeletePage extends BasePage {
 	public boolean enterTrackingID(String strTrackingID) throws Throwable{
 		if (!strTrackingID.isEmpty() && rxNovaCommonUtil.objectIsDisplayed(DELETE_TRACKING_ID_EDIT)) {
 			rxNovaCommonUtil.sendKeysToObject(DELETE_TRACKING_ID_EDIT,strTrackingID);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -73,7 +73,7 @@ public class ConditionDeletePage extends BasePage {
 	public boolean clickOnDeleteButton() throws Throwable{
 		if (DELETE_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(DELETE_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

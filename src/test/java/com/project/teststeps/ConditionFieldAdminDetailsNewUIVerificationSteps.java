@@ -16,8 +16,8 @@ public class ConditionFieldAdminDetailsNewUIVerificationSteps {
 	
 	
 	@Then("^They check if \"(.*)\" is showing by checking for \"(.*)\"$")
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		actorOnFieldAdminDetails.IsTabDisplayed(ObjKey, ChildObjKey);
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+		actorOnFieldAdminDetails.isTabDisplayed(ObjKey, ChildObjKey);
 	}
 	
 	@Then("^They press on \"(.*)\"$")
@@ -26,13 +26,13 @@ public class ConditionFieldAdminDetailsNewUIVerificationSteps {
 	}
 	
 	@Then("^They enter the following data for Header and press \"(.*)\"$")
-	public void EnterRelevantHeaderDetails(String ObjKey, DataTable enterData) throws Throwable, InterruptedException {
-		actorOnFieldAdminDetails.EnterRelevantHeaderData(ObjKey, enterData);
+	public void enterRelevantHeaderDetails(String ObjKey, DataTable enterData) throws Throwable, InterruptedException {
+		actorOnFieldAdminDetails.enterRelevantHeaderData(ObjKey, enterData);
 	}
 	
 	@Then("^They check whether \"(.*)\" is currently enabled$")
-	public void ObjectIsCurrentlyEnabled(String ObjKey) {
-		actorOnFieldAdminDetails.ObjectIsCurrentlyEnabled(ObjKey);
+	public void objectIsCurrentlyEnabled(String ObjKey) {
+		actorOnFieldAdminDetails.objectIsCurrentlyEnabled(ObjKey);
 	}
 	
 	@Then("^They determine whether the \"(.*)\" contains \"(.*)\"$")
@@ -41,13 +41,13 @@ public class ConditionFieldAdminDetailsNewUIVerificationSteps {
 	}
 	
 	@Then("^They check if \"(.*)\" is displayed$")
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
-		actorOnFieldAdminDetails.ObjectIsDisplayed(ObjKey);
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
+		actorOnFieldAdminDetails.objectIsDisplayed(ObjKey);
 	}
 	
 	@Then("^They check if \"(.*)\" dropdown list contains \"(.*)\"$")
-	public void DropdownCheckContents(String ObjKey, String expected) {
-		actorOnFieldAdminDetails.DropdownCheckContents(expected, ObjKey);
+	public void dropdownCheckContents(String ObjKey, String expected) {
+		actorOnFieldAdminDetails.dropdownCheckContents(expected, ObjKey);
 	}
 	
 	@Then("^They check if \"(.*)\" dropdown list contains list of available contents$")

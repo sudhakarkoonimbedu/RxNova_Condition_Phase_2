@@ -30,19 +30,19 @@ public class ConditionsTagsNotesPage {
 	
 	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException{
 		String ObjPath = ConditionsTagsNotesMap.get(ObjKey);
-		boolean isDisplayed = rxNovaCommonUtil.ObjectIsDisplayed(ObjPath);
+		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 	
 	public boolean ObjectContainsExpectedText(String ObjKey, String expectedDisplay) {
 		String ObjPath = ConditionsTagsNotesMap.get(ObjKey);
-		boolean match = rxNovaCommonUtil.ObjectContainsExpectedText(ObjPath, expectedDisplay);
+		boolean match = rxNovaCommonUtil.objectContainsExpectedText(ObjPath, expectedDisplay);
 		return(match);
 	}
 	
 	public boolean ObjectIsDisabled(String ObjKey) {
 		String ObjPath = ConditionsTagsNotesMap.get(ObjKey);
-		boolean isDisabled = rxNovaCommonUtil.ObjectIsDisabled(ObjPath);
+		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);
 	}
 }

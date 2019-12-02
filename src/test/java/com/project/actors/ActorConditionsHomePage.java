@@ -19,24 +19,24 @@ public class ActorConditionsHomePage {
 	RxNovaCommonUtil rxNovaCommonUtil;
 	
 	@Step
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
 		boolean isDisplayed = conditionsHomePage.ObjectIsDisplayed(ObjKey);
 		assertTrue("'" + ObjKey + "'" + " object is not displayed ", isDisplayed);
 	}
 	
 	@Step
-	public void SelectFromDropdown(String input, String ObjKey) throws InterruptedException {
+	public void selectFromDropdown(String input, String ObjKey) throws InterruptedException {
 		conditionsHomePage.mySelectFromDropdown(input, ObjKey);
 	}
 	
 	@Step
-	public void SendKeysToField(String input, String ObjKey) {
+	public void sendKeysToField(String input, String ObjKey) {
 		conditionsHomePage.SendKeysToField(input, ObjKey);
 	}
 	
 	@Step
-	public void ObjectContainsExpectedText(String ObjKey, String expectedDisplay) throws InterruptedException {
-		ObjectIsDisplayed(ObjKey);
+	public void objectContainsExpectedText(String ObjKey, String expectedDisplay) throws InterruptedException {
+		objectIsDisplayed(ObjKey);
 		boolean containsExpected = conditionsHomePage.ObjectContainsExpectedText(ObjKey, expectedDisplay);
 		assertTrue("'" + ObjKey + "'" + " does not contain " + expectedDisplay, containsExpected);
 		
@@ -67,7 +67,7 @@ public class ActorConditionsHomePage {
 	}
 	
 	@Step
-	public void DropdownCheckContents(String expected, String ObjKey) {
+	public void dropdownCheckContents(String expected, String ObjKey) {
 		boolean hasCorrectContents = conditionsHomePage.DropdownCheckContents(expected, ObjKey);
 		assertTrue(ObjKey + "Drop-down list does not have expected contents", hasCorrectContents);
 	}
@@ -91,34 +91,34 @@ public class ActorConditionsHomePage {
 	}
 	
 	@Step
-	public void ObjectIsDisabled(String ObjKey) {
+	public void objectIsDisabled(String ObjKey) {
 		boolean isDisabled = conditionsHomePage.ObjectIsDisabled(ObjKey);
 		assertTrue("'" + ObjKey + "'" + " is disabled", isDisabled);
 	}
 	
 	@Step
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
 		boolean isTabDisplayed = conditionsHomePage.IsTabProperlyDisplayed(ChildObjKey);
 		String styleLoad = "";
 		while(isTabDisplayed == false && !styleLoad.contains("none;")) {
-			styleLoad = rxNovaCommonUtil.CheckBusyState();
+			styleLoad = rxNovaCommonUtil.checkBusyState();
 			isTabDisplayed = conditionsHomePage.IsTabProperlyDisplayed(ChildObjKey);
 		}
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		assertTrue("'" + ObjKey + "'" + " is not displayed", isTabDisplayed);
 	}
 	
 	@Step
-	public void SearchingForConditiontoDelete(String ObjKey, DataTable data) throws InterruptedException {
+	public void searchingForConditiontoDelete(String ObjKey, DataTable data) throws InterruptedException {
 		List<List<String>> enterData = data.raw();
-		SelectFromDropdown(enterData.get(1).get(0), "Master customer set:");
-		rxNovaCommonUtil.CheckBusyState();
-		SelectFromDropdown(enterData.get(1).get(1), "Type:");
-		rxNovaCommonUtil.CheckBusyState();
-		SendKeysToField(enterData.get(1).get(2), "Condition ID:");
-		rxNovaCommonUtil.CheckBusyState();
-		SendKeysToField(enterData.get(1).get(3), "Name:");
-		rxNovaCommonUtil.CheckBusyState();
+		selectFromDropdown(enterData.get(1).get(0), "Master customer set:");
+		rxNovaCommonUtil.checkBusyState();
+		selectFromDropdown(enterData.get(1).get(1), "Type:");
+		rxNovaCommonUtil.checkBusyState();
+		sendKeysToField(enterData.get(1).get(2), "Condition ID:");
+		rxNovaCommonUtil.checkBusyState();
+		sendKeysToField(enterData.get(1).get(3), "Name:");
+		rxNovaCommonUtil.checkBusyState();
 		clickIfClickable(ObjKey);
 	}
 

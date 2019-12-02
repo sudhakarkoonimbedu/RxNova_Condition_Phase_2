@@ -18,8 +18,8 @@ public class ConditionNewMassChangeUIVerificationSteps {
 	ActorConditionsMassChangePage actorOnConditionsMassChangePage;
 	
 	@Then("^They check if \"(.*)\" is displaying by checking for \"(.*)\"$")
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		actorOnConditionsMassChangePage.IsTabDisplayed(ObjKey, ChildObjKey);
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+		actorOnConditionsMassChangePage.isTabDisplayed(ObjKey, ChildObjKey);
 	}
 	
 	@When("^They press \"(.*)\"$")
@@ -33,8 +33,8 @@ public class ConditionNewMassChangeUIVerificationSteps {
 	}
 	
 	@Then("^\"(.*)\" should display$")
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
-		actorOnConditionsMassChangePage.ObjectIsDisplayed(ObjKey);
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
+		actorOnConditionsMassChangePage.objectIsDisplayed(ObjKey);
 	}
 	
 	@Then("^They verify Mass Change Search Panel contains all the correct contents$")
@@ -48,26 +48,26 @@ public class ConditionNewMassChangeUIVerificationSteps {
 	}
 	
 	@Then("^They check that \"(.*)\" dropdown should display \"(.*)\"$")
-	public void DropdownCheckContents(String ObjKey, String expected) {
-		actorOnConditionsMassChangePage.DropdownCheckContents(expected, ObjKey);
+	public void dropdownCheckContents(String ObjKey, String expected) {
+		actorOnConditionsMassChangePage.dropdownCheckContents(expected, ObjKey);
 	}
 	
 	@Then("^They give the below details and click on \"(.*)\"$")
 	public void createNewMassChange(String ObjKey, DataTable NewMassChangeData) throws InterruptedException {
 		actorOnConditionsMassChangePage.createNewMassChange(ObjKey, NewMassChangeData);
 		actorOnConditionsMassChangePage.clickIfClickable(ObjKey);
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 	}
 	
 	@Then("^Request Edit Panel should display all the correct fields$")
 	public void checkRequestEditPanel() throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		actorOnConditionsMassChangePage.checkRequestEditPanel();
 	}
 	
 	@Then("^User deletes newly submitted mass change request$")
 	public void deleteRequest(DataTable enterData) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		actorOnConditionsMassChangePage.searchRequest(enterData);
 		actorOnConditionsMassChangePage.deleteRequest();
 	}
@@ -78,8 +78,8 @@ public class ConditionNewMassChangeUIVerificationSteps {
 	}
 	
 	@Then("^Ensure \"(.*)\" should be disabled$")
-	public void ObjectIsDisabled(String ObjKey) {
-		actorOnConditionsMassChangePage.ObjectIsDisabled(ObjKey);
+	public void objectIsDisabled(String ObjKey) {
+		actorOnConditionsMassChangePage.objectIsDisabled(ObjKey);
 	}
 	
 	@Then("^They search for the following Mass Change Request based on MCS$")

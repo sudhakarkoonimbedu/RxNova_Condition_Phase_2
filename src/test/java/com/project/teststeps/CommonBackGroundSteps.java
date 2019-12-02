@@ -16,17 +16,17 @@ public class CommonBackGroundSteps {
 	RxNovaCommonUtil rxNovaCommonUtil;
 	
 	@Given("^User opens the browser and goes to RxNova URL$")	
-	public void NavigateToRxNovaApplication() throws InterruptedException {
+	public void navigateToRxNovaApplication() throws InterruptedException {
 		actorOnLaunchPage.launch_application();
 	}
 	
 	@When("^enter valid username, valid password and click on Login button$")	
-	public void Login() throws InterruptedException	{
+	public void login() throws InterruptedException	{
 		actorOnLaunchPage.perform_login();
 	}		
 	
 	@Then("^navigates from Landing page to \\\"(.*)\\\" application$")
-	public void NavigateToApplication(String strApplication) throws Throwable{
-		rxNovaCommonUtil.NavigateApplication(strApplication);
+	public void navigateToApplication(String strApplication) throws Throwable{
+		rxNovaCommonUtil.navigateApplication(strApplication);
 	}
 }

@@ -56,7 +56,7 @@ public class ConditionViewDetailsCompoundPage extends BasePage {
 	public boolean clickOnExpandIcon() throws Throwable {
 		if (VIEW_DETAILS_EXPAND_ICON.isClickable()) {
 			rxNovaCommonUtil.performClick(VIEW_DETAILS_EXPAND_ICON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

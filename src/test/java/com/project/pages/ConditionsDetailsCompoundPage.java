@@ -45,7 +45,7 @@ public class ConditionsDetailsCompoundPage extends BasePage {
 	
 	public boolean IsTabProperlyDisplayed(String ChildObjKey) {
 		String ChildObjPath = ConditionsDetailsCompMap.get(ChildObjKey);
-		boolean IsTabDisplayed = rxNovaCommonUtil.IsTabProperlyDisplayed(ChildObjPath);
+		boolean IsTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		return(IsTabDisplayed);
 	}
 	
@@ -64,7 +64,7 @@ public class ConditionsDetailsCompoundPage extends BasePage {
 	
 	public boolean DropdownCheckContents(String expected, String ObjKey) {
 		String ObjPath = ConditionsDetailsCompMap.get(ObjKey);
-		boolean hasContents = rxNovaCommonUtil.DropdownCheckContents(expected, ObjPath);
+		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
 	}
 	
@@ -83,20 +83,20 @@ public class ConditionsDetailsCompoundPage extends BasePage {
 	
 	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException{
 		String ObjPath = ConditionsDetailsCompMap.get(ObjKey);
-		boolean isDisplayed = rxNovaCommonUtil.ObjectIsDisplayed(ObjPath);
+		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 	
 	public boolean verifyingTableContents(String expected, String ObjKey) throws InterruptedException {
 		String ObjPath = ConditionsDetailsCompMap.get(ObjKey);
-		rxNovaCommonUtil.CheckBusyState();
-		boolean hasContents = rxNovaCommonUtil.TableCheckContents(expected, ObjPath);
+		rxNovaCommonUtil.checkBusyState();
+		boolean hasContents = rxNovaCommonUtil.tableCheckContents(expected, ObjPath);
 		return(hasContents);
 	}
 
 	public boolean ObjectIsDisabled(String ObjKey) {
 		String ObjPath = ConditionsDetailsCompMap.get(ObjKey);
-		boolean isDisabled = rxNovaCommonUtil.ObjectIsDisabled(ObjPath);
+		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);
 	}	
 }

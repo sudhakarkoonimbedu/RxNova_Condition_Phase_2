@@ -21,8 +21,8 @@ public class ConditionHomeUIVerificationSteps {
 
 	
 	@Then("^They check whether the \"(.*)\" is displayed$")
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
-		actorOnConditionsPage.ObjectIsDisplayed(ObjKey);
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
+		actorOnConditionsPage.objectIsDisplayed(ObjKey);
 	}
 	
 	@Then("^They check whether dropdown current selected option for \"(.*)\" displays \"(.*)\"$")
@@ -46,8 +46,8 @@ public class ConditionHomeUIVerificationSteps {
 	}
 	
 	@Then("^They should be able to view \"(.*)\" contents for \"(.*)\"$")
-	public void DropdownCheckContents(String expected, String ObjKey) {
-		actorOnConditionsPage.DropdownCheckContents(expected, ObjKey);
+	public void dropdownCheckContents(String expected, String ObjKey) {
+		actorOnConditionsPage.dropdownCheckContents(expected, ObjKey);
 	}
 	
 	@Then("^User is able view the prefix \"(.*)\" in the \"(.*)\" field$")
@@ -66,18 +66,18 @@ public class ConditionHomeUIVerificationSteps {
 	}
 	
 	@When("^They check whether \"(.*)\" contains \"(.*)\"$")
-	public void ObjectContainsExpectedText(String ObjKey, String expectedDisplay) throws InterruptedException {
-		actorOnConditionsPage.ObjectContainsExpectedText(ObjKey, expectedDisplay);
+	public void objectContainsExpectedText(String ObjKey, String expectedDisplay) throws InterruptedException {
+		actorOnConditionsPage.objectContainsExpectedText(ObjKey, expectedDisplay);
 	}
 	
 	@Then("^\"(.*)\" should be disabled$")
-	public void ObjectIsDisabled(String ObjKey) {
-		actorOnConditionsPage.ObjectIsDisabled(ObjKey);
+	public void objectIsDisabled(String ObjKey) {
+		actorOnConditionsPage.objectIsDisabled(ObjKey);
 	}
 	
 	@When("^They check whether \"(.*)\" is currently showing by checking for \"(.*)\"$")
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		actorOnConditionsPage.IsTabDisplayed(ObjKey, ChildObjKey);
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+		actorOnConditionsPage.isTabDisplayed(ObjKey, ChildObjKey);
 	}
 	
 }

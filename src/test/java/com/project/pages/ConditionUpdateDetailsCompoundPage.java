@@ -110,7 +110,7 @@ public class ConditionUpdateDetailsCompoundPage extends BasePage {
 	public boolean selectCompoundOperator(String strCompoundOperator) throws Throwable{
 		if (!strCompoundOperator.isEmpty() && UPDATE_DETAILS_COMPOUND_OPERATOR_LIST.isDisplayed()) {
 			rxNovaCommonUtil.selectFromDropdownUsingText(UPDATE_DETAILS_COMPOUND_OPERATOR_LIST,strCompoundOperator);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -128,7 +128,7 @@ public class ConditionUpdateDetailsCompoundPage extends BasePage {
 	public boolean clickOnTopSaveButton() throws Throwable {
 		if (UPDATE_DETAILS_TOP_SAVE_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(UPDATE_DETAILS_TOP_SAVE_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

@@ -25,8 +25,8 @@ public class ConditionReportingUIVerificationSteps {
 	ActorConditionsReportingPage actorOnConditionsReportingPage;
 	
 	@Then("^They determine if \"(.*)\" is showing by checking for \"(.*)\"$")
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
-		actorOnConditionsReportingPage.IsTabDisplayed(ObjKey, ChildObjKey);
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+		actorOnConditionsReportingPage.isTabDisplayed(ObjKey, ChildObjKey);
 	}
 	
 	@Then("^They check whether the following \"([^\"]*)\" are shown in the Reporting Panel$")
@@ -41,23 +41,23 @@ public class ConditionReportingUIVerificationSteps {
 	
 	@Then("^User is on Conditions Reporting page, they select \"(.*)\" for \"(.*)\"$")
 	public void selectingAssociationsType(String expected, String ObjKey) throws InterruptedException {
-		actorOnConditionsReportingPage.IsTabDisplayed("Reporting", "Report type:");
-		actorOnConditionsReportingPage.SelectFromDropdown(expected, ObjKey);
+		actorOnConditionsReportingPage.isTabDisplayed("Reporting", "Report type:");
+		actorOnConditionsReportingPage.selectFromDropdown(expected, ObjKey);
 	}
 	
 	@Then("^\"(.*)\" must be displayed$")
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
-		actorOnConditionsReportingPage.ObjectIsDisplayed(ObjKey);
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
+		actorOnConditionsReportingPage.objectIsDisplayed(ObjKey);
 	}
 
 	@Then("^They select \"(.*)\" for \"(.*)\"$")
-	public void SelectFromDropdown(String input, String ObjKey) throws InterruptedException {
-		actorOnConditionsReportingPage.SelectFromDropdown(input, ObjKey);
+	public void selectFromDropdown(String input, String ObjKey) throws InterruptedException {
+		actorOnConditionsReportingPage.selectFromDropdown(input, ObjKey);
 	}
 	
 	@Then("^They check whether \"(.*)\" is disabled$")
-	public void ObjectIsDisabled(String ObjKey) {
-		actorOnConditionsReportingPage.ObjectIsDisabled(ObjKey);
+	public void objectIsDisabled(String ObjKey) {
+		actorOnConditionsReportingPage.objectIsDisabled(ObjKey);
 	}
 	
 	@Then("^They check whether all of the correct fields are showing in the Associations Panel$")
@@ -87,7 +87,7 @@ public class ConditionReportingUIVerificationSteps {
 	
 	@Then("^They check whether \"(.*)\" displays \"(.*)\"$")
 	public void checkCurrentFieldDisplay(String ObjKey, String expectedDisplay) {
-		actorOnConditionsReportingPage.ObjectContainsExpectedText(ObjKey, expectedDisplay);
+		actorOnConditionsReportingPage.objectContainsExpectedText(ObjKey, expectedDisplay);
 	}
 	
 }

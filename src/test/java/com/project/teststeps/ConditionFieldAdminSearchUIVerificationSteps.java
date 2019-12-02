@@ -19,8 +19,8 @@ public class ConditionFieldAdminSearchUIVerificationSteps {
 	}
 	
 	@Then("^They verify whether \"(.*)\" dropdown contains \"(.*)\"$")
-	public void DropdownCheckContents(String ObjKey, String expected) {
-		actorOnFieldAdminSearch.DropdownCheckContents(expected, ObjKey);
+	public void dropdownCheckContents(String ObjKey, String expected) {
+		actorOnFieldAdminSearch.dropdownCheckContents(expected, ObjKey);
 	}
 	
 	@Then("^They verify whether \"(.*)\" dropdown contains list of existing customers$")
@@ -29,8 +29,8 @@ public class ConditionFieldAdminSearchUIVerificationSteps {
 	}
 	
 	@Then("^They verify whether \"(.*)\" is displayed$")
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
-		actorOnFieldAdminSearch.ObjectIsDisplayed(ObjKey);
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
+		actorOnFieldAdminSearch.objectIsDisplayed(ObjKey);
 	}
 	
 }

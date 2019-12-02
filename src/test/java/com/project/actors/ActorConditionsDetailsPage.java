@@ -31,7 +31,7 @@ public class ActorConditionsDetailsPage {
 	ActorConditionsHomePage actorOnConditionsHomePage;
 	
 	@Step
-	public void ObjectIsCurrentlyEnabled(String ObjKey) throws InterruptedException {
+	public void objectIsCurrentlyEnabled(String ObjKey) throws InterruptedException {
 		boolean isEnabled = conditionsDetailsPage.ObjectIsCurrentlyEnabled(ObjKey);
 		Verify.actualExpected(isEnabled, true, "'" + ObjKey + "'" + " is not currently enabled");
 		if(isEnabled == true) {
@@ -61,76 +61,76 @@ public class ActorConditionsDetailsPage {
 	}
 	
 	@Step
-	public void SwitchToMostRecentWindow() throws InterruptedException {
+	public void switchToMostRecentWindow() throws InterruptedException {
 		conditionsDetailsPage.SwitchToMostRecentWindow();
 	}
 	
 	@Step
-	public void SendKeysToField(String input, String ObjKey) {
+	public void sendKeysToField(String input, String ObjKey) {
 		conditionsDetailsPage.SendKeysToField(input, ObjKey);
 	}
 	
 	@Step
-	public void SelectFromDropdown(String input, String ObjKey) throws InterruptedException {
+	public void selectFromDropdown(String input, String ObjKey) throws InterruptedException {
 		conditionsDetailsPage.mySelectFromDropdown(input, ObjKey);
 	}
 
 	@Step
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
 		boolean isDisplayed = conditionsDetailsPage.ObjectIsDisplayed(ObjKey);
 		assertTrue("'" + ObjKey + "'" + " is not Displayed", isDisplayed);
 	}
 	
 	@Step
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
 		boolean isTabDisplayed = conditionsDetailsPage.IsTabProperlyDisplayed(ChildObjKey);
 		String styleLoad = "";
 		while(isTabDisplayed == false && !styleLoad.contains("none;")) {
-			styleLoad = rxNovaCommonUtil.CheckBusyState();
+			styleLoad = rxNovaCommonUtil.checkBusyState();
 			isTabDisplayed = conditionsDetailsPage.IsTabProperlyDisplayed(ChildObjKey);
 		}
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		Verify.actualExpected(isTabDisplayed, true, "'" + ObjKey + "'" + " is not Displayed");
 	}
 	
 	@Step
-	public void ObjectIsDisabled(String ObjKey) {
+	public void objectIsDisabled(String ObjKey) {
 		boolean isDisabled = conditionsDetailsPage.ObjectIsDisabled(ObjKey);
 		assertTrue("'" + ObjKey + "'" + " is disabled", isDisabled);
 	}
 	
 	@Step
-	public void EnterIDs(int stringTargetLength, String ObjKey) {
-		String toEnter = rxNovaCommonUtil.FieldIDGenerator(stringTargetLength);
+	public void enterIDs(int stringTargetLength, String ObjKey) {
+		String toEnter = rxNovaCommonUtil.fieldIDGenerator(stringTargetLength);
 		conditionsDetailsPage.EnterIDs(toEnter, ObjKey);
 	}
 	
 	@Step
-	public void EnterRandomWord(String ObjKey) {
-		String toEnter = rxNovaCommonUtil.WordGenerator();
+	public void enterRandomWord(String ObjKey) {
+		String toEnter = rxNovaCommonUtil.wordGenerator();
 		conditionsDetailsPage.EnterIDs(toEnter, ObjKey);
 	}
 	
 	@Step
-	public void SelectRandomlyFromDropdown(String ObjKey) {
+	public void selectRandomlyFromDropdown(String ObjKey) {
 		conditionsDetailsPage.SelectRandomlyFromDropdown(ObjKey);
 	}
 	
 	@Step
-	public void EnterRelevantHeaderData(String ObjKey, DataTable enterData) throws InterruptedException, Throwable {
+	public void enterRelevantHeaderData(String ObjKey, DataTable enterData) throws InterruptedException, Throwable {
 		//include hashmap vars here.
 		List<List<String>> data = enterData.raw();
 		String toEnter = "";
 		//enters tracking ID
 		if(data.get(1).get(0).equals("")) {
-			toEnter = rxNovaCommonUtil.FieldIDGenerator(15);
+			toEnter = rxNovaCommonUtil.fieldIDGenerator(15);
 		}
 		else {
 			toEnter = data.get(1).get(0);
 		}
 		conditionsDetailsPage.SendKeysToField(toEnter, "Tracking ID:");
 		//Master customer set value is chosen
-		SelectFromDropdown(data.get(1).get(1), "Master customer set:");
+		selectFromDropdown(data.get(1).get(1), "Master customer set:");
 		//Condition ID is entered
 		toEnter = data.get(1).get(2);
 		conditionsDetailsPage.SendKeysToField(toEnter, "Condition ID:");
@@ -138,27 +138,27 @@ public class ActorConditionsDetailsPage {
 		toEnter = data.get(1).get(3);
 		conditionsDetailsPage.SendKeysToField(toEnter, "Name:");
 		//Status value is chosen
-		SelectFromDropdown(data.get(1).get(4), "Status:");
+		selectFromDropdown(data.get(1).get(4), "Status:");
 		//Type value is chosen
-		SelectFromDropdown(data.get(1).get(5), "Type:");
+		selectFromDropdown(data.get(1).get(5), "Type:");
 		clickIfClickable(ObjKey);
 	}
 	
 	@Step
-	public void EnterRelevantDetailsData (String ObjKey, DataTable enterData) throws Throwable {
+	public void enterRelevantDetailsData (String ObjKey, DataTable enterData) throws Throwable {
 		List<List<String>> data = enterData.raw();
 		String toEnter = "";
 		//enter source information
-		SelectFromDropdown(data.get(1).get(6), "Source:");
-		rxNovaCommonUtil.CheckBusyState();
+		selectFromDropdown(data.get(1).get(6), "Source:");
+		rxNovaCommonUtil.checkBusyState();
 		//enter field name
 		toEnter = data.get(1).get(7);
 		System.out.println(toEnter);
 		String objpath = ConditionsDetailsSinglePage.ConditionsHeaderMap.get("Field Name:");
-		rxNovaCommonUtil.SelectValueFromFieldIntellisence(By.xpath(objpath), toEnter);
+		rxNovaCommonUtil.selectValueFromFieldIntellisence(By.xpath(objpath), toEnter);
 		//enter operator information
 		toEnter = data.get(1).get(8);
-		SelectFromDropdown(toEnter, "Operator for Field");
+		selectFromDropdown(toEnter, "Operator for Field");
 		//enter value information
 		toEnter = data.get(1).get(9);
 		conditionsDetailsPage.SendKeysToField(toEnter, "Value for Field");
@@ -166,20 +166,20 @@ public class ActorConditionsDetailsPage {
 	}
 	
 	@Step
-	public void EnterRelevantDetailsDataFewerFields (String ObjKey, DataTable enterData) throws Throwable {
+	public void enterRelevantDetailsDataFewerFields (String ObjKey, DataTable enterData) throws Throwable {
 		List<List<String>> data = enterData.raw();
 		String toEnter = "";
 		//enter source information
-		SelectFromDropdown(data.get(1).get(0), "Source:");
-		rxNovaCommonUtil.CheckBusyState();
+		selectFromDropdown(data.get(1).get(0), "Source:");
+		rxNovaCommonUtil.checkBusyState();
 		//enter field name
 		toEnter = data.get(1).get(1);
 		System.out.println(toEnter);
 		String objpath = ConditionsDetailsSinglePage.ConditionsHeaderMap.get("Field Name:");
-		rxNovaCommonUtil.SelectValueFromFieldIntellisence(By.xpath(objpath), toEnter);
+		rxNovaCommonUtil.selectValueFromFieldIntellisence(By.xpath(objpath), toEnter);
 		//enter operator information
 		toEnter = data.get(1).get(2);
-		SelectFromDropdown(toEnter, "Operator for Field");
+		selectFromDropdown(toEnter, "Operator for Field");
 		//enter value information
 		toEnter = data.get(1).get(3);
 		conditionsDetailsPage.SendKeysToField(toEnter, "Value for Field");
@@ -188,20 +188,20 @@ public class ActorConditionsDetailsPage {
 	
 	
 	@Step
-	public void EnterRelevantDetailsDataFewFields (String ObjKey, DataTable enterData) throws Throwable {
+	public void enterRelevantDetailsDataFewFields (String ObjKey, DataTable enterData) throws Throwable {
 		List<List<String>> data = enterData.raw();
 		String toEnter = "";
 		//enter source information
-		SelectFromDropdown(data.get(1).get(6), "Source:");
-		rxNovaCommonUtil.CheckBusyState();
+		selectFromDropdown(data.get(1).get(6), "Source:");
+		rxNovaCommonUtil.checkBusyState();
 		//enter field name
 		toEnter = data.get(1).get(7);
 		System.out.println(toEnter);
 		String objpath = ConditionsDetailsSinglePage.ConditionsHeaderMap.get("Field Name:");
-		rxNovaCommonUtil.SelectValueFromFieldIntellisence(By.xpath(objpath), toEnter);
+		rxNovaCommonUtil.selectValueFromFieldIntellisence(By.xpath(objpath), toEnter);
 		//enter operator information
 		toEnter = data.get(1).get(8);
-		SelectFromDropdown(toEnter, "Operator for Field");
+		selectFromDropdown(toEnter, "Operator for Field");
 		//enter value information
 		toEnter = data.get(1).get(9);
 		conditionsDetailsPage.SendKeysToField(toEnter, "Value for Field");
@@ -209,13 +209,13 @@ public class ActorConditionsDetailsPage {
 	}
 	
 	@Step
-	public void EnteringTrackingIDforConditionDeletion(String ID, String ObjKey) throws InterruptedException, Throwable {
+	public void enteringTrackingIDforConditionDeletion(String ID, String ObjKey) throws InterruptedException, Throwable {
 		String ObjPath = ConditionsDetailsSinglePage.ConditionsHeaderMap.get("Conditions Header Delete Tracking ID");
 		rxNovaCommonUtil.sendKeysToObject(ObjPath, ID);
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		clickIfClickable(ObjKey);
-		rxNovaCommonUtil.CheckBusyState();
-		boolean deleted = rxNovaCommonUtil.ObjectIsDisplayed(ConditionsDetailsSinglePage.ConditionsHeaderMap.get("Conditions Home Search"));
+		rxNovaCommonUtil.checkBusyState();
+		boolean deleted = rxNovaCommonUtil.objectIsDisplayed(ConditionsDetailsSinglePage.ConditionsHeaderMap.get("Conditions Home Search"));
 		if(deleted == true) {
 			Verify.actualExpected(deleted, true, "Condition created was not successfully deleted ... ");
 		}
@@ -230,9 +230,9 @@ public class ActorConditionsDetailsPage {
 	@Step
 	public void verifyingOperatorField(String toEnter, String expected) throws Throwable {
 		String objpath = ConditionsDetailsSinglePage.ConditionsHeaderMap.get("Field Name:");
-		rxNovaCommonUtil.SelectValueFromFieldIntellisence(By.xpath(objpath), toEnter);
+		rxNovaCommonUtil.selectValueFromFieldIntellisence(By.xpath(objpath), toEnter);
 		objpath = ConditionsDetailsSinglePage.ConditionsHeaderMap.get("Operator for Field");
-		boolean exist = rxNovaCommonUtil.DropdownCheckContents(expected, objpath);
+		boolean exist = rxNovaCommonUtil.dropdownCheckContents(expected, objpath);
 		assertTrue("Operator dropdown does not contain the correct contents", exist);
 	}
 	
@@ -250,7 +250,7 @@ public class ActorConditionsDetailsPage {
 	
 	@Step
 	public void verifyingTableContents(String expected, String ObjKey) throws Throwable {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<String> TableElementKeys = new ArrayList<String>(Arrays.asList(expected.split(",")));
 		
 		
@@ -282,24 +282,24 @@ public class ActorConditionsDetailsPage {
 		System.out.println("Status: " + data.get(1).get(4));
 		/////////////////////////////
 		conditionsHomePage.mySelectFromDropdown(data.get(1).get(1), "Master customer set:");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		conditionsHomePage.mySelectFromDropdown(data.get(1).get(5), "Type:");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		conditionsHomePage.SendKeysToField(data.get(1).get(2), "Condition ID:");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		conditionsHomePage.SendKeysToField(data.get(1).get(3), "Name:");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		conditionsHomePage.mySelectFromDropdown(data.get(1).get(4), "Status:");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		clickIfClickable("Conditions Home Search");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 //		String ObjPath = ConditionsDetailsSinglePage.ConditionsHeaderMap.get("Conditions Header Delete");
 //		WebElement DeleteObj = conditionsDetailsPage.find(By.xpath(ObjPath));
 //		rxNovaCommonUtil.waitFor(DeleteObj);
 		clickIfClickable("Conditions Header Delete");
-		rxNovaCommonUtil.CheckBusyState();
-		EnteringTrackingIDforConditionDeletion(data.get(1).get(0), "Conditions Header 2nd Delete");
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
+		enteringTrackingIDforConditionDeletion(data.get(1).get(0), "Conditions Header 2nd Delete");
+		rxNovaCommonUtil.checkBusyState();
 		String ObjPath = ConditionsHomePage.ConditionsHomeMap.get("Condition Deleted Message");
 		WebElement DeleteObj = conditionsHomePage.find(By.xpath(ObjPath));
 		rxNovaCommonUtil.waitFor(DeleteObj);
@@ -325,7 +325,7 @@ public class ActorConditionsDetailsPage {
 		String ChildObjPath = ConditionsDetailsSinglePage.ConditionsHeaderMap.get(ChildObjKey);
 		WebElement ChildObj = conditionsDetailsPage.find(By.xpath(ChildObjPath));
 		rxNovaCommonUtil.waitFor(ChildObj);
-		boolean isTabDisplayed = rxNovaCommonUtil.IsTabProperlyDisplayed(ChildObjPath);
+		boolean isTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		Verify.actualExpected(isTabDisplayed, true, "'" + ObjKey + "'" + " is not properly displayed");
 	}
 	
@@ -360,7 +360,7 @@ public class ActorConditionsDetailsPage {
 	}
 	
 	@Step
-	public void PreTestObjectEnabled(String ObjKey) throws Throwable {
+	public void preTestObjectEnabled(String ObjKey) throws Throwable {
 		boolean isEnabled = conditionsDetailsPage.ObjectIsCurrentlyEnabled(ObjKey);
 		if(isEnabled == false) {
 			Verify.actualExpected(isEnabled, true, ObjKey + " is not currently enabled");

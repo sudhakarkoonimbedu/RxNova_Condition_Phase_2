@@ -129,7 +129,7 @@ public class ConditionUpdateTagsNotesPage extends BasePage{
 	public boolean clickOnSaveButton() throws Throwable {
 		if (UPDATE_TAGSNOTES_SAVE_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(UPDATE_TAGSNOTES_SAVE_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

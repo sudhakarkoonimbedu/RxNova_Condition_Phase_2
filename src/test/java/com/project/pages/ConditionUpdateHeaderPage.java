@@ -109,7 +109,7 @@ public class ConditionUpdateHeaderPage extends BasePage {
 	public boolean selectStatus(String strStatus) throws Throwable {
 		if (!strStatus.isEmpty() && UPDATE_HEADER_STATUS_LIST.isDisplayed()) {
 			rxNovaCommonUtil.selectFromDropdownUsingText(UPDATE_HEADER_STATUS_LIST,strStatus);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -119,7 +119,7 @@ public class ConditionUpdateHeaderPage extends BasePage {
 	public boolean clickOnSaveButton() throws Throwable {
 		if (UPDATE_HEADER_SAVE_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(UPDATE_HEADER_SAVE_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -129,7 +129,7 @@ public class ConditionUpdateHeaderPage extends BasePage {
 	public boolean clickOnCopyButton() throws Throwable{
 		if (UPDATE_HEADER_COPY_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(UPDATE_HEADER_COPY_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -139,7 +139,7 @@ public class ConditionUpdateHeaderPage extends BasePage {
 	public boolean clickOnDeleteButton() throws Throwable{
 		if (UPDATE_HEADER_DELETE_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(UPDATE_HEADER_DELETE_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

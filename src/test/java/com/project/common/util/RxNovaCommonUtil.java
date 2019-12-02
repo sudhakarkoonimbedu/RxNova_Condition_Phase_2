@@ -41,7 +41,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void NavigateApplicationMenu(String strAppMenu) throws InterruptedException
+	public void navigateApplicationMenu(String strAppMenu) throws InterruptedException
     {
            //try
            //{
@@ -244,7 +244,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void ClickOnButton(By objElementName)
+	public void clickOnButton(By objElementName)
 	{
 		Boolean boolClickOnButton=false;		
 		if(getDriver().findElements(objElementName).size()!=0)
@@ -269,7 +269,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void ClickOnButton(String strBtnName)
+	public void clickOnButton(String strBtnName)
     {
 		Boolean boolClickOnButton=false;		
 		 List<WebElement> allButt = getDriver().findElements(By.tagName("button"));
@@ -293,7 +293,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void ClickOnLink(By objElementName) throws Throwable
+	public void clickOnLink(By objElementName) throws Throwable
 	{
 		Boolean boolClickOnLink=false;	
 		int attempts=0;
@@ -301,7 +301,7 @@ public class RxNovaCommonUtil extends BasePage{
 		{
 			try
 			{
-				WaitUntilWebElementExist(objElementName);
+				waitUntilWebElementExist(objElementName);
 				if(getDriver().findElements(objElementName).size()!=0)
 				{
 					String strName = getDriver().findElement(objElementName).getAttribute("name");
@@ -329,7 +329,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void GetBusyStatus() throws Throwable 
+	public void getBusyStatus() throws Throwable 
 	{
 		try
 		{
@@ -375,7 +375,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void WaitUnitWebListisLoaded(WebElement objlist) throws InterruptedException
+	public void waitUnitWebListisLoaded(WebElement objlist) throws InterruptedException
 	{
 		WebDriverWait waitDriver = new WebDriverWait(getDriver(),60);	
 		waitDriver.until(ExpectedConditions.attributeToBeNotEmpty(objlist,"innerHTML"));	
@@ -389,7 +389,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void WaitUntilWebElementExist(By strItem) throws Throwable
+	public void waitUntilWebElementExist(By strItem) throws Throwable
 	{	
 		/*try
 		{*/
@@ -416,7 +416,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void WaitUntilWebButtonIsEnabled(By objElementName) throws Throwable
+	public void waitUntilWebButtonIsEnabled(By objElementName) throws Throwable
 	{	
 		int cnt = 0;
 		while (getDriver().findElement(objElementName).getAttribute("aria-disabled").contains("true")) {
@@ -437,9 +437,9 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	public boolean CheckElementPresenceByLocator(By LocatorValue) throws Throwable
+	public boolean checkElementPresenceByLocator(By LocatorValue) throws Throwable
 	{
-		WaitUntilWebElementExist(LocatorValue);
+		waitUntilWebElementExist(LocatorValue);
 		return getDriver().findElements(LocatorValue).size() != 0;		
 	}
 	
@@ -452,7 +452,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void SwithToMostRecentWindow() throws InterruptedException	
+	public void swithToMostRecentWindow() throws InterruptedException	
 	{		
 		for(String WHandles: getDriver().getWindowHandles())
 		{
@@ -471,7 +471,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void SelectItemFromWebListByNameAndHyphen(By objElementName, String strValue) throws InterruptedException
+	public void selectItemFromWebListByNameAndHyphen(By objElementName, String strValue) throws InterruptedException
 	{
 		Boolean boolSelectItemFromWebListByNameAndHyphen=false;
 		
@@ -540,7 +540,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void SelectItemFromWebListByPartialDisplayName(By objElementName, String strValue) throws InterruptedException
+	public void selectItemFromWebListByPartialDisplayName(By objElementName, String strValue) throws InterruptedException
 	{
 		Boolean boolSelectItemFromWebListByPartialDisplayName=false;
 		
@@ -566,7 +566,7 @@ public class RxNovaCommonUtil extends BasePage{
 							  itemstoSelect.selectByVisibleText(strListItem);			
 							  boolSelectItemFromWebListByPartialDisplayName = true;
 							  System.out.println("Selected item in webelement : " + strName + " Value :" + strValue );
-							  CheckBusyState();
+							  checkBusyState();
 							  break;
 						   }
 					 }
@@ -590,7 +590,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void SelectValueFromFieldIntellisence(By objElementName, String strValue) throws Throwable
+	public void selectValueFromFieldIntellisence(By objElementName, String strValue) throws Throwable
 	{
 		Boolean boolSelectValueFromFieldIntellisence=false;
 		
@@ -631,7 +631,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void CheckPageLoad() throws InterruptedException
+	public void checkPageLoad() throws InterruptedException
 	{
 		if(!getDriver().findElement(By.id("contentFrame")).isDisplayed()) 
 		{
@@ -663,7 +663,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void TimeDifference(long inputTime)
+	public void timeDifference(long inputTime)
 	{
 		Date d2 = new Date();
 		long timedifference = d2.getTime() - inputTime;
@@ -678,7 +678,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public String CheckBusyState() throws InterruptedException {
+	public String checkBusyState() throws InterruptedException {
 		Thread.sleep(1000);
 		WebElement BusyElement = getDriver().findElement(By.id("loading"));
 		//WebElement BusyElement = getDriver().findElement(By.id("_altlayer"));
@@ -712,7 +712,7 @@ public class RxNovaCommonUtil extends BasePage{
 	}
 
 	
-	public void WaitForBusyIcon() {
+	public void waitForBusyIcon() {
 		WebDriverWait wt = new WebDriverWait(getDriver(),60);
 		WebElement busyElement = getDriver().findElement(By.id("loading"));
 		wt.until(ExpectedConditions.invisibilityOf(busyElement));
@@ -726,7 +726,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void NavigateApplication(String ApplicationPath) throws Throwable {		
+	public void navigateApplication(String ApplicationPath) throws Throwable {		
 //		System.out.println("-----------Landing Page user navigates to Conditions application -------------");
 //		WebElement Apps = getDriver().findElement(By.xpath("//md-icon[contains(text(),'apps')]"));
 //		Apps.click();
@@ -823,7 +823,7 @@ public class RxNovaCommonUtil extends BasePage{
 				default :
 				{ System.out.println("Invalid Application selection - please check the application name");break;}				
 			}			
-			NavigateApplicationMenu(APPPath);		
+			navigateApplicationMenu(APPPath);		
 			RxNova_PageSelection(APPPath);
 			int cnt = 0;
 			while(cnt < 600) {
@@ -896,7 +896,7 @@ public class RxNovaCommonUtil extends BasePage{
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public static int numBrowsers = 0;
 	
-	public int LaunchRandomizerInt() {
+	public int launchRandomizerInt() {
 		//function used to randomize login actions when multiple browsers are run in parallel.
 		return(++numBrowsers);
 	}
@@ -1130,8 +1130,8 @@ public class RxNovaCommonUtil extends BasePage{
 									String toEnter = arrTags[j].toUpperCase();
 									selectValueFromFieldIntellisence(ObjPath1, toEnter);
 									//performClick(ObjPath2);
-									ClickOnButton(By.xpath("//span[text()='Add']"));
-									CheckBusyState();
+									clickOnButton(By.xpath("//span[text()='Add']"));
+									checkBusyState();
 									boolean match = objectContainsExpectedText(ObjPath3,strMessage1);
 									if(match)
 									 {
@@ -1159,9 +1159,9 @@ public class RxNovaCommonUtil extends BasePage{
 									String toRemove = arrTags[j].toUpperCase();
 									if (webtable_ClickOnCheckBox(ObjPath2, toRemove))
 									 {
-										WaitUntilWebButtonIsEnabled(By.xpath("//span[text()='Remove Selected']/parent::button"));
-										ClickOnButton(By.xpath("//span[text()='Remove Selected']"));
-										CheckBusyState();
+										waitUntilWebButtonIsEnabled(By.xpath("//span[text()='Remove Selected']/parent::button"));
+										clickOnButton(By.xpath("//span[text()='Remove Selected']"));
+										checkBusyState();
 										boolean match = objectContainsExpectedText(ObjPath3,strMessage2);
 										if(match)
 										 {
@@ -1219,7 +1219,7 @@ public class RxNovaCommonUtil extends BasePage{
 						  if (!cols.get(j-1).isSelected())
 						  {
 							  cols.get(j-1).click();
-							  CheckBusyState();
+							  checkBusyState();
 							  boolWebtable_ClickOnCheckBox = true;
 							  break A;
 						  }
@@ -1449,8 +1449,8 @@ public class RxNovaCommonUtil extends BasePage{
 								String toEnter = arrCondition[j].toUpperCase();
 								selectValueFromFieldIntellisence(ObjPath1, toEnter);
 								//performClick(ObjPath2);
-								ClickOnButton(By.xpath("//span[text()='Add']"));
-								CheckBusyState();
+								clickOnButton(By.xpath("//span[text()='Add']"));
+								checkBusyState();
 								boolean match = webTable_VerifyCellData(ObjPath2,"Condition ID^CD"+toEnter);
 								if(match)
 								 {
@@ -1478,9 +1478,9 @@ public class RxNovaCommonUtil extends BasePage{
 								String toRemove = arrCondition[j].toUpperCase();
 								if (webtable_ClickOnCheckBox(ObjPath2, toRemove))
 								 {
-									WaitUntilWebButtonIsEnabled(By.xpath("//span[text()='Remove Selected']/parent::button"));
-									ClickOnButton(By.xpath("//span[text()='Remove Selected']"));
-									CheckBusyState();
+									waitUntilWebButtonIsEnabled(By.xpath("//span[text()='Remove Selected']/parent::button"));
+									clickOnButton(By.xpath("//span[text()='Remove Selected']"));
+									checkBusyState();
 									boolean match = webTable_VerifyCellData(ObjPath2,"Condition ID^"+toRemove);
 									if(match==false)
 									 {
@@ -1654,7 +1654,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Example:
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		public String FieldIDGenerator(int targetStringLength) {
+		public String fieldIDGenerator(int targetStringLength) {
 			final String values = "12345678912345678912345";
 			int valuesLen = values.length();
 			Random rnd = new Random();
@@ -1696,7 +1696,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Example:
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		public boolean ObjectIsDisplayed(String ObjPath) throws InterruptedException {
+		public boolean objectIsDisplayed(String ObjPath) throws InterruptedException {
 			int cnt = 0;
 			boolean displayed = false;
 			while(!displayed && cnt < 10) {
@@ -1724,7 +1724,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Example:
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		public boolean DropdownCheckContents(String expected, String ObjPath) {
+		public boolean dropdownCheckContents(String expected, String ObjPath) {
 			List<String> options = $(ObjPath).getSelectOptions();
 			boolean hasContents = options.size() > 1;
 			if(hasContents == true)
@@ -1758,7 +1758,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Example:
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		public String WordGenerator() {
+		public String wordGenerator() {
 			final String values = "abcdefghijklmnopqrstuvwxyz";
 			int valuesLen = values.length();
 			Random rnd = new Random();
@@ -1777,7 +1777,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Example:
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		public boolean TableCheckContents(String expected, String ObjPath) {
+		public boolean tableCheckContents(String expected, String ObjPath) {
 			String options = $(ObjPath).getText();
 			boolean hasContents = true;
 			if(hasContents == true)
@@ -1806,7 +1806,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Example:
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		public int RandomIntegerGenerator(int maxValue) {
+		public int randomIntegerGenerator(int maxValue) {
 			Random rnd = new Random();
 			System.out.println("here is" + maxValue);
 			int randomInt = rnd.nextInt(maxValue) + 1;
@@ -1896,7 +1896,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Example:
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		public boolean ObjectContainsExpectedText(String ObjPath, String expectedDisplay) {
+		public boolean objectContainsExpectedText(String ObjPath, String expectedDisplay) {
 			System.out.println("The following are the text strings contained in the WebElement of the following xpath: " + ObjPath);
 			System.out.println($(ObjPath).getText());
 			boolean containsExpected = $(ObjPath).getText().contains(expectedDisplay);
@@ -1910,7 +1910,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Example:
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		public boolean ObjectIsDisabled(String ObjPath) {
+		public boolean objectIsDisabled(String ObjPath) {
 			System.out.println("Determining whether object of following xpath is disabled: " + "...xpath = " + ObjPath);
 			String isDisabled = $(ObjPath).getAttribute("class");
 			boolean disabled = false;
@@ -1960,7 +1960,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Example:
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		public boolean IsTabProperlyDisplayed(String ChildObjPath) {
+		public boolean isTabProperlyDisplayed(String ChildObjPath) {
 			boolean IsTabDisplayed = getDriver().findElements(By.xpath(ChildObjPath)).size() > 0;
 			return(IsTabDisplayed);
 		}
@@ -2001,7 +2001,7 @@ public class RxNovaCommonUtil extends BasePage{
 					 			 {
 					 			    case "VIEW":
 					 			          strTblCols.get(strCol).click();
-					 			          CheckBusyState();
+					 			          checkBusyState();
 					 			          System.out.println("Click on the Condition ID: "+strValue);
 					 			         booleanOperationSearch = true;
 					 			          break;
@@ -2016,7 +2016,7 @@ public class RxNovaCommonUtil extends BasePage{
 					 			        		 break;
 					 			        	  }
 					 			          }
-					 			          CheckBusyState();
+					 			          checkBusyState();
 					 			         booleanOperationSearch = true;
 					 			          break;
 					 			 	case "REPORT":
@@ -2030,7 +2030,7 @@ public class RxNovaCommonUtil extends BasePage{
 					 			        		 break;
 					 			        	  }
 					 			          }
-					 			          CheckBusyState();
+					 			          checkBusyState();
 					 			         booleanOperationSearch = true;
 					 			          break;
 					 			 }
@@ -2044,8 +2044,8 @@ public class RxNovaCommonUtil extends BasePage{
 					 }
 					 if(booleanOperationSearch==false && getDriver().findElement(By.xpath("(//span[text()='Next'])[1]")).isEnabled())
 					   {
-						  ClickOnButton(By.xpath("(//span[text()='Next'])[1]"));
-						  CheckBusyState();
+						  clickOnButton(By.xpath("(//span[text()='Next'])[1]"));
+						  checkBusyState();
 					   }
 					} while(booleanOperationSearch==false);
 				 }	

@@ -22,14 +22,14 @@ public class ActorConditionsFieldAdminNew {
 	ConditionsFieldAdminNewPage conditionsFieldAdminDetails;
 	
 	@Step
-	public void IsTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
+	public void isTabDisplayed(String ObjKey, String ChildObjKey) throws InterruptedException {
 		boolean isTabDisplayed = conditionsFieldAdminDetails.IsTabProperlyDisplayed(ChildObjKey);
 		String styleLoad = "";
 		while(isTabDisplayed == false && !styleLoad.contains("none;")) {
-			styleLoad = rxNovaCommonUtil.CheckBusyState();
+			styleLoad = rxNovaCommonUtil.checkBusyState();
 			isTabDisplayed = conditionsFieldAdminDetails.IsTabProperlyDisplayed(ChildObjKey);
 		}
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		Verify.actualExpected(isTabDisplayed, true, "'" + ObjKey + "'" + " is not Displayed");
 	}
 	
@@ -55,30 +55,30 @@ public class ActorConditionsFieldAdminNew {
 	}
 	
 	@Step
-	public void SendKeysToField(String input, String ObjKey) {
+	public void sendKeysToField(String input, String ObjKey) {
 		conditionsFieldAdminDetails.SendKeysToField(input, ObjKey);
 	}
 	
 	@Step
-	public void SelectFromDropdown(String input, String ObjKey) throws InterruptedException {
+	public void selectFromDropdown(String input, String ObjKey) throws InterruptedException {
 		conditionsFieldAdminDetails.mySelectFromDropdown(input, ObjKey);
 	}
 	
 	@Step
-	public void EnterRelevantHeaderData(String ObjKey, DataTable enterData) throws InterruptedException, Throwable {
+	public void enterRelevantHeaderData(String ObjKey, DataTable enterData) throws InterruptedException, Throwable {
 		//include hashmap vars here.
 		List<List<String>> data = enterData.raw();
 		String toEnter = "";
 		//enters tracking ID
 		if(data.get(1).get(0).equals("")) {
-			toEnter = rxNovaCommonUtil.FieldIDGenerator(15);
+			toEnter = rxNovaCommonUtil.fieldIDGenerator(15);
 		}
 		else {
 			toEnter = data.get(1).get(0);
 		}
 		conditionsFieldAdminDetails.SendKeysToField(toEnter, "Tracking ID:");
 		//Master customer set value is chosen
-		SelectFromDropdown(data.get(1).get(1), "Master customer set:");
+		selectFromDropdown(data.get(1).get(1), "Master customer set:");
 		//Condition ID is entered
 		toEnter = data.get(1).get(2);
 		conditionsFieldAdminDetails.SendKeysToField(toEnter, "Argus field name:");
@@ -86,12 +86,12 @@ public class ActorConditionsFieldAdminNew {
 		toEnter = data.get(1).get(3);
 		conditionsFieldAdminDetails.SendKeysToField(toEnter, "Business field name:");
 		//Status value is chosen
-		SelectFromDropdown(data.get(1).get(4), "Status:");
+		selectFromDropdown(data.get(1).get(4), "Status:");
 		clickIfClickable(ObjKey);
 	}
 	
 	@Step
-	public void ObjectIsCurrentlyEnabled(String ObjKey) {
+	public void objectIsCurrentlyEnabled(String ObjKey) {
 		boolean isEnabled = conditionsFieldAdminDetails.ObjectIsCurrentlyEnabled(ObjKey);
 		Verify.actualExpected(isEnabled, true, "'" + ObjKey + "'" + " is not currently enabled");
 		if(isEnabled == true) {
@@ -111,13 +111,13 @@ public class ActorConditionsFieldAdminNew {
 	}
 	
 	@Step
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
 		boolean isDisplayed = conditionsFieldAdminDetails.ObjectIsDisplayed(ObjKey);
 		Verify.actualExpected(isDisplayed, true, "'" + ObjKey + "'" + " object is not displayed ");
 	}
 	
 	@Step
-	public void DropdownCheckContents(String expected, String ObjKey) {
+	public void dropdownCheckContents(String expected, String ObjKey) {
 		boolean hasCorrectContents = conditionsFieldAdminDetails.DropdownCheckContents(expected, ObjKey);
 		Verify.actualExpected(hasCorrectContents, true, ObjKey + " Drop-down list does not have expected contents");
 	}

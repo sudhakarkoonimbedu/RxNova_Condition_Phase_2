@@ -64,7 +64,7 @@ public class ConditionDetailsSinglePage extends BasePage {
 	public boolean selectSource(String strSource) throws Throwable{
 		if (!strSource.isEmpty() && ADD_DETAILS_SOURCE_LIST.isDisplayed()) {
 			rxNovaCommonUtil.selectFromDropdownUsingText(ADD_DETAILS_SOURCE_LIST,strSource);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -130,7 +130,7 @@ public class ConditionDetailsSinglePage extends BasePage {
 	public boolean clickOnTopNextButton() throws Throwable {
 		if (ADD_DETAILS_TOP_NEXT_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(ADD_DETAILS_TOP_NEXT_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

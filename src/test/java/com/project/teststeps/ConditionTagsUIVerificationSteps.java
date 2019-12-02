@@ -15,17 +15,17 @@ public class ConditionTagsUIVerificationSteps {
 	RxNovaCommonUtil rxNovaCommonUtil;
 	
 	@Then("^They verify that \"(.*)\" is displayed$")
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
-	    rxNovaCommonUtil.ObjectIsDisplayed(ObjKey);
+	public void objectIsDisplayed(String ObjKey) throws InterruptedException {
+	    rxNovaCommonUtil.objectIsDisplayed(ObjKey);
 	}
 	
 	@Then("^They verify whether \"(.*)\" displays \"(.*)\"$")
 	public void checkCurrentFieldDisplay(String ObjKey, String expectedDisplay) {
-	    rxNovaCommonUtil.ObjectContainsExpectedText(ObjKey, expectedDisplay);
+	    rxNovaCommonUtil.objectContainsExpectedText(ObjKey, expectedDisplay);
 	}
 	
 	@Then("^They determine whether \"(.*)\" is disabled$")
-	public void ObjectIsDisabled(String ObjKey) {
-	    rxNovaCommonUtil.ObjectIsDisabled(ObjKey);
+	public void objectIsDisabled(String ObjKey) {
+	    rxNovaCommonUtil.objectIsDisabled(ObjKey);
 	}
 }

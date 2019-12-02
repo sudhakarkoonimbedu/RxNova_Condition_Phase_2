@@ -54,7 +54,7 @@ public class ConditionCopyPage extends BasePage {
 	public boolean enterConditionID(String strConditionID) throws Throwable{
 		if (!strConditionID.isEmpty() && rxNovaCommonUtil.objectIsDisplayed(COPY_CONDITION_ID_EDIT)) {
 			rxNovaCommonUtil.sendKeysToObject(COPY_CONDITION_ID_EDIT,strConditionID);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -73,7 +73,7 @@ public class ConditionCopyPage extends BasePage {
 	public boolean selectStatus(String strStatus) throws Throwable {
 		if (!strStatus.isEmpty() && COPY_STATUS_LIST.isDisplayed()) {
 			rxNovaCommonUtil.selectFromDropdownUsingText(COPY_STATUS_LIST,strStatus);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -83,7 +83,7 @@ public class ConditionCopyPage extends BasePage {
 	public boolean enterTrackingID(String strTrackingID) throws Throwable{
 		if (!strTrackingID.isEmpty() && COPY_TRACKING_ID_EDIT.isDisplayed()) {
 			rxNovaCommonUtil.sendKeysToObject(COPY_TRACKING_ID_EDIT,strTrackingID);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;
@@ -111,7 +111,7 @@ public class ConditionCopyPage extends BasePage {
 	public boolean clickOnCopyButton() throws Throwable{
 		if (COPY_BUTTON.isClickable()) {
 			rxNovaCommonUtil.performClick(COPY_BUTTON);
-			rxNovaCommonUtil.CheckBusyState();
+			rxNovaCommonUtil.checkBusyState();
 			return true;
 		} else {
 			return false;

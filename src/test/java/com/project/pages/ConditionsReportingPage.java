@@ -73,12 +73,12 @@ public class ConditionsReportingPage extends BasePage {
 	
 	public boolean IsTabProperlyDisplayed(String ChildObjKey) {
 		String ChildObjPath = ConditionsReportingMap.get(ChildObjKey);
-		boolean IsTabDisplayed = rxNovaCommonUtil.IsTabProperlyDisplayed(ChildObjPath);
+		boolean IsTabDisplayed = rxNovaCommonUtil.isTabProperlyDisplayed(ChildObjPath);
 		return(IsTabDisplayed);
 	}
 	
 	public boolean checkPanelsForCorrectLabels(String label) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<WebElement> pageLabels = getDriver().findElements(By.className("firstCommonColumn3"));
 		boolean labelMatch = false;
 		for(WebElement i : pageLabels) {
@@ -94,13 +94,13 @@ public class ConditionsReportingPage extends BasePage {
 	public boolean DropdownCheckContents(String ObjKey, String expected) {
 		String ObjPath = ConditionsReportingMap.get(ObjKey);
 		System.out.println("this is the object path" + ObjPath);
-		boolean hasContents = rxNovaCommonUtil.DropdownCheckContents(expected, ObjPath);
+		boolean hasContents = rxNovaCommonUtil.dropdownCheckContents(expected, ObjPath);
 		return(hasContents);
 	}
 	
 	public boolean ObjectIsDisplayed(String ObjKey) throws InterruptedException{
 		String ObjPath = ConditionsReportingMap.get(ObjKey);
-		boolean isDisplayed = rxNovaCommonUtil.ObjectIsDisplayed(ObjPath);
+		boolean isDisplayed = rxNovaCommonUtil.objectIsDisplayed(ObjPath);
 		return(isDisplayed);
 	}
 	
@@ -108,17 +108,17 @@ public class ConditionsReportingPage extends BasePage {
 		String ObjPath = ConditionsReportingMap.get(ObjKey);
 		WebElement currElement = getDriver().findElement(By.xpath(ObjPath));
 		rxNovaCommonUtil.selectFromDropdown(currElement, input);
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 	}
 	
 	public boolean ObjectIsDisabled(String ObjKey) {
 		String ObjPath = ConditionsReportingMap.get(ObjKey);
-		boolean isDisabled = rxNovaCommonUtil.ObjectIsDisabled(ObjPath);
+		boolean isDisabled = rxNovaCommonUtil.objectIsDisabled(ObjPath);
 		return(isDisabled);
 	}
 	
 	public boolean checkingItemsInAssociationsCriteria(String label) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<WebElement> pageLabels = getDriver().findElements(By.className("firstCommonColumn"));
 		boolean labelMatch = false;
 		for(WebElement i : pageLabels) {
@@ -132,7 +132,7 @@ public class ConditionsReportingPage extends BasePage {
 	}
 	
 	public boolean checkingItemsInFieldAdminUsageCriteria(String label) throws InterruptedException {
-		rxNovaCommonUtil.CheckBusyState();
+		rxNovaCommonUtil.checkBusyState();
 		List<WebElement> pageLabel = getDriver().findElements(By.className("firstIncludeAvailableArgusMasterFieldsColumn"));
 		boolean labelMatch = false;
 		for(WebElement i : pageLabel) {
@@ -160,7 +160,7 @@ public class ConditionsReportingPage extends BasePage {
 	
 	public boolean ObjectContainsExpectedText(String ObjKey, String expectedDisplay) {
 		String ObjPath = ConditionsReportingMap.get(ObjKey);
-		boolean match = rxNovaCommonUtil.ObjectContainsExpectedText(ObjPath, expectedDisplay);
+		boolean match = rxNovaCommonUtil.objectContainsExpectedText(ObjPath, expectedDisplay);
 		return(match);
 	}
 	

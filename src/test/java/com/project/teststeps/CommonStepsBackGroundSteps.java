@@ -33,38 +33,38 @@ public class CommonStepsBackGroundSteps {
 	
 	
 	@Given("^User opens the browser and goes to RxNova URL$")	
-	public void NavigateToRxNovaApplication() throws InterruptedException {
+	public void navigateToRxNovaApplication() throws InterruptedException {
 		actorOnLaunchPage.launch_application();
 	}
 	
 	@When("^They enter valid username, valid password and click on Login$")	
-	public void Login() throws InterruptedException	{
+	public void login() throws InterruptedException	{
 		actorOnLaunchPage.perform_login();
 	}
 		
 	@Then("^They check whether the application displays the Environment selection screen$")
-	public void VerifyUserLogin() throws Throwable {
+	public void verifyUserLogin() throws Throwable {
 		actorOnRegionSelectionPage.verify_landing_page_details();	 	
 	}
 	
 	@And("^They select Region and check whether the Landing Page is displayed$")
-	public void RegionSelection() throws Throwable {		
+	public void regionSelection() throws Throwable {		
 		actorOnRegionSelectionPage.select_application_region();	
 	}
 	
 	@Then("^User navigates from Landing page to \"(.*)\" application$")
-	public void NavigateToApplication(String strApplication) throws Throwable{
-		rxNovaCommonUtil.NavigateApplication(strApplication);
+	public void navigateToApplication(String strApplication) throws Throwable{
+		rxNovaCommonUtil.navigateApplication(strApplication);
 	}
 	
 	@Then("^User enters the following data into Condition Home Search Panel and presses \"(.*)\"$")
-	public void SearchingForConditiontoDelete(String ObjKey, DataTable data) throws InterruptedException {
-		actorOnConditionsPage.SearchingForConditiontoDelete(ObjKey, data);
+	public void searchingForConditiontoDelete(String ObjKey, DataTable data) throws InterruptedException {
+		actorOnConditionsPage.searchingForConditiontoDelete(ObjKey, data);
 	}
 	
 	@Then("They enter the following tracking id \"(.*)\" and press \"(.*)\"")
-	public void EnteringTrackingIDforConditionDeletion(String ID, String ObjKey) throws InterruptedException, Throwable {
-		actorOnConditionsDetailsPage.EnteringTrackingIDforConditionDeletion(ID, ObjKey);
+	public void enteringTrackingIDforConditionDeletion(String ID, String ObjKey) throws InterruptedException, Throwable {
+		actorOnConditionsDetailsPage.enteringTrackingIDforConditionDeletion(ID, ObjKey);
 	}
 	
 //	@Then("^User deletes Condition$") 
