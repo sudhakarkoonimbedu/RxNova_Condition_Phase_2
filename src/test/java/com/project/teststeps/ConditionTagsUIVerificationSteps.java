@@ -16,16 +16,16 @@ public class ConditionTagsUIVerificationSteps {
 	
 	@Then("^They verify that \"(.*)\" is displayed$")
 	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
-		actorOnConditionsTagsNotesPage.ObjectIsDisplayed(ObjKey);
+	    rxNovaCommonUtil.ObjectIsDisplayed(ObjKey);
 	}
 	
 	@Then("^They verify whether \"(.*)\" displays \"(.*)\"$")
 	public void checkCurrentFieldDisplay(String ObjKey, String expectedDisplay) {
-		actorOnConditionsTagsNotesPage.ObjectContainsExpectedText(ObjKey, expectedDisplay);
+	    rxNovaCommonUtil.ObjectContainsExpectedText(ObjKey, expectedDisplay);
 	}
 	
 	@Then("^They determine whether \"(.*)\" is disabled$")
 	public void ObjectIsDisabled(String ObjKey) {
-		actorOnConditionsTagsNotesPage.ObjectIsDisabled(ObjKey);
+	    rxNovaCommonUtil.ObjectIsDisabled(ObjKey);
 	}
 }

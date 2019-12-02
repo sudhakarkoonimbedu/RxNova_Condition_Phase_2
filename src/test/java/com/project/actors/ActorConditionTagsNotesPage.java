@@ -1,34 +1,39 @@
 package com.project.actors;
 
 
-import com.project.common.util.RxNovaCommonUtil;
-import com.project.pages.ConditionsTagsNotesPage;
-import com.psqframework.core.util.Verify;
-
+import java.util.List;
+import com.project.pages.ConditionTagsNotesPage;
+import cucumber.api.DataTable;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 
 public class ActorConditionTagsNotesPage {
 	@Steps
-	RxNovaCommonUtil rxNovaCommonUtil;
-	@Steps
-	ConditionsTagsNotesPage conditionsTagsNotesPage;
+	ConditionTagsNotesPage conditionTagsNotesPage;
 	
 	@Step
-	public void ObjectIsDisplayed(String ObjKey) throws InterruptedException {
-		boolean isDisplayed = conditionsTagsNotesPage.ObjectIsDisplayed(ObjKey);
-		Verify.actualExpected(isDisplayed, true, "'" + ObjKey + "'" + " object is not displayed ");
+	public void enterTagsNotesData(DataTable conditionTagsNotesData) throws Throwable {
+		
+		List<List<String>> tagsNotesData = conditionTagsNotesData.raw();
+		
+		String strNotes = tagsNotesData.get(1).get(0);
+		String strTags = tagsNotesData.get(1).get(1);
+		String strTagsAddMessage = tagsNotesData.get(1).get(2);
+		String strTagsRemoveMessage = tagsNotesData.get(1).get(2);
+		
+		conditionTagsNotesPage.verifyConditionTagsNotesTabIsDisplayed();
+		conditionTagsNotesPage.enterNotes(strNotes);
+		conditionTagsNotesPage.enterTagsAndClickonAddButton(strTags,strTagsAddMessage,strTagsRemoveMessage);
 	}
 	
 	@Step
-	public void ObjectContainsExpectedText(String ObjKey, String expectedDisplay) {
-		boolean matchesExpected = conditionsTagsNotesPage.ObjectContainsExpectedText(ObjKey, expectedDisplay);
-		Verify.actualExpected(matchesExpected, true, "'" + ObjKey + "'" + " is not blank by default");
-	}
-	
-	@Step
-	public void ObjectIsDisabled(String ObjKey) {
-		boolean isDisabled = conditionsTagsNotesPage.ObjectIsDisabled(ObjKey);
-		Verify.actualExpected(isDisabled, false, "'" + ObjKey + "'" + " is enabled when it should be disabled");
+	public void clickOnSaveAndVerifyConditionAddSuccessMessage(DataTable conditionAddMessage) throws Throwable {
+		
+		List<List<String>> conditionAddSuccessMessage = conditionAddMessage.raw();
+		
+		String conditionAddMsg = conditionAddSuccessMessage.get(1).get(0);
+		
+		conditionTagsNotesPage.clickOnSaveButton();
+		conditionTagsNotesPage.verifyConditionAddSuccessMessage(conditionAddMsg);
 	}
 }

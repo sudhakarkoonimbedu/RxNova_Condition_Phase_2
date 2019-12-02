@@ -19,8 +19,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumhq.jetty9.util.StringUtil;
-
 import com.project.pages.LandingPage.Apps;
+import com.psqframework.core.element.BaseElement;
 import com.psqframework.core.page.BasePage;
 import com.psqframework.core.util.Project;
 
@@ -45,7 +45,7 @@ public class RxNovaCommonUtil extends BasePage{
     {
            //try
            //{
-           Thread.sleep(2000);
+           Thread.sleep(3000);
            /* if(!driver.findElement(By.className("argusLogoRebrand")).isDisplayed())
            {
                   System.out.println("**************************** In refresh mode ****************************" + strAppMenu);
@@ -83,7 +83,7 @@ public class RxNovaCommonUtil extends BasePage{
            if(!strAppMenu.trim().isEmpty())
            {
                   arrApplication = strAppMenu.split("\\|");
-                  WebDriverWait wt = new WebDriverWait(getDriver(),5);               
+                  WebDriverWait wt = new WebDriverWait(getDriver(),20);               
                   try{
                         //@Sreenu - New code for RxNova screen updates as on 04/08/2019                          
                         String apptobeclicked = arrApplication[arrApplication.length-1].replace(" / ", "/");  
@@ -92,17 +92,17 @@ public class RxNovaCommonUtil extends BasePage{
                                // here help clicking takes place
                                WebElement appsElement = wt.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//md-icon[contains(text(),'help_outline')]")));
                                appsElement.click();
-                               Thread.sleep(1000);
+                               Thread.sleep(2000);
                                SelectThisApp = wt.until(ExpectedConditions.elementToBeClickable(getDriver().findElement(By.xpath("//div[contains(text(),'Data Dictionary')]"))));
                         }else{
                                WebElement appsElement = wt.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//md-icon[contains(text(),'apps')]")));
                                appsElement.click();
-                               Thread.sleep(1000);
+                               Thread.sleep(3000);
                                SelectThisApp = wt.until(ExpectedConditions.elementToBeClickable(getDriver().findElement(By.linkText(apptobeclicked))));
                         }                          
                         SelectThisApp.click();
                  // LOGGER.info("*********** Selected application **************" + SelectThisApp.getText());
-                  Thread.sleep(500);
+                  Thread.sleep(1000);
                   intCounter = arrApplication.length;
                   boolNavigateApplicationMenu= true;
                   }catch(Exception e){
@@ -409,6 +409,27 @@ public class RxNovaCommonUtil extends BasePage{
 	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: WaitUntilWebButtonIsEnabled
+	// Return Type: void
+	// Description: Given a By WebElement referring to an object, this method waits until that element becomes enabled on the page.
+	// Parameters: By objElementName) 
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	public void WaitUntilWebButtonIsEnabled(By objElementName) throws Throwable
+	{	
+		int cnt = 0;
+		while (getDriver().findElement(objElementName).getAttribute("aria-disabled").contains("true")) {
+			Thread.sleep(1000);
+			cnt = cnt + 1;
+			if (cnt == 10) {
+				System.out.println("WebButton "+objElementName +"is disabled");
+				break;				
+			}
+		}
+	}
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Method: CheckElementPresenceByLocator
 	// Return Type: boolean
 	// Description: Given a locator, this method simply checks if the element exists on the page.
@@ -590,6 +611,7 @@ public class RxNovaCommonUtil extends BasePage{
 			}
 			boolSelectValueFromFieldIntellisence=true;
 			getDriver().findElement(objElementName).sendKeys(Keys.TAB);
+			getDriver().findElement(objElementName).click();
 			System.out.println("Set text on webelement : " + strName + " Value :" + strValue );
 			Thread.sleep(2000);
 		}
@@ -813,7 +835,7 @@ public class RxNovaCommonUtil extends BasePage{
 				catch(NoSuchFrameException e) {
 					cnt += 200;
 					System.out.println("Waiting for page to load ...");
-					Thread.sleep(500);
+					Thread.sleep(2000);
 					continue;
 				}
 			}
@@ -951,334 +973,1088 @@ public class RxNovaCommonUtil extends BasePage{
 		invoke(RxNova_URL);
 		System.out.println("-----------Completed Open firefox and start RxNova Application-------------");
 	}
-
+	
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Method: ObjectIsDisplayed
-	// Return Type: void
-	// Description: Given the xpath of an object, determines if the object is displayed. Try-Catch Implementation. 
-	// Parameters: String ObjPath -- xpath
+	// Return Type: boolean
+	// Description: Determines whether the object is currently displayed. 
+	// Parameters: BaseElement ObjPath
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public boolean ObjectIsDisplayed(String ObjPath) throws InterruptedException {
-		int cnt = 0;
-		boolean displayed = false;
-		while(!displayed && cnt < 10) {
-			try {
-				$(ObjPath).isDisplayed();
-				displayed = true;
-				return(displayed);
-			}
-			catch(Exception e) {
-				displayed = false;
-				System.out.println("Element not found yet, waiting and trying again ..." + cnt);
-				cnt++;
-				Thread.sleep(5);
-				continue;
-			}
+	 public boolean objectIsDisplayed(BaseElement ObjPath) {
+	      return ObjPath.exists(20000);
 		}
-		return(displayed);
-	}
-
+		
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: sendKeysToObject
+	// Return Type: void
+	// Description: Send keys to be entered to the field.
+	// Parameters: BaseElement ObjPath, String toEnter -- keys desired to be sent to text edit field
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 public void sendKeysToObject(BaseElement ObjPath, String toEnter) {
+			ObjPath.clear();
+			ObjPath.sendKeys(toEnter);
+		}
+		
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: selectFromDropdownUsingText
+	// Return Type: void
+	// Description: Selects from dropdown using text attribute.
+	// Parameters: BaseElement ObjPath, String text 
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 public void selectFromDropdownUsingText(BaseElement ObjPath, String toSelect) throws Throwable {
+            WebElement objElmnt = ObjPath;
+            Select itemToSelect = new Select(objElmnt);
+            itemToSelect.selectByVisibleText(toSelect);  
+		}
+		
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: performClick
+	// Return Type: void
+	// Description: Clicks on the object. 
+	// Parameters: BaseElement ObjPath
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 public void performClick(BaseElement ObjPath) {
+			ObjPath.click();
+		}	
+		
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: waitForDropdownItem
+	// Return Type: boolean
+	// Description: Checks whether the dropdown is loaded with items.
+	// Parameters: BaseElement ObjPath
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 public boolean waitForDropdownItem(BaseElement ObjPath) throws Throwable {		
+			int cnt = 0;
+			boolean waitForDropdownItem = false;
+			
+			while(!waitForDropdownItem && cnt < 10) {
+				List<String> options = ObjPath.getSelectOptions();
+				if(options.size() > 1)
+				  {
+					System.out.println("Dropdown list is loaded with items...");
+					waitForDropdownItem = true;
+					break;
+				  }
+				cnt++;
+				Thread.sleep(2000);
+				}
+			  return waitForDropdownItem;
+			}
+		
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: SelectItemFromWebListByPartialDisplayName
+	// Return Type: boolean 
+	// Description: This method types in a string into a text edit field that has Intellisense functionality, and clicks the required text for the field.
+	// Parameters: BaseElement ObjPath -- text edit field object, String strValue -- the string that we want typed in the text edit field.
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 public boolean selectValueFromFieldIntellisence(BaseElement ObjPath, String strValue) throws Throwable
+		{
+			Boolean boolSelectValueFromFieldIntellisence=false;
+			
+			if(ObjPath.exists(20000) && StringUtil.isNotBlank(strValue))
+			 {
+				String strName = ObjPath.getAttribute("name");
+				ObjPath.clear();
+				ObjPath.sendKeys(strValue);
+				Thread.sleep(1000);
+				
+				int value = getDriver().findElements(By.linkText(strValue)).size();
+				if (value > 0) {
+					getDriver().findElement(By.linkText(strValue)).click();
+					Thread.sleep(2000);
+					boolSelectValueFromFieldIntellisence=true;
+				}
+				else {
+					getDriver().findElement(By.partialLinkText(strValue)).click();
+					Thread.sleep(2000);
+					boolSelectValueFromFieldIntellisence=true;
+				}
+				System.out.println("Set text on webelement : " + strName + " Value :" + strValue );
+			}
+			
+			if(boolSelectValueFromFieldIntellisence==false)
+			{
+				System.out.println("Webelement with name  : '" + ObjPath.getAttribute("name") + "' was not found");
+			}
+			
+			return boolSelectValueFromFieldIntellisence;
+			
+		}
+		
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: addOrRemoveTags
+	// Return Type: boolean
+	// Description: Add or Remove required Tags. 
+	// Parameters: BaseElement ObjPath1,BaseElement ObjPath2,String Text,String Message1,String Message2
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		
+	 public boolean addOrRemoveTags(BaseElement ObjPath1,BaseElement ObjPath2, BaseElement ObjPath3,String strValue, String strMessage1,String strMessage2) throws Throwable {
+			
+			Boolean booleanAddOrRemoveTags = false;
+			
+			String[] arrRecordCount,arrTags = null;
+			
+			if(StringUtil.isNotBlank(strValue))
+			 {
+				arrRecordCount = strValue.split("#",-1);
+				
+				for(int i=0;i<arrRecordCount.length;i++)
+				 {
+				
+					arrTags = strValue.split("\\^",-1);
+						
+					String strOperation = arrTags[0];
+						
+					switch(strOperation.toUpperCase())
+					 {
+						case "ADD":
+							if(ObjPath1.exists(1000))
+							 {
+								for(int j=1;j<arrTags.length;j++)
+								 {
+									String toEnter = arrTags[j].toUpperCase();
+									selectValueFromFieldIntellisence(ObjPath1, toEnter);
+									//performClick(ObjPath2);
+									ClickOnButton(By.xpath("//span[text()='Add']"));
+									CheckBusyState();
+									boolean match = objectContainsExpectedText(ObjPath3,strMessage1);
+									if(match)
+									 {
+										System.out.println("Tag "+arrTags[j]+" is added");
+										booleanAddOrRemoveTags = true;
+									 }
+									else
+									 {
+										System.out.println("Tag "+arrTags[j]+" is not added and verify the tag provided");
+										booleanAddOrRemoveTags = false;			
+							         }
+							      }
+								}
+							else
+							 {
+								System.out.println("Webelement with name  : '" + ObjPath1 + "' was not found");
+								booleanAddOrRemoveTags=false;
+							 }
+							break;
+						case "REMOVE":
+							if(ObjPath2.exists(1000))
+							 {
+								for(int j=1;j<arrTags.length;j++)
+								 {
+									String toRemove = arrTags[j].toUpperCase();
+									if (webtable_ClickOnCheckBox(ObjPath2, toRemove))
+									 {
+										WaitUntilWebButtonIsEnabled(By.xpath("//span[text()='Remove Selected']/parent::button"));
+										ClickOnButton(By.xpath("//span[text()='Remove Selected']"));
+										CheckBusyState();
+										boolean match = objectContainsExpectedText(ObjPath3,strMessage2);
+										if(match)
+										 {
+											System.out.println("Tag "+arrTags[j]+" is removed");
+											booleanAddOrRemoveTags = true;
+										 }
+										else
+										 {
+											System.out.println("Tag "+arrTags[j]+" is not removed and verify the tag provided");
+											booleanAddOrRemoveTags = false;
+										 }					
+									 }
+					
+								   }
+							 }
+							else
+								 {
+									System.out.println("Webelement with name  : '" + ObjPath2 + "' was not found");
+									booleanAddOrRemoveTags=false;
+								 }
+								break;
+							}
+				 }
+				
+		     }
+			
+			return booleanAddOrRemoveTags;		
+		}
+		
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: webtable_ClickOnCheckBox
+	// Return Type: void
+	// Description: click on checkbox in webtable.
+	// Parameters: BaseElement ObjPath, String Text 
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 public boolean webtable_ClickOnCheckBox(BaseElement ObjPath, String toSelect) throws Throwable {
+			
+			Boolean boolWebtable_ClickOnCheckBox = false;
+			
+			if(ObjPath.isDisplayed() && StringUtil.isNotBlank(toSelect))
+			{
+				WebElement objTblBody = ObjPath.findElement(By.tagName("tbody"));
+				List<WebElement> rows = objTblBody.findElements(By.tagName("tr"));
+				A:
+				for(int i=0;i<rows.size();i++)
+				{
+					List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
+					for(int j=0;j<cols.size();j++)
+					{
+					  String strActText = cols.get(j).getText();
+					  if(strActText.equalsIgnoreCase(toSelect))
+					  {
+						  if (!cols.get(j-1).isSelected())
+						  {
+							  cols.get(j-1).click();
+							  CheckBusyState();
+							  boolWebtable_ClickOnCheckBox = true;
+							  break A;
+						  }
+						  else
+						  {
+							  System.out.println("The check box for "+toSelect+" is already checked");
+							  boolWebtable_ClickOnCheckBox = true;
+							  break A;
+						  }
+					   }
+					}
+				}	
 	
+			}
+			
+	       return boolWebtable_ClickOnCheckBox;
+		}
+		
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Method: ObjectContainsExpectedText
 	// Return Type: boolean
-	// Description: Given an xpath, determines whether an object contains the correct expected Display. 
-	// Parameters: String ObjPath -- xpath, String expectedDisplay
+	// Description: Determines whether an object contains the correct expected Message. 
+	// Parameters: BaseElement ObjPath, String Message
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public boolean ObjectContainsExpectedText(String ObjPath, String expectedDisplay) {
-		System.out.println("The following are the text strings contained in the WebElement of the following xpath: " + ObjPath);
-		System.out.println($(ObjPath).getText());
-		boolean containsExpected = $(ObjPath).getText().contains(expectedDisplay);
-		return(containsExpected);
-	}
-
-	
+	 public boolean objectContainsExpectedText(BaseElement ObjPath, String strMessage) {
+			boolean containsExpected = ObjPath.getText().contains(strMessage);
+			return(containsExpected);
+		}
+		
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: checkCurrentFieldDisplay
+	// Method: WebTable_VerifyRowData
 	// Return Type: boolean
-	// Description: Given an xpath for a text field, determines whether the text field currently contains the correct expected Display. 
-	// Parameters: String ObjPath -- xpath, String expectedDisplay
+	// Description: verify row data in web table. 
+	// Parameters: BaseElement ObjPath, String strRowValue
 	// Example:
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public boolean checkCurrentFieldDisplay(String ObjPath, String expectedDisplay) {
-		String currText = $(ObjPath).getText();
-		System.out.println("This is the current xpath " + "... " + ObjPath + " following is current text display of object.");
-		System.out.println(currText);
-		System.out.println("___________________________________________________________");
-		boolean match = false;
-		if(currText.isEmpty()) {
-			match = true;
-		}
-		if(match == true) {
-			System.out.println(ObjPath + " xpath has correct expected text display.");
-		}
-		else {
-			System.out.println(ObjPath + " xpath does not have correct expected text display.");
-		}
-		return(match);
-	}
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: MCScheckContents
-	// Return Type: boolean
-	// Description: Given the "Master customer set:" xpath, determines whether the master customer set dropdown list contains items.
-	// Parameters: String ObjPath -- xpath
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public boolean MCScheckContents(String ObjPath) {
-		System.out.println("Checking whether Master Customer Set dropdown contains list ...");
-		List<String> options = $(ObjPath).getSelectOptions();
-		boolean hasContents = options.size() > 1;
-		if(hasContents == true) {
-			System.out.println("Master Customer Set dropdown has more than one option; thusly it is considered to be valid.");
-		}
-		else {
-			System.out.println("Master Customer Set dropdown has either only default option or has no options in its dropdown list");
-		}
-		return(hasContents);
-	}
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: DropdownCheckContents
-	// Return Type: boolean
-	// Description: Given the xpath for a dropdown list, checks whether the dropdown contains expected contents. The expectedContents string is a comma-separated string. String Tokenizer is implemented to split the expected string and compare to items in dropdown.
-	// Parameters: String expected -- comma-separated expectedContents string, String ObjPath -- xpath
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public boolean DropdownCheckContents(String expected, String ObjPath) {
-		List<String> options = $(ObjPath).getSelectOptions();
-		boolean hasContents = options.size() > 1;
-		if(hasContents == true)
+		
+	 public boolean webTable_VerifyRowData(BaseElement ObjPath,String strRowValue) throws InterruptedException
 		{
-			StringTokenizer tokenizer = new StringTokenizer(expected, ",");
-			while(tokenizer.hasMoreTokens()) {
-				String currToken = tokenizer.nextToken();
-				for(String i : options)
+			Boolean boolWebTable_VerifyRowData = false;
+			
+			String[] arrRowValue = strRowValue.split("\\^");
+			String strExpLabelName = arrRowValue[0];
+			String strExpLabelValue = arrRowValue[1];		
+			
+			List<WebElement> strRows = ObjPath.findElements(By.tagName("tr"));
+			for(int i=0;i<strRows.size();i++)
+			{
+				List<WebElement> strCols = strRows.get(i).findElements(By.tagName("td"));
+				for(int j=0;j<strCols.size();j++)
 				{
-					if(i.equals(currToken))
+					String strActLabelName = strCols.get(j).getText();
+					if(strActLabelName.equalsIgnoreCase(strExpLabelName))
 					{
-						System.out.println("Dropdown contains " + currToken);
-						hasContents = true;
+						String strActLabelValue = strCols.get(j+1).getText();
+						if(strActLabelValue.equalsIgnoreCase(strExpLabelValue))
+						{
+							System.out.println("The Field "+strActLabelName+" has the value "+strActLabelValue);
+							boolWebTable_VerifyRowData = true;
+							break;
+						}
 					}
-					else
+				}
+				if(boolWebTable_VerifyRowData == true)
+				{
+					break;
+				}
+			}
+					
+			if(boolWebTable_VerifyRowData==false)
+			{
+				System.out.println("Webtable  : '" + ObjPath +"' with "+strRowValue+" was not found");
+			}
+			
+			return boolWebTable_VerifyRowData;		
+		}
+	   
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: WebTable_VerifyColumnData
+	// Return Type: boolean
+	// Description: verify column data in web table. 
+	// Parameters: BaseElement ObjPath, String strColumnValue
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		
+	  public boolean webTable_VerifyColumnData(BaseElement ObjPath,String strColumnValue) throws InterruptedException
+		{
+			Boolean boolWebTable_VerifyColumnData = false;
+			
+			String[] arrRowValue = strColumnValue.split("\\^");
+			String strExpLabelName = arrRowValue[0];
+			String strExpLabelValue = arrRowValue[1];		
+			
+			List<WebElement> strRows = ObjPath.findElements(By.tagName("tr"));
+			List<WebElement> strColName = strRows.get(0).findElements(By.tagName("td"));
+			List<WebElement> strColValue = strRows.get(1).findElements(By.tagName("td"));
+			for(int i=0;i<strColName.size();i++)
+			 {
+			    String strActLabelName = strColName.get(i).getText();
+				if(strActLabelName.equalsIgnoreCase(strExpLabelName))
+				   {
+					  String strActLabelValue = strColValue.get(i).getText();
+	  			      if(strActLabelValue.equalsIgnoreCase(strExpLabelValue))
+					    {  			    	
+						  System.out.println("The Field "+strActLabelName+" has the value "+strActLabelValue);
+						  boolWebTable_VerifyColumnData = true;
+						  break;
+					    }
+					}
+				}
+			
+			if(boolWebTable_VerifyColumnData==false)
+			{
+				System.out.println("Webtable  : '" + ObjPath +"' with "+strColumnValue+" was not found");		
+			}
+			
+			return boolWebTable_VerifyColumnData;		
+		}
+	  
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: WebTable_VerifyCellData
+	// Return Type: boolean
+	// Description: verify cell data in web table. 
+	// Parameters: BaseElement ObjPath, String strColValue
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	 public boolean webTable_VerifyCellData(BaseElement ObjPath,String strColValue) throws InterruptedException
+	 {
+		Boolean boolWebTable_VerifyCellData = false;
+		
+		String strActColHeaderName="";
+		String strActColHeaderValue="";
+		
+		String[] arrRowValue = strColValue.split("\\^",-1);
+			
+		String strExpColHeaderName = arrRowValue[0];
+		String strExpColHeaderValue = arrRowValue[1];
+		
+		WebElement strColHeader = ObjPath.findElement(By.tagName("thead"));
+		
+		List<WebElement> strColHeaderRows = strColHeader.findElements(By.tagName("tr"));
+		A:
+		for(int i=0;i<strColHeaderRows.size();i++)
+		{
+			
+			List<WebElement> strColHeaderVal = strColHeaderRows.get(i).findElements(By.tagName("th"));
+			for(int j=0;j<strColHeaderVal.size();j++)
+			{
+				strActColHeaderName = strColHeaderVal.get(j).getText();   
+				if(strActColHeaderName.equalsIgnoreCase(strExpColHeaderName))
+				{
+					WebElement strColHeaderValues = ObjPath.findElement(By.tagName("tbody"));
+			
+					List<WebElement> strColHeaderValueRows = strColHeaderValues.findElements(By.tagName("tr"));
+			
+					for(int k=0;k<strColHeaderValueRows.size();k++)
 					{
-						System.out.println("Dropdown does not contain " + currToken);
+						List<WebElement> strColHeaderValue = strColHeaderValueRows.get(k).findElements(By.tagName("td"));
+			
+						if(strColHeaderValue.get(0).getText().contains("No records"))
+						{
+							System.out.println("There were no records available in the table");
+							break A;
+						}
+						strActColHeaderValue = strColHeaderValue.get(j).getText();
+			
+						//if(strActColHeaderValue.equalsIgnoreCase(arrExpColHeaderValue[k]))
+						if(strActColHeaderValue.equalsIgnoreCase(strExpColHeaderValue))	
+						{
+							System.out.println("The Column "+strActColHeaderName+" has the value "+strActColHeaderValue);
+							boolWebTable_VerifyCellData = true;
+							break A;
+						}
+					}
+				}
+			}
+		}
+		
+		if(boolWebTable_VerifyCellData==false)
+		{
+		  System.out.println("Webtable  : '" + ObjPath + "' with "+strColValue+" was not found");
+		}
+		
+		return boolWebTable_VerifyCellData;
+	}
+	 
+	 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: addOrRemoveCondition
+	// Return Type: boolean
+	// Description: Add or Remove required Conditions. 
+	// Parameters: BaseElement ObjPath1,BaseElement ObjPath2,String Text
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		
+	 public boolean addOrRemoveCondition(BaseElement ObjPath1,BaseElement ObjPath2,String strValue) throws Throwable 
+	  {
+			
+		Boolean booleanAddOrRemoveCondition = false;
+		
+		String[] arrRecordCount,arrCondition = null;
+		
+		if(StringUtil.isNotBlank(strValue))
+		 {
+			arrRecordCount = strValue.split("#",-1);
+			
+			for(int i=0;i<arrRecordCount.length;i++)
+			{
+				arrCondition = arrRecordCount[i].split("\\^",-1);
+				
+				String strOperation = arrCondition[0];
+					
+				switch(strOperation.toUpperCase())
+				 {
+					case "ADD":
+						if(ObjPath1.exists(1000))
+						 {
+							for(int j=1;j<arrCondition.length;j++)
+							 {
+								String toEnter = arrCondition[j].toUpperCase();
+								selectValueFromFieldIntellisence(ObjPath1, toEnter);
+								//performClick(ObjPath2);
+								ClickOnButton(By.xpath("//span[text()='Add']"));
+								CheckBusyState();
+								boolean match = webTable_VerifyCellData(ObjPath2,"Condition ID^CD"+toEnter);
+								if(match)
+								 {
+									System.out.println("Condition ID "+arrCondition[j]+" is added");
+									booleanAddOrRemoveCondition = true;
+								 }
+								else
+								 {
+									System.out.println("Condition ID "+arrCondition[j]+" is not added and verify the Condition ID provided");
+									booleanAddOrRemoveCondition = false;			
+						         }
+						      }
+							}
+						else
+						 {
+							System.out.println("Webelement with name  : '" + ObjPath1 + "' was not found");
+							booleanAddOrRemoveCondition=false;
+						 }
+						break;
+					case "REMOVE":
+						if(ObjPath2.exists(1000))
+						 {
+							for(int j=1;j<arrCondition.length;j++)
+							 {
+								String toRemove = arrCondition[j].toUpperCase();
+								if (webtable_ClickOnCheckBox(ObjPath2, toRemove))
+								 {
+									WaitUntilWebButtonIsEnabled(By.xpath("//span[text()='Remove Selected']/parent::button"));
+									ClickOnButton(By.xpath("//span[text()='Remove Selected']"));
+									CheckBusyState();
+									boolean match = webTable_VerifyCellData(ObjPath2,"Condition ID^"+toRemove);
+									if(match==false)
+									 {
+										System.out.println("Condition ID "+arrCondition[j]+" is removed");
+										booleanAddOrRemoveCondition = true;
+									 }
+									else
+									 {
+										System.out.println("Condition ID "+arrCondition[j]+" is not removed and verify the Condition ID provided");
+										booleanAddOrRemoveCondition = false;
+									 }					
+								 }
+				
+							   }
+						   }
+						 else
+						  {
+							System.out.println("Webelement with name  : '" + ObjPath2 + "' was not found");
+							booleanAddOrRemoveCondition=false;
+						  }
+						 break;
+					 }
+			   }
+	       }
+		
+		return booleanAddOrRemoveCondition;		
+	  }
+	  
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method: condition_SelectFromDropdownUsingText 
+	// Return Type: void
+	// Description: Selects the item from drop-down list multiple times using text attribute as the item clears after selection.
+	// Parameters: BaseElement ObjPath, String text 
+	// Example:
+	// Author:
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 public void condition_SelectFromDropdownUsingText(BaseElement ObjPath, String toSelect) throws Throwable {
+	  
+	  Boolean boolcondition_SelectFromDropdownUsingText=false;
+		
+		int attempts=0;
+		while(attempts<3)
+		{
+			try{
+		
+			String ItemFound = "";
+			String strListItem="";
+			WebElement objElement = ObjPath;
+			if(ObjPath.exists(2000))
+			{
+				List<WebElement> strItems=	ObjPath.findElements(By.tagName("option"));	
+				for(int i2=1;i2<strItems.size();i2++)
+				{
+					strListItem=strItems.get(i2).getText();
+					if(strListItem.trim().equalsIgnoreCase(toSelect.trim()))
+					   {
+						  ItemFound = "Found";
+						  Select itemstoSelect =new Select(objElement);
+						  String strName = objElement.getAttribute("name");
+						  itemstoSelect.selectByVisibleText(strListItem);
+						  Thread.sleep(1000);
+						  boolcondition_SelectFromDropdownUsingText = true;
+						  System.out.println("Selected item in webelement : " + strName + " Value :" + toSelect );
+						  break;
+					   }
+				 }
+				if(!ItemFound.equals("Found"))
+				  {
+					for(int i3=1;i3<strItems.size();i3++)
+					 {
+						strListItem=strItems.get(i3).getText();	
+					    String[] arrItemSplited=strListItem.split("-");
+					    if(arrItemSplited[0].trim().equalsIgnoreCase(toSelect.trim()))
+						   {
+							  Select itemstoSelect =new Select(objElement);
+							  String strName = objElement.getAttribute("name");
+							  itemstoSelect.selectByVisibleText(strListItem);
+							  Thread.sleep(1000);
+							  boolcondition_SelectFromDropdownUsingText = true;
+							  System.out.println("Selected item in webelement : " + strName + " Value :" + toSelect );
+							  break;
+						   }
+					  }
+				  }
+				
+			 	}
+			
+		}catch(StaleElementReferenceException e){				
+		}
+		attempts++;
+		}
+			
+		if(boolcondition_SelectFromDropdownUsingText==false)
+		 {
+			System.out.println("Webelement with name  : '" + ObjPath.getAttribute("name") + "' was not found");
+		 }
+	  }
+	  
+	 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 // Method: condition_MultipleTable_VerifyCellData
+	 // Return Type: boolean
+	 // Description: verify cell data in multiple web table1. 
+	 // Parameters: BaseElement ObjPath, String strCellValue
+	 // Example:
+	 // Author:
+	 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	 public boolean condition_MultipleTable_VerifyCellData(BaseElement ObjPath,String strCellValue) throws InterruptedException
+	  {
+		Boolean boolcondition_MultipleTable_VerifyCellData = false;
+		
+		String strActCellValue="";
+		String strActRefCellValue="";
+		
+		String[] arrCellValue = strCellValue.split("\\^",-1);
+		
+		WebElement objElement = ObjPath;
+		
+		List<WebElement> strTbls = objElement.findElements(By.tagName("table"));
+		
+		for(int i=0;i<arrCellValue.length;i++)
+		{
+			List<WebElement> strRows = strTbls.get(i).findElements(By.tagName("tr"));
+			
+			for(int j=0;j<strRows.size();j++)
+			{
+				List<WebElement> strCols = strRows.get(0).findElements(By.tagName("td"));
+				
+				for(int k=0;k<strCols.size();k++)
+				{
+					strActCellValue = strCols.get(k).getText();
+					if(strActCellValue.equalsIgnoreCase(arrCellValue[i]))
+					{
+						System.out.println("The Cell has the value "+strActCellValue);
+					}				
+				}
+			}		
+	
+			if(i==0)
+			{
+				strActRefCellValue = strActCellValue;
+			}
+			
+			else if(!strActCellValue.isEmpty() && i!=arrCellValue.length)
+			{
+	
+				strActRefCellValue = strActRefCellValue+"^"+strActCellValue;
+			}
+		}
+		
+		if(strActRefCellValue.equalsIgnoreCase(strCellValue))
+		 {
+			System.out.println("The Cell has the value "+strActRefCellValue);
+			boolcondition_MultipleTable_VerifyCellData = true;
+		 }
+		else
+		 {
+			System.out.println("The Cell does not match with the provided value "+strActRefCellValue);
+			boolcondition_MultipleTable_VerifyCellData = false;
+		 }
+		
+	    return boolcondition_MultipleTable_VerifyCellData;
+	  
+	  }
+	 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: IsTabProperlyDisplayed
+		// Return Type: String
+		// Description: Given an input target string length, this method generates a random ID.
+		// Parameters: int targetStringLength
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public String FieldIDGenerator(int targetStringLength) {
+			final String values = "12345678912345678912345";
+			int valuesLen = values.length();
+			Random rnd = new Random();
+			String id = "";
+			String currentTime = String.valueOf(System.currentTimeMillis());
+			int currentTimeLen = currentTime.length();
+			int diffLen = 1;
+			if(targetStringLength != 1) {
+				diffLen = Math.abs(currentTimeLen - targetStringLength);
+			}
+			for(int i = 1; i <= diffLen; i++) {
+				id += values.charAt(rnd.nextInt(valuesLen));
+			}
+			if(targetStringLength != 1) {
+				return(String.valueOf(id + System.currentTimeMillis()));
+			}
+			else {
+				return("1");
+			}
+		}
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: sendKeysToObject
+		// Return Type: void
+		// Description: Given an xpath and a string to be entered in the field associated with that xpath, sends those keys to be entered to the field.
+		// Parameters: String ObjPath -- xpath, String toEnter -- keys desired to be sent to text edit field
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public void sendKeysToObject(String ObjPath, String toEnter) {
+			$(ObjPath).sendKeys(toEnter);
+		}
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: ObjectIsDisplayed
+		// Return Type: void
+		// Description: Given the xpath of an object, determines if the object is displayed. Try-Catch Implementation. 
+		// Parameters: String ObjPath -- xpath
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public boolean ObjectIsDisplayed(String ObjPath) throws InterruptedException {
+			int cnt = 0;
+			boolean displayed = false;
+			while(!displayed && cnt < 10) {
+				try {
+					$(ObjPath).isDisplayed();
+					displayed = true;
+					return(displayed);
+				}
+				catch(Exception e) {
+					displayed = false;
+					System.out.println("Element not found yet, waiting and trying again ..." + cnt);
+					cnt++;
+					Thread.sleep(5);
+					continue;
+				}
+			}
+			return(displayed);
+		}
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: DropdownCheckContents
+		// Return Type: boolean
+		// Description: Given the xpath for a dropdown list, checks whether the dropdown contains expected contents. The expectedContents string is a comma-separated string. String Tokenizer is implemented to split the expected string and compare to items in dropdown.
+		// Parameters: String expected -- comma-separated expectedContents string, String ObjPath -- xpath
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public boolean DropdownCheckContents(String expected, String ObjPath) {
+			List<String> options = $(ObjPath).getSelectOptions();
+			boolean hasContents = options.size() > 1;
+			if(hasContents == true)
+			{
+				StringTokenizer tokenizer = new StringTokenizer(expected, ",");
+				while(tokenizer.hasMoreTokens()) {
+					String currToken = tokenizer.nextToken();
+					for(String i : options)
+					{
+						if(i.equals(currToken))
+						{
+							System.out.println("Dropdown contains " + currToken);
+							hasContents = true;
+						}
+						else
+						{
+							System.out.println("Dropdown does not contain " + currToken);
+							hasContents = false;
+						}
+					}
+				}
+			}
+			return(hasContents);
+		}
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: WordGenerator
+		// Return Type: String 
+		// Description: Generates a random 8-character seed.  
+		// Parameters: void
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public String WordGenerator() {
+			final String values = "abcdefghijklmnopqrstuvwxyz";
+			int valuesLen = values.length();
+			Random rnd = new Random();
+			String id = "";
+			for(int i = 1; i <= 8; i++) {
+				id += values.charAt(rnd.nextInt(valuesLen));
+			}
+			return(id);
+		}
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: TableCheckContents
+		// Return Type: boolean
+		// Description: Given the xpath for a table, checks whether the table contains field names. The expectedFieldNames string is a comma-separated string. String Tokenizer is implemented to split the expected string and compare to items in table.
+		// Parameters: String expected -- comma-separated expectedContents string, String ObjPath -- xpath
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public boolean TableCheckContents(String expected, String ObjPath) {
+			String options = $(ObjPath).getText();
+			boolean hasContents = true;
+			if(hasContents == true)
+			{
+				StringTokenizer tokenizer = new StringTokenizer(expected, ",");
+				while(tokenizer.hasMoreTokens()) {
+					String currToken = tokenizer.nextToken();
+					if(options.contains(currToken)) {
+						System.out.println("Table Object contains " + currToken);
+						hasContents = true;
+						break;
+					}
+					else {
+						System.out.println("Table Object does not contain " + currToken);
 						hasContents = false;
 					}
 				}
 			}
+			return(hasContents);
 		}
-		return(hasContents);
-	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: TableCheckContents
-	// Return Type: boolean
-	// Description: Given the xpath for a table, checks whether the table contains field names. The expectedFieldNames string is a comma-separated string. String Tokenizer is implemented to split the expected string and compare to items in table.
-	// Parameters: String expected -- comma-separated expectedContents string, String ObjPath -- xpath
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public boolean TableCheckContents(String expected, String ObjPath) {
-		String options = $(ObjPath).getText();
-		boolean hasContents = true;
-		if(hasContents == true)
-		{
-			StringTokenizer tokenizer = new StringTokenizer(expected, ",");
-			while(tokenizer.hasMoreTokens()) {
-				String currToken = tokenizer.nextToken();
-				if(options.contains(currToken)) {
-					System.out.println("Table Object contains " + currToken);
-					hasContents = true;
-					break;
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: RandomIntegerGenerator
+		// Return Type: int  
+		// Description: Given a maximum ceiling value, this method generates an integer between zero and the given maxValue. 
+		// Parameters: int maxValue 
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public int RandomIntegerGenerator(int maxValue) {
+			Random rnd = new Random();
+			System.out.println("here is" + maxValue);
+			int randomInt = rnd.nextInt(maxValue) + 1;
+			System.out.println(randomInt);
+			return(randomInt);
+		}
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: selectFromDropdownUsingIndex
+		// Return Type: void
+		// Description: Selects from dropdown xpath using index attribute.
+		// Parameters: int index, String ObjPath -- xpath
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public void selectFromDropdownUsingIndex(int index, String ObjPath) {
+			WebElement currElement = getDriver().findElement(By.xpath(ObjPath));
+			Select drop = new Select(currElement);
+			drop.selectByIndex(index);
+		}
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: isFieldClickable
+		// Return Type: boolean
+		// Description: Given the xpath for a text edit field or button, determines whether it is clickable.
+		// Parameters: String ObjPath -- xpath
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public boolean isFieldClickable(String ObjPath) throws InterruptedException {
+			
+			int cnt = 0;
+			boolean clickable = false;
+			while(!clickable && cnt < 10) {
+				try {
+					$(ObjPath).isClickable();
+					clickable = true;
+					return(clickable);
 				}
-				else {
-					System.out.println("Table Object does not contain " + currToken);
-					hasContents = false;
+				catch (Exception e) {
+					clickable = false;
+					System.out.println("Element not found yet, waiting and trying again to see if clickable ..." + cnt);
+					cnt++;
+					Thread.sleep(5);
+					continue;
 				}
 			}
+			return(clickable);
 		}
-		return(hasContents);
-	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: isFieldClickable
-	// Return Type: boolean
-	// Description: Given the xpath for a text edit field or button, determines whether it is clickable.
-	// Parameters: String ObjPath -- xpath
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public boolean isFieldClickable(String ObjPath) throws InterruptedException {
-		
-		int cnt = 0;
-		boolean clickable = false;
-		while(!clickable && cnt < 10) {
-			try {
-				$(ObjPath).isClickable();
-				clickable = true;
-				return(clickable);
-			}
-			catch (Exception e) {
-				clickable = false;
-				System.out.println("Element not found yet, waiting and trying again to see if clickable ..." + cnt);
-				cnt++;
-				Thread.sleep(5);
-				continue;
-			}
-		}
-		return(clickable);
-	}
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: performClick
-	// Return Type: void
-	// Description: Given an xpath for an object, clicks on the object. 
-	// Parameters: String ObjPath -- xpath
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void performClick(String ObjPath) {
-		System.out.println("Element associated with this xpath will be clicked on ..." + "...xpath = " + ObjPath);
-		$(ObjPath).click();
-	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: ObjectIsDisabled
-	// Return Type: boolean
-	// Description: Given the xpath for a button/object, determines whether it is currently disabled by getting class attribute.
-	// Parameters: String ObjPath -- xpath
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public boolean ObjectIsDisabled(String ObjPath) {
-		System.out.println("Determining whether object of following xpath is disabled: " + "...xpath = " + ObjPath);
-		String isDisabled = $(ObjPath).getAttribute("class");
-		boolean disabled = false;
-		if(isDisabled.contains("disabled"))
-		{
-			disabled = true;
-		}
-		if(disabled == true) {
-			System.out.println(ObjPath + " xpath object is disabled");
-		}
-		else {
-			System.out.println(ObjPath + " xpath object is enabled");
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: performClick
+		// Return Type: void
+		// Description: Given an xpath for an object, clicks on the object. 
+		// Parameters: String ObjPath -- xpath
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public void performClick(String ObjPath) {
+			System.out.println("Element associated with this xpath will be clicked on ..." + "...xpath = " + ObjPath);
+			$(ObjPath).click();
 		}
 		
-		return(disabled);	
-	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: IsTabProperlyDisplayed
-	// Return Type: boolean
-	// Description: Given the xpath for a child object within a parent tab under an application in RxNova, determines whether the tab is currently displayed. 
-	// Parameters: String ChildObjPath -- xpath
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public boolean IsTabProperlyDisplayed(String ChildObjPath) {
-		boolean IsTabDisplayed = getDriver().findElements(By.xpath(ChildObjPath)).size() > 0;
-		return(IsTabDisplayed);
-	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: IsTabProperlyDisplayed
-	// Return Type: String
-	// Description: Given an input target string length, this method generates a random ID.
-	// Parameters: int targetStringLength
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public String FieldIDGenerator(int targetStringLength) {
-		final String values = "12345678912345678912345";
-		int valuesLen = values.length();
-		Random rnd = new Random();
-		String id = "";
-		String currentTime = String.valueOf(System.currentTimeMillis());
-		int currentTimeLen = currentTime.length();
-		int diffLen = 1;
-		if(targetStringLength != 1) {
-			diffLen = Math.abs(currentTimeLen - targetStringLength);
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: MCScheckContents
+		// Return Type: boolean
+		// Description: Given the "Master customer set:" xpath, determines whether the master customer set dropdown list contains items.
+		// Parameters: String ObjPath -- xpath
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public boolean MCScheckContents(String ObjPath) {
+			System.out.println("Checking whether Master Customer Set dropdown contains list ...");
+			List<String> options = $(ObjPath).getSelectOptions();
+			boolean hasContents = options.size() > 1;
+			if(hasContents == true) {
+				System.out.println("Master Customer Set dropdown has more than one option; thusly it is considered to be valid.");
+			}
+			else {
+				System.out.println("Master Customer Set dropdown has either only default option or has no options in its dropdown list");
+			}
+			return(hasContents);
 		}
-		for(int i = 1; i <= diffLen; i++) {
-			id += values.charAt(rnd.nextInt(valuesLen));
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: ObjectContainsExpectedText
+		// Return Type: boolean
+		// Description: Given an xpath, determines whether an object contains the correct expected Display. 
+		// Parameters: String ObjPath -- xpath, String expectedDisplay
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public boolean ObjectContainsExpectedText(String ObjPath, String expectedDisplay) {
+			System.out.println("The following are the text strings contained in the WebElement of the following xpath: " + ObjPath);
+			System.out.println($(ObjPath).getText());
+			boolean containsExpected = $(ObjPath).getText().contains(expectedDisplay);
+			return(containsExpected);
 		}
-		if(targetStringLength != 1) {
-			return(String.valueOf(id + System.currentTimeMillis()));
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: ObjectIsDisabled
+		// Return Type: boolean
+		// Description: Given the xpath for a button/object, determines whether it is currently disabled by getting class attribute.
+		// Parameters: String ObjPath -- xpath
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public boolean ObjectIsDisabled(String ObjPath) {
+			System.out.println("Determining whether object of following xpath is disabled: " + "...xpath = " + ObjPath);
+			String isDisabled = $(ObjPath).getAttribute("class");
+			boolean disabled = false;
+			if(isDisabled.contains("disabled"))
+			{
+				disabled = true;
+			}
+			if(disabled == true) {
+				System.out.println(ObjPath + " xpath object is disabled");
+			}
+			else {
+				System.out.println(ObjPath + " xpath object is enabled");
+			}
+			
+			return(disabled);	
 		}
-		else {
-			return("1");
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: checkCurrentFieldDisplay
+		// Return Type: boolean
+		// Description: Given an xpath for a text field, determines whether the text field currently contains the correct expected Display. 
+		// Parameters: String ObjPath -- xpath, String expectedDisplay
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public boolean checkCurrentFieldDisplay(String ObjPath, String expectedDisplay) {
+			String currText = $(ObjPath).getText();
+			System.out.println("This is the current xpath " + "... " + ObjPath + " following is current text display of object.");
+			System.out.println(currText);
+			System.out.println("___________________________________________________________");
+			boolean match = false;
+			if(currText.isEmpty()) {
+				match = true;
+			}
+			if(match == true) {
+				System.out.println(ObjPath + " xpath has correct expected text display.");
+			}
+			else {
+				System.out.println(ObjPath + " xpath does not have correct expected text display.");
+			}
+			return(match);
 		}
-	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: sendKeysToObject
-	// Return Type: void
-	// Description: Given an xpath and a string to be entered in the field associated with that xpath, sends those keys to be entered to the field.
-	// Parameters: String ObjPath -- xpath, String toEnter -- keys desired to be sent to text edit field
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void sendKeysToObject(String ObjPath, String toEnter) {
-		$(ObjPath).sendKeys(toEnter);
-	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: WordGenerator
-	// Return Type: String 
-	// Description: Generates a random 8-character seed.  
-	// Parameters: void
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public String WordGenerator() {
-		final String values = "abcdefghijklmnopqrstuvwxyz";
-		int valuesLen = values.length();
-		Random rnd = new Random();
-		String id = "";
-		for(int i = 1; i <= 8; i++) {
-			id += values.charAt(rnd.nextInt(valuesLen));
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: IsTabProperlyDisplayed
+		// Return Type: boolean
+		// Description: Given the xpath for a child object within a parent tab under an application in RxNova, determines whether the tab is currently displayed. 
+		// Parameters: String ChildObjPath -- xpath
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public boolean IsTabProperlyDisplayed(String ChildObjPath) {
+			boolean IsTabDisplayed = getDriver().findElements(By.xpath(ChildObjPath)).size() > 0;
+			return(IsTabDisplayed);
 		}
-		return(id);
-	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: RandomIntegerGenerator
-	// Return Type: int  
-	// Description: Given a maximum ceiling value, this method generates an integer between zero and the given maxValue. 
-	// Parameters: int maxValue 
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public int RandomIntegerGenerator(int maxValue) {
-		Random rnd = new Random();
-		System.out.println("here is" + maxValue);
-		int randomInt = rnd.nextInt(maxValue) + 1;
-		System.out.println(randomInt);
-		return(randomInt);
-	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Method: selectFromDropdownUsingIndex
-	// Return Type: void
-	// Description: Selects from dropdown xpath using index attribute.
-	// Parameters: int index, String ObjPath -- xpath
-	// Example:
-	// Author:
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void selectFromDropdownUsingIndex(int index, String ObjPath) {
-		WebElement currElement = getDriver().findElement(By.xpath(ObjPath));
-		Select drop = new Select(currElement);
-		drop.selectByIndex(index);
-	}
+	 
+	    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Method: searchOperation
+		// Return Type: boolean
+		// Description: Add or Remove required Conditions. 
+		// Parameters: BaseElement ObjPath1,BaseElement ObjPath2,String Text
+		// Example:
+		// Author:
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+				
+		 public boolean operationSearch(BaseElement ObjPath,String strOperation,String strValue) throws Throwable 
+			  {
+					
+				Boolean booleanOperationSearch = false;
+				
+				if(ObjPath.exists(5000))
+				  {
+							
+					WebElement objElement = ObjPath;
+				
+					A:
+					do {
+					List<WebElement> strTblRows = objElement.findElements(By.tagName("tr"));
+					
+					for(int strRow=0;strRow<strTblRows.size();strRow++)
+					 {
+					 	List<WebElement> strTblCols = strTblRows.get(strRow).findElements(By.tagName("td"));
+					 	
+					 	for(int strCol=0;strCol<strTblCols.size();strCol++)
+					 	{
+					 		String strActValue = strTblCols.get(strCol).getText();
+					 		if(strActValue.equalsIgnoreCase(strValue))
+					 		{
+					 			switch(strOperation.toUpperCase())
+					 			 {
+					 			    case "VIEW":
+					 			          strTblCols.get(strCol).click();
+					 			          CheckBusyState();
+					 			          System.out.println("Click on the Condition ID: "+strValue);
+					 			         booleanOperationSearch = true;
+					 			          break;
+					 			 	case "COPY":
+					 			 		  List<WebElement> strBtn1 = strTblRows.get(strRow).findElements(By.tagName("button"));
+					 			          for(WebElement btn:strBtn1)
+					 			          {
+					 			        	  if(btn.findElements(By.xpath("//*[text()='Copy']")).size()>0)
+					 			        	  {
+					 			        		 btn.click();
+					 			        		 System.out.println("Click on the Copy button for Condition ID: "+strValue);
+					 			        		 break;
+					 			        	  }
+					 			          }
+					 			          CheckBusyState();
+					 			         booleanOperationSearch = true;
+					 			          break;
+					 			 	case "REPORT":
+					 			 		  List<WebElement> strBtn2 = strTblRows.get(strRow).findElements(By.tagName("button"));
+					 			          for(WebElement btn:strBtn2)
+					 			          {
+					 			        	  if(btn.findElements(By.xpath("//*[text()='Report']")).size()>0)
+					 			        	  {
+					 			        		 btn.click();
+					 			        		 System.out.println("Click on the Report button for Condition ID: "+strValue);
+					 			        		 break;
+					 			        	  }
+					 			          }
+					 			          CheckBusyState();
+					 			         booleanOperationSearch = true;
+					 			          break;
+					 			 }
+					 		}
+					 		
+					 		if(booleanOperationSearch==true)
+					 		{
+					 			break A;
+					 		}
+					 	}
+					 }
+					 if(booleanOperationSearch==false && getDriver().findElement(By.xpath("(//span[text()='Next'])[1]")).isEnabled())
+					   {
+						  ClickOnButton(By.xpath("(//span[text()='Next'])[1]"));
+						  CheckBusyState();
+					   }
+					} while(booleanOperationSearch==false);
+				 }	
+				 if(booleanOperationSearch==false)
+				  {
+					System.out.println("Webelement with name  : '" + ObjPath + "' was not found");
+				  }
+				
+				return booleanOperationSearch;		
+			 }
+
 }
