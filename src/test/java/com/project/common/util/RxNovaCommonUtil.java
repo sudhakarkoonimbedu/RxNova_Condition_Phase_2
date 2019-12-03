@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchFrameException;
@@ -19,6 +20,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumhq.jetty9.util.StringUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.project.pages.LandingPage.Apps;
 import com.psqframework.core.element.BaseElement;
 import com.psqframework.core.page.BasePage;
@@ -32,6 +36,9 @@ public class RxNovaCommonUtil extends BasePage{
 	
 	private String RxNova_URL;		
 	public static boolean isProduction;
+	
+	//Logger logger = LoggerFactory.getLogger(RxNovaCommonUtil.class);
+	//logger.info("Clicked on Element" + element);
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Method: NavigateApplicationMenu
@@ -48,19 +55,19 @@ public class RxNovaCommonUtil extends BasePage{
            Thread.sleep(3000);
            /* if(!driver.findElement(By.className("argusLogoRebrand")).isDisplayed())
            {
-                  System.out.println("**************************** In refresh mode ****************************" + strAppMenu);
+                  Log.info("**************************** In refresh mode ****************************" + strAppMenu);
                   driver.navigate().refresh();
                   Thread.sleep(10000);
            }
            }catch(NoSuchFrameException s)
            {
-                  System.out.println("**************************** NoSuchFrameException - In refresh mode ****************************" + strAppMenu);
+                  Log.info("**************************** NoSuchFrameException - In refresh mode ****************************" + strAppMenu);
                   driver.navigate().refresh();
                   Thread.sleep(10000);
            }             
            catch(Exception e)
            {
-                  System.out.println("**************************** Exception - In refresh mode ****************************" + strAppMenu);
+                  Log.info("**************************** Exception - In refresh mode ****************************" + strAppMenu);
                   driver.navigate().refresh();
                   Thread.sleep(10000);
            } */
@@ -71,7 +78,7 @@ public class RxNovaCommonUtil extends BasePage{
            {                                        
                   if(getDriver().switchTo().window(s).getTitle().contains("Application Error"))
                   {
-                        System.out.println("Page selected with title " + strAppMenu +": Application Error - Refershing the page - Recovery from NavigateApplicationMenu method" );
+                        Log.info("Page selected with title " + strAppMenu +": Application Error - Refershing the page - Recovery from NavigateApplicationMenu method" );
                         getDriver().navigate().refresh();
                         Thread.sleep(8000);
                   }                    
@@ -114,7 +121,7 @@ public class RxNovaCommonUtil extends BasePage{
                                       if (v.getText().equals(arrApplication[i]))
                                       {
                                              v.click();
-                                             //System.out.println("Clicked on link -" + v.getText());
+                                             //Log.info("Clicked on link -" + v.getText());
                                              //LOGGER.info("***********Clicked on link **************" + v.getText());
                                              Thread.sleep(500);
                                              intCounter++;
@@ -127,7 +134,7 @@ public class RxNovaCommonUtil extends BasePage{
            }
            if(boolNavigateApplicationMenu==false | intCounter != arrApplication.length )
            {
-                  System.out.println("Unable to Navigate to application menu with details : " + strAppMenu);
+                  Log.info("Unable to Navigate to application menu with details : " + strAppMenu);
                //   throw new RxNova_CustomException("Please check "+ strAppMenu +" Application and Access availablity for your Login ID");                
            }
            //Thread.sleep(5000);
@@ -146,7 +153,7 @@ public class RxNovaCommonUtil extends BasePage{
 //		{						
 //			if(getDriver().switchTo().window(s).getTitle().contains("Application Error"))
 //			{
-//				System.out.println("Page selected with title " + strAppMenu +": Application Error - Refershing the page - Recovery from NavigateApplicationMenu method" );
+//				Log.info("Page selected with title " + strAppMenu +": Application Error - Refershing the page - Recovery from NavigateApplicationMenu method" );
 //				getDriver().navigate().refresh();
 //				getDriver().manage().window().maximize();
 //				Thread.sleep(8000);
@@ -180,7 +187,7 @@ public class RxNovaCommonUtil extends BasePage{
 //		
 //		if(boolNavigateApplicationMenu==false | intCounter != arrApplication.length )
 //		{
-//			System.out.println("Unable to Navigate to application menu with details : " + strAppMenu);			
+//			Log.info("Unable to Navigate to application menu with details : " + strAppMenu);			
 //		}
 //	}
 //	
@@ -211,7 +218,7 @@ public class RxNovaCommonUtil extends BasePage{
 				{						
 					if(getDriver().switchTo().window(s).getTitle().contains("Application Error"))
 					{
-						System.out.println("Page selected with title : Application Error - Refershing the page - Recovery from RxNova_PageSelection method" );
+						Log.info("Page selected with title : Application Error - Refershing the page - Recovery from RxNova_PageSelection method" );
 						getDriver().navigate().refresh();
 						getDriver().manage().window().maximize(); 
 						Thread.sleep(8000);
@@ -223,7 +230,7 @@ public class RxNovaCommonUtil extends BasePage{
 		{						
 			if(getDriver().switchTo().window(s).getTitle().contains(SelectApp))
 			{
-				System.out.println("Page selected with title : " + getDriver().getTitle());				
+				Log.info("Page selected with title : " + getDriver().getTitle());				
 				boolRxNova_PageSelection = true;
 				break;
 			}			
@@ -231,7 +238,7 @@ public class RxNovaCommonUtil extends BasePage{
 		
 		if(boolRxNova_PageSelection==false)
 		{
-			System.out.println("No Application page with name : '" + SelectApp + "' was found");
+			Log.info("No Application page with name : '" + SelectApp + "' was found");
 		}	
 	}
 	
@@ -252,12 +259,12 @@ public class RxNovaCommonUtil extends BasePage{
 			String strName = getDriver().findElement(objElementName).getAttribute("name");
 			getDriver().findElement(objElementName).click();
 			boolClickOnButton = true;
-			System.out.println("Clicked on webelement : " + strName);
+			Log.info("Clicked on webelement : " + strName);
 		}
 		
 		if(boolClickOnButton==false)
 		{
-			System.out.println("Webelement with name  : '" + getDriver().findElement(objElementName).getAttribute("name") + "' was found");
+			Log.info("Webelement with name  : '" + getDriver().findElement(objElementName).getAttribute("name") + "' was found");
 		}
 	}
 	
@@ -281,7 +288,7 @@ public class RxNovaCommonUtil extends BasePage{
              }
          }
          if(boolClickOnButton==false){
-          	System.out.println("Webelement with name  : '" + strBtnName + "' was not found");
+          	Log.info("Webelement with name  : '" + strBtnName + "' was not found");
          }                  
     }
 
@@ -307,7 +314,7 @@ public class RxNovaCommonUtil extends BasePage{
 					String strName = getDriver().findElement(objElementName).getAttribute("name");
 					getDriver().findElement(objElementName).click();
 					boolClickOnLink = true;
-					System.out.println("Clicked on webelement : " + strName);
+					Log.info("Clicked on webelement : " + strName);
 				}
 				break;
 			}catch(StaleElementReferenceException e){				
@@ -317,7 +324,7 @@ public class RxNovaCommonUtil extends BasePage{
 		
 		if(boolClickOnLink==false)
 		{
-			System.out.println("Webelement with name  : '" + getDriver().findElement(objElementName).getAttribute("name") + "' was not found");
+			Log.info("Webelement with name  : '" + getDriver().findElement(objElementName).getAttribute("name") + "' was not found");
 		}
 	}
 	
@@ -335,11 +342,11 @@ public class RxNovaCommonUtil extends BasePage{
 		{
 		WebDriverWait wt= new WebDriverWait(getDriver(),60);
 		WebElement busyElement=getDriver().findElement(By.id("loading"));
-		/*System.out.println("Start Debugging the Busy element");
-		System.out.println(busyElement.getAttribute("style").equals(null));
-		System.out.println(busyElement.getAttribute("style").isEmpty());
-		System.out.println(busyElement.getAttribute("style").equals(""));
-		System.out.println("End Debugging the Busy element");*/
+		/*Log.info("Start Debugging the Busy element");
+		Log.info(busyElement.getAttribute("style").equals(null));
+		Log.info(busyElement.getAttribute("style").isEmpty());
+		Log.info(busyElement.getAttribute("style").equals(""));
+		Log.info("End Debugging the Busy element");*/
 		
 		if(busyElement.getAttribute("style").equals(null)|| busyElement.getAttribute("style").isEmpty() || busyElement.getAttribute("style").equals(""))
 		{
@@ -358,7 +365,7 @@ public class RxNovaCommonUtil extends BasePage{
 			{
 				wt.until(ExpectedConditions.attributeToBe(busyElement,"style","display: none;"));
 			}			
-			System.out.println("Performed Wait");
+			Log.info("Performed Wait");
 		}
 		}
 		catch(Exception e)
@@ -393,10 +400,10 @@ public class RxNovaCommonUtil extends BasePage{
 	{	
 		/*try
 		{*/
-		System.out.println("Searching for element - Started");
+		Log.info("Searching for element - Started");
 		WebDriverWait wb=new WebDriverWait(getDriver(),20);
 		wb.until(ExpectedConditions.presenceOfElementLocated(strItem));
-		System.out.println("Searching for element - Ended");
+		Log.info("Searching for element - Ended");
 		//}
 		/*catch(StaleElementReferenceException e)
 		{
@@ -423,7 +430,7 @@ public class RxNovaCommonUtil extends BasePage{
 			Thread.sleep(1000);
 			cnt = cnt + 1;
 			if (cnt == 10) {
-				System.out.println("WebButton "+objElementName +"is disabled");
+				Log.info("WebButton "+objElementName +"is disabled");
 				break;				
 			}
 		}
@@ -457,7 +464,7 @@ public class RxNovaCommonUtil extends BasePage{
 		for(String WHandles: getDriver().getWindowHandles())
 		{
 			getDriver().switchTo().window(WHandles);
-			System.out.println("SwithToMostRecentWindow -" + getDriver().getTitle());
+			Log.info("SwithToMostRecentWindow -" + getDriver().getTitle());
 			getDriver().manage().window().maximize();
 		}		
 	
@@ -496,7 +503,7 @@ public class RxNovaCommonUtil extends BasePage{
 						  String strName = getDriver().findElement(objElementName).getAttribute("name");
 						  itemstoSelect.selectByVisibleText(strListItem);			
 						  boolSelectItemFromWebListByNameAndHyphen = true;
-						  System.out.println("Selected item in webelement : " + strName + " Value :" + strValue );
+						  Log.info("Selected item in webelement : " + strName + " Value :" + strValue );
 						  break;
 					   }
 				 }
@@ -512,7 +519,7 @@ public class RxNovaCommonUtil extends BasePage{
 							  String strName =getDriver().findElement(objElementName).getAttribute("name");
 							  itemstoSelect.selectByVisibleText(strListItem);			
 							  boolSelectItemFromWebListByNameAndHyphen = true;
-							  System.out.println("Selected item in webelement : " + strName + " Value :" + strValue );
+							  Log.info("Selected item in webelement : " + strName + " Value :" + strValue );
 							  break;
 						   }
 					  }
@@ -527,7 +534,7 @@ public class RxNovaCommonUtil extends BasePage{
 			
 		if(boolSelectItemFromWebListByNameAndHyphen==false)
 		 {
-			System.out.println("Webelement with name  : '" + getDriver().findElement(objElementName).getAttribute("name") + "' was not found");
+			Log.info("Webelement with name  : '" + getDriver().findElement(objElementName).getAttribute("name") + "' was not found");
 		 }
 	}
 	
@@ -552,7 +559,7 @@ public class RxNovaCommonUtil extends BasePage{
 				String strListItem = "";
 				if(getDriver().findElements(objElementName).size()!=0)
 				{
-					System.out.println("inside SelectItemFromWebListByPartialDisplayName");
+					Log.info("inside SelectItemFromWebListByPartialDisplayName");
 					WebElement objWebList = getDriver().findElement(objElementName);
 					List<WebElement> strItems=	objWebList.findElements(By.tagName("option"));	
 					for(int i2=1;i2<strItems.size();i2++)
@@ -565,7 +572,7 @@ public class RxNovaCommonUtil extends BasePage{
 							  String strName =getDriver().findElement(objElementName).getAttribute("name");
 							  itemstoSelect.selectByVisibleText(strListItem);			
 							  boolSelectItemFromWebListByPartialDisplayName = true;
-							  System.out.println("Selected item in webelement : " + strName + " Value :" + strValue );
+							  Log.info("Selected item in webelement : " + strName + " Value :" + strValue );
 							  checkBusyState();
 							  break;
 						   }
@@ -578,7 +585,7 @@ public class RxNovaCommonUtil extends BasePage{
 		
 		if(boolSelectItemFromWebListByPartialDisplayName==false)
 		 {
-			System.out.println("Webelement with name  : '" + getDriver().findElement(objElementName).getAttribute("name") + "' was not found - Data value provided is  " + strValue);
+			Log.info("Webelement with name  : '" + getDriver().findElement(objElementName).getAttribute("name") + "' was not found - Data value provided is  " + strValue);
 		 }
 	}
 	
@@ -612,13 +619,13 @@ public class RxNovaCommonUtil extends BasePage{
 			boolSelectValueFromFieldIntellisence=true;
 			getDriver().findElement(objElementName).sendKeys(Keys.TAB);
 			getDriver().findElement(objElementName).click();
-			System.out.println("Set text on webelement : " + strName + " Value :" + strValue );
+			Log.info("Set text on webelement : " + strName + " Value :" + strValue );
 			Thread.sleep(2000);
 		}
 		
 		if(boolSelectValueFromFieldIntellisence==false)
 		{
-			System.out.println("Webelement with name  : '" + getDriver().findElement(objElementName).getAttribute("name") + "' was not found");
+			Log.info("Webelement with name  : '" + getDriver().findElement(objElementName).getAttribute("name") + "' was not found");
 		}
 		
 	}
@@ -667,7 +674,7 @@ public class RxNovaCommonUtil extends BasePage{
 	{
 		Date d2 = new Date();
 		long timedifference = d2.getTime() - inputTime;
-		System.out.println("time difference is " + timedifference/1000);		
+		Log.info("time difference is " + timedifference/1000);		
 	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -686,8 +693,8 @@ public class RxNovaCommonUtil extends BasePage{
 		int cnt = 0;
 		int MaxSecond = 120;
 		try {
-		System.out.println("Busy element style details : - " + BusyElement.getAttribute("style"));
-		//System.out.println("TRACER 1- NO ATTIB Found.. Continue... " + BusyElement.getAttribute("style"));
+		Log.info("Busy element style details : - " + BusyElement.getAttribute("style"));
+		//Log.info("TRACER 1- NO ATTIB Found.. Continue... " + BusyElement.getAttribute("style"));
 		if(BusyElement.getAttribute("style").equals("")) {
 			return "";	
 		}
@@ -699,14 +706,14 @@ public class RxNovaCommonUtil extends BasePage{
 				if(cnt > MaxSecond){
 					return "";
 				}
-				System.out.println("waiting ... : " + v1 +" Seconds");
+				Log.info("waiting ... : " + v1 +" Seconds");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}		
 		return(BusyElement.getAttribute("style"));
 		}catch(Exception e1) {
-			//System.out.println("TRACER 2- NO ATTIB Found.. Continue... ");
+			//Log.info("TRACER 2- NO ATTIB Found.. Continue... ");
 			return "";
 		}
 	}
@@ -727,7 +734,7 @@ public class RxNovaCommonUtil extends BasePage{
 	// Author:
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public void navigateApplication(String ApplicationPath) throws Throwable {		
-//		System.out.println("-----------Landing Page user navigates to Conditions application -------------");
+//		Log.info("-----------Landing Page user navigates to Conditions application -------------");
 //		WebElement Apps = getDriver().findElement(By.xpath("//md-icon[contains(text(),'apps')]"));
 //		Apps.click();
 //		Thread.sleep(1000);
@@ -738,7 +745,7 @@ public class RxNovaCommonUtil extends BasePage{
 //		for(String i : windows) {
 //			if(getDriver().switchTo().window(i).getTitle().contains("Conditions"))
 //			{
-//				System.out.println("Window is being switched to " + getDriver().switchTo().window(i).getTitle());
+//				Log.info("Window is being switched to " + getDriver().switchTo().window(i).getTitle());
 //				break;
 //			}
 //		}
@@ -759,69 +766,69 @@ public class RxNovaCommonUtil extends BasePage{
 			{
 				enumValue = ApplicationPath.toUpperCase();
 			}
-			//System.out.println(" application selected is " + Apps.valueOf(enumValue));	
+			//Log.info(" application selected is " + Apps.valueOf(enumValue));	
 			switch(Apps.valueOf(enumValue))
 			{				
 				case GROUP:
-				{	APPPath = "Customer Setup|Hierarchy|Group"; System.out.println("Group was selected");break;}
+				{	APPPath = "Customer Setup|Hierarchy|Group"; Log.info("Group was selected");break;}
 				case MEMBER:
-				{	APPPath = "Customer Setup|Hierarchy|Member";System.out.println("MEMBER was selected");break;}
+				{	APPPath = "Customer Setup|Hierarchy|Member";Log.info("MEMBER was selected");break;}
 				case AUTH:
-				{	APPPath = "Auth|Auth";System.out.println("Auth was selected");break;}
+				{	APPPath = "Auth|Auth";Log.info("Auth was selected");break;}
 				case CLAIM:
-				{	APPPath = "Claim|Claim";System.out.println("Claim was selected");break;}
+				{	APPPath = "Claim|Claim";Log.info("Claim was selected");break;}
 				case CUSTOMER_SET:
-				{	APPPath = "Customer Setup|Hierarchy|Customer Set";System.out.println("Customer Set was selected");break;}
+				{	APPPath = "Customer Setup|Hierarchy|Customer Set";Log.info("Customer Set was selected");break;}
 				case CUSTOMER_CLIENT:
-				{	APPPath = "Customer Setup|Hierarchy|Customer / Client";System.out.println("Customer/Client was selected");break;}
+				{	APPPath = "Customer Setup|Hierarchy|Customer / Client";Log.info("Customer/Client was selected");break;}
 				case ASSIGN_OPTIONS:
-				{	APPPath = "Customer Setup|Processing Options|Assign Options";System.out.println("Assign Options was selected");break;}
+				{	APPPath = "Customer Setup|Processing Options|Assign Options";Log.info("Assign Options was selected");break;}
 				case PRICING:
-				{	APPPath = "Plan Setup|Pricing";System.out.println("Pricing was selected");break;}
+				{	APPPath = "Plan Setup|Pricing";Log.info("Pricing was selected");break;}
 				case ACCUMULATOR:
-				{	APPPath = "Plan Setup|Accumulator";System.out.println("Accumulator was selected");break;}	
+				{	APPPath = "Plan Setup|Accumulator";Log.info("Accumulator was selected");break;}	
 				case BENEFITS:
-				{	APPPath = "Plan Setup|Benefits";System.out.println("Benefits was selected");break;}		
+				{	APPPath = "Plan Setup|Benefits";Log.info("Benefits was selected");break;}		
 				case CONDITION:
-				{	APPPath = "Plan Setup|Conditions";System.out.println("Conditions was selected");break;}
+				{	APPPath = "Plan Setup|Conditions";Log.info("Conditions was selected");break;}
 				case COVERAGE_CODE:
-				{	APPPath = "Plan Setup|Coverage Code";System.out.println("Coverage Code was selected");break;}					
+				{	APPPath = "Plan Setup|Coverage Code";Log.info("Coverage Code was selected");break;}					
 				case DUR_PROTOCOLS:
-				{	APPPath = "Plan Setup|DUR Protocols";System.out.println("DUR Protocols was selected");break;}
+				{	APPPath = "Plan Setup|DUR Protocols";Log.info("DUR Protocols was selected");break;}
 				case DUR_SAFETY:
-				{	APPPath = "Plan Setup|DUR Safety";System.out.println("DUR Safety was selected");break;}
+				{	APPPath = "Plan Setup|DUR Safety";Log.info("DUR Safety was selected");break;}
 				case MESSAGES:
-				{	APPPath = "Plan Setup|Messages";System.out.println("Messages was selected");break;}
+				{	APPPath = "Plan Setup|Messages";Log.info("Messages was selected");break;}
 				case DRUG_LIST:
-				{	APPPath = "Lists|Drug List";System.out.println("Drug List was selected");break;}
+				{	APPPath = "Lists|Drug List";Log.info("Drug List was selected");break;}
 				case PHARMACY_LIST:
-				{	APPPath = "Lists|Pharmacy List";System.out.println("Pharmacy List was selected");break;}
+				{	APPPath = "Lists|Pharmacy List";Log.info("Pharmacy List was selected");break;}
 				case PRESCRIBER_LIST:
-				{	APPPath = "Lists|Prescriber List";System.out.println("Prescriber List was selected");break;}
+				{	APPPath = "Lists|Prescriber List";Log.info("Prescriber List was selected");break;}
 				case MAINTENANCE_HISTORY:
-				{	APPPath = "History|Maintenance History";System.out.println("Maintenance History was selected");break;}
+				{	APPPath = "History|Maintenance History";Log.info("Maintenance History was selected");break;}
 				case PRESCRIBER:
-				{	APPPath = "Provider|Prescriber";System.out.println("Prescriber was selected");break;}
+				{	APPPath = "Provider|Prescriber";Log.info("Prescriber was selected");break;}
 				case DRUG:
-				{	APPPath = "Drug|Drug";System.out.println("Drug was selected");break;}
+				{	APPPath = "Drug|Drug";Log.info("Drug was selected");break;}
 				case DRUG_FILE_CHANGE_REPORTS:
-				{	APPPath = "Drug|Drug File Change Reports";System.out.println("Drug File Change Reports was selected");break;}
+				{	APPPath = "Drug|Drug File Change Reports";Log.info("Drug File Change Reports was selected");break;}
 				case DATA_DICTIONARY:
-				{	APPPath = "Help|Data Dictionary";System.out.println("Data Dictionary was selected");break;}		
+				{	APPPath = "Help|Data Dictionary";Log.info("Data Dictionary was selected");break;}		
 				case NETWORK_MAINTENANCE:
-				{	APPPath = "Provider|Network Maintenance";System.out.println("Network Maintenance was selected");break;}
+				{	APPPath = "Provider|Network Maintenance";Log.info("Network Maintenance was selected");break;}
 				case PHARMACY_MAINTENANCE:
-				{	APPPath = "Provider|Pharmacy Maintenance";System.out.println("Pharmacy Maintenance was selected");break;}
+				{	APPPath = "Provider|Pharmacy Maintenance";Log.info("Pharmacy Maintenance was selected");break;}
 				case PHARMACY_SERVICE_FEES:
-				{	APPPath = "Provider|Pharmacy Service Fees";System.out.println("Pharmacy Service Fees was selected");break;}
+				{	APPPath = "Provider|Pharmacy Service Fees";Log.info("Pharmacy Service Fees was selected");break;}
 				case FINANCIAL:
-				{	APPPath = "Provider|Financial";System.out.println("Financial was selected");break;}
+				{	APPPath = "Provider|Financial";Log.info("Financial was selected");break;}
 				case TAGS:
-				{	APPPath = "Plan Setup|Tags";System.out.println("Tags was selected");break;}				
+				{	APPPath = "Plan Setup|Tags";Log.info("Tags was selected");break;}				
 				case RXNOVA_INTEL:
-				{ APPPath = "RxNova Intel|RxNova Intel";System.out.println("RxNova Intel was selected");break; }
+				{ APPPath = "RxNova Intel|RxNova Intel";Log.info("RxNova Intel was selected");break; }
 				default :
-				{ System.out.println("Invalid Application selection - please check the application name");break;}				
+				{ Log.info("Invalid Application selection - please check the application name");break;}				
 			}			
 			navigateApplicationMenu(APPPath);		
 			rxNova_PageSelection(APPPath);
@@ -834,7 +841,7 @@ public class RxNovaCommonUtil extends BasePage{
 				}
 				catch(NoSuchFrameException e) {
 					cnt += 200;
-					System.out.println("Waiting for page to load ...");
+					Log.info("Waiting for page to load ...");
 					Thread.sleep(2000);
 					continue;
 				}
@@ -861,13 +868,13 @@ public class RxNovaCommonUtil extends BasePage{
 		File oldfile = new File(fileToRename);
 		String newFileName = fileToRename.replace(" ", "_").replace(".txt",  "_" + ThisDATE + ".txt");
 		
-		System.out.println(" this is the new file name - " + newFileName);
+		Log.info(" this is the new file name - " + newFileName);
 		File newfile = new File(newFileName );		
 		if(oldfile.renameTo(newfile)){
-			System.out.println("Rename succesful - " +  newfile);			
+			Log.info("Rename succesful - " +  newfile);			
 		}else{
 			
-			System.out.println("Rename failed");
+			Log.info("Rename failed");
 		}
 		return newFileName;
 		
@@ -912,18 +919,18 @@ public class RxNovaCommonUtil extends BasePage{
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public void navigateToRxNovaApplication() 
 	{			
-		System.out.println("-----------Open firefox and start RxNova Application-------------");				
+		Log.info("-----------Open firefox and start RxNova Application-------------");				
 		try
 		{
 			InputRegion = System.getProperty("Region");
-			System.out.println("InputRegion from jenkins : " + InputRegion);
-			System.out.println("ERROR: ***********************Region parameter is empty*******************");			
+			Log.info("InputRegion from jenkins : " + InputRegion);
+			Log.info("ERROR: ***********************Region parameter is empty*******************");			
 		}
 		catch(Exception e)
 		{
 			//InputRegion = utils.pf.getProperty("Region");
 			InputRegion =  Project.Env.userName();
-			System.out.println("InputRegion from properties file : " + InputRegion);
+			Log.info("InputRegion from properties file : " + InputRegion);
 		}
 		
 		if(System.getProperty("MavenRegion")==null)		{
@@ -932,8 +939,8 @@ public class RxNovaCommonUtil extends BasePage{
 			Log.info("Working on Region - Project.Env.region() " + Project.Env.region().toString());
 		}else{		
 			InputRegion = System.getProperty("MavenRegion");
-			Log.info("Working on Region - InputRegion " + InputRegion);
-			System.out.println("In MAVEN PARAMETERS region");
+			Log.info("Working on Region - InputRegion " + InputRegion);			
+			Log.info("In MAVEN PARAMETERS region");
 		}
 		
 		switch(Regions.valueOf(InputRegion.toUpperCase()))
@@ -965,13 +972,13 @@ public class RxNovaCommonUtil extends BasePage{
 			case PRODUCTION:
 				{RxNova_URL = "https:www.argushealth.com/sso-web/login.jsf?";isProduction=true;break;}
 			default:
-				{ System.out.println("Invalid Region - please check the Region name");break;}
+				{ Log.info("Invalid Region - please check the Region name");break;}
 		}
-		System.out.println("-----------" + RxNova_URL +"-------------");
+		Log.info("-----------" + RxNova_URL +"-------------");
 		//driver.get(RxNova_URL);		
 		//invoke(Project.Env.url());
 		invoke(RxNova_URL);
-		System.out.println("-----------Completed Open firefox and start RxNova Application-------------");
+		Log.info("-----------Completed Open firefox and start RxNova Application-------------");
 	}
 	
 	
@@ -1042,7 +1049,7 @@ public class RxNovaCommonUtil extends BasePage{
 				List<String> options = ObjPath.getSelectOptions();
 				if(options.size() > 1)
 				  {
-					System.out.println("Dropdown list is loaded with items...");
+					Log.info("Dropdown list is loaded with items...");
 					waitForDropdownItem = true;
 					break;
 				  }
@@ -1082,12 +1089,12 @@ public class RxNovaCommonUtil extends BasePage{
 					Thread.sleep(2000);
 					boolSelectValueFromFieldIntellisence=true;
 				}
-				System.out.println("Set text on webelement : " + strName + " Value :" + strValue );
+				Log.info("Set text on webelement : " + strName + " Value :" + strValue );
 			}
 			
 			if(boolSelectValueFromFieldIntellisence==false)
 			{
-				System.out.println("Webelement with name  : '" + ObjPath.getAttribute("name") + "' was not found");
+				Log.info("Webelement with name  : '" + ObjPath.getAttribute("name") + "' was not found");
 			}
 			
 			return boolSelectValueFromFieldIntellisence;
@@ -1135,19 +1142,19 @@ public class RxNovaCommonUtil extends BasePage{
 									boolean match = objectContainsExpectedText(ObjPath3,strMessage1);
 									if(match)
 									 {
-										System.out.println("Tag "+arrTags[j]+" is added");
+										Log.info("Tag "+arrTags[j]+" is added");
 										booleanAddOrRemoveTags = true;
 									 }
 									else
 									 {
-										System.out.println("Tag "+arrTags[j]+" is not added and verify the tag provided");
+										Log.info("Tag "+arrTags[j]+" is not added and verify the tag provided");
 										booleanAddOrRemoveTags = false;			
 							         }
 							      }
 								}
 							else
 							 {
-								System.out.println("Webelement with name  : '" + ObjPath1 + "' was not found");
+								Log.info("Webelement with name  : '" + ObjPath1 + "' was not found");
 								booleanAddOrRemoveTags=false;
 							 }
 							break;
@@ -1165,12 +1172,12 @@ public class RxNovaCommonUtil extends BasePage{
 										boolean match = objectContainsExpectedText(ObjPath3,strMessage2);
 										if(match)
 										 {
-											System.out.println("Tag "+arrTags[j]+" is removed");
+											Log.info("Tag "+arrTags[j]+" is removed");
 											booleanAddOrRemoveTags = true;
 										 }
 										else
 										 {
-											System.out.println("Tag "+arrTags[j]+" is not removed and verify the tag provided");
+											Log.info("Tag "+arrTags[j]+" is not removed and verify the tag provided");
 											booleanAddOrRemoveTags = false;
 										 }					
 									 }
@@ -1179,7 +1186,7 @@ public class RxNovaCommonUtil extends BasePage{
 							 }
 							else
 								 {
-									System.out.println("Webelement with name  : '" + ObjPath2 + "' was not found");
+									Log.info("Webelement with name  : '" + ObjPath2 + "' was not found");
 									booleanAddOrRemoveTags=false;
 								 }
 								break;
@@ -1225,7 +1232,7 @@ public class RxNovaCommonUtil extends BasePage{
 						  }
 						  else
 						  {
-							  System.out.println("The check box for "+toSelect+" is already checked");
+							  Log.info("The check box for "+toSelect+" is already checked");
 							  boolWebtable_ClickOnCheckBox = true;
 							  break A;
 						  }
@@ -1280,7 +1287,7 @@ public class RxNovaCommonUtil extends BasePage{
 						String strActLabelValue = strCols.get(j+1).getText();
 						if(strActLabelValue.equalsIgnoreCase(strExpLabelValue))
 						{
-							System.out.println("The Field "+strActLabelName+" has the value "+strActLabelValue);
+							Log.info("The Field "+strActLabelName+" has the value "+strActLabelValue);
 							boolWebTable_VerifyRowData = true;
 							break;
 						}
@@ -1294,7 +1301,7 @@ public class RxNovaCommonUtil extends BasePage{
 					
 			if(boolWebTable_VerifyRowData==false)
 			{
-				System.out.println("Webtable  : '" + ObjPath +"' with "+strRowValue+" was not found");
+				Log.info("Webtable  : '" + ObjPath +"' with "+strRowValue+" was not found");
 			}
 			
 			return boolWebTable_VerifyRowData;		
@@ -1328,7 +1335,7 @@ public class RxNovaCommonUtil extends BasePage{
 					  String strActLabelValue = strColValue.get(i).getText();
 	  			      if(strActLabelValue.equalsIgnoreCase(strExpLabelValue))
 					    {  			    	
-						  System.out.println("The Field "+strActLabelName+" has the value "+strActLabelValue);
+						  Log.info("The Field "+strActLabelName+" has the value "+strActLabelValue);
 						  boolWebTable_VerifyColumnData = true;
 						  break;
 					    }
@@ -1337,7 +1344,7 @@ public class RxNovaCommonUtil extends BasePage{
 			
 			if(boolWebTable_VerifyColumnData==false)
 			{
-				System.out.println("Webtable  : '" + ObjPath +"' with "+strColumnValue+" was not found");		
+				Log.info("Webtable  : '" + ObjPath +"' with "+strColumnValue+" was not found");		
 			}
 			
 			return boolWebTable_VerifyColumnData;		
@@ -1387,7 +1394,7 @@ public class RxNovaCommonUtil extends BasePage{
 			
 						if(strColHeaderValue.get(0).getText().contains("No records"))
 						{
-							System.out.println("There were no records available in the table");
+							Log.info("There were no records available in the table");
 							break A;
 						}
 						strActColHeaderValue = strColHeaderValue.get(j).getText();
@@ -1395,7 +1402,7 @@ public class RxNovaCommonUtil extends BasePage{
 						//if(strActColHeaderValue.equalsIgnoreCase(arrExpColHeaderValue[k]))
 						if(strActColHeaderValue.equalsIgnoreCase(strExpColHeaderValue))	
 						{
-							System.out.println("The Column "+strActColHeaderName+" has the value "+strActColHeaderValue);
+							Log.info("The Column "+strActColHeaderName+" has the value "+strActColHeaderValue);
 							boolWebTable_VerifyCellData = true;
 							break A;
 						}
@@ -1406,7 +1413,7 @@ public class RxNovaCommonUtil extends BasePage{
 		
 		if(boolWebTable_VerifyCellData==false)
 		{
-		  System.out.println("Webtable  : '" + ObjPath + "' with "+strColValue+" was not found");
+		  Log.info("Webtable  : '" + ObjPath + "' with "+strColValue+" was not found");
 		}
 		
 		return boolWebTable_VerifyCellData;
@@ -1454,19 +1461,19 @@ public class RxNovaCommonUtil extends BasePage{
 								boolean match = webTable_VerifyCellData(ObjPath2,"Condition ID^CD"+toEnter);
 								if(match)
 								 {
-									System.out.println("Condition ID "+arrCondition[j]+" is added");
+									Log.info("Condition ID "+arrCondition[j]+" is added");
 									booleanAddOrRemoveCondition = true;
 								 }
 								else
 								 {
-									System.out.println("Condition ID "+arrCondition[j]+" is not added and verify the Condition ID provided");
+									Log.info("Condition ID "+arrCondition[j]+" is not added and verify the Condition ID provided");
 									booleanAddOrRemoveCondition = false;			
 						         }
 						      }
 							}
 						else
 						 {
-							System.out.println("Webelement with name  : '" + ObjPath1 + "' was not found");
+							Log.info("Webelement with name  : '" + ObjPath1 + "' was not found");
 							booleanAddOrRemoveCondition=false;
 						 }
 						break;
@@ -1484,12 +1491,12 @@ public class RxNovaCommonUtil extends BasePage{
 									boolean match = webTable_VerifyCellData(ObjPath2,"Condition ID^"+toRemove);
 									if(match==false)
 									 {
-										System.out.println("Condition ID "+arrCondition[j]+" is removed");
+										Log.info("Condition ID "+arrCondition[j]+" is removed");
 										booleanAddOrRemoveCondition = true;
 									 }
 									else
 									 {
-										System.out.println("Condition ID "+arrCondition[j]+" is not removed and verify the Condition ID provided");
+										Log.info("Condition ID "+arrCondition[j]+" is not removed and verify the Condition ID provided");
 										booleanAddOrRemoveCondition = false;
 									 }					
 								 }
@@ -1498,7 +1505,7 @@ public class RxNovaCommonUtil extends BasePage{
 						   }
 						 else
 						  {
-							System.out.println("Webelement with name  : '" + ObjPath2 + "' was not found");
+							Log.info("Webelement with name  : '" + ObjPath2 + "' was not found");
 							booleanAddOrRemoveCondition=false;
 						  }
 						 break;
@@ -1543,7 +1550,7 @@ public class RxNovaCommonUtil extends BasePage{
 						  itemstoSelect.selectByVisibleText(strListItem);
 						  Thread.sleep(1000);
 						  boolcondition_SelectFromDropdownUsingText = true;
-						  System.out.println("Selected item in webelement : " + strName + " Value :" + toSelect );
+						  Log.info("Selected item in webelement : " + strName + " Value :" + toSelect );
 						  break;
 					   }
 				 }
@@ -1560,7 +1567,7 @@ public class RxNovaCommonUtil extends BasePage{
 							  itemstoSelect.selectByVisibleText(strListItem);
 							  Thread.sleep(1000);
 							  boolcondition_SelectFromDropdownUsingText = true;
-							  System.out.println("Selected item in webelement : " + strName + " Value :" + toSelect );
+							  Log.info("Selected item in webelement : " + strName + " Value :" + toSelect );
 							  break;
 						   }
 					  }
@@ -1575,7 +1582,7 @@ public class RxNovaCommonUtil extends BasePage{
 			
 		if(boolcondition_SelectFromDropdownUsingText==false)
 		 {
-			System.out.println("Webelement with name  : '" + ObjPath.getAttribute("name") + "' was not found");
+			Log.info("Webelement with name  : '" + ObjPath.getAttribute("name") + "' was not found");
 		 }
 	  }
 	  
@@ -1614,7 +1621,7 @@ public class RxNovaCommonUtil extends BasePage{
 					strActCellValue = strCols.get(k).getText();
 					if(strActCellValue.equalsIgnoreCase(arrCellValue[i]))
 					{
-						System.out.println("The Cell has the value "+strActCellValue);
+						Log.info("The Cell has the value "+strActCellValue);
 					}				
 				}
 			}		
@@ -1633,12 +1640,12 @@ public class RxNovaCommonUtil extends BasePage{
 		
 		if(strActRefCellValue.equalsIgnoreCase(strCellValue))
 		 {
-			System.out.println("The Cell has the value "+strActRefCellValue);
+			Log.info("The Cell has the value "+strActRefCellValue);
 			boolcondition_MultipleTable_VerifyCellData = true;
 		 }
 		else
 		 {
-			System.out.println("The Cell does not match with the provided value "+strActRefCellValue);
+			Log.info("The Cell does not match with the provided value "+strActRefCellValue);
 			boolcondition_MultipleTable_VerifyCellData = false;
 		 }
 		
@@ -1707,7 +1714,7 @@ public class RxNovaCommonUtil extends BasePage{
 				}
 				catch(Exception e) {
 					displayed = false;
-					System.out.println("Element not found yet, waiting and trying again ..." + cnt);
+					Log.info("Element not found yet, waiting and trying again ..." + cnt);
 					cnt++;
 					Thread.sleep(5);
 					continue;
@@ -1736,12 +1743,12 @@ public class RxNovaCommonUtil extends BasePage{
 					{
 						if(i.equals(currToken))
 						{
-							System.out.println("Dropdown contains " + currToken);
+							Log.info("Dropdown contains " + currToken);
 							hasContents = true;
 						}
 						else
 						{
-							System.out.println("Dropdown does not contain " + currToken);
+							Log.info("Dropdown does not contain " + currToken);
 							hasContents = false;
 						}
 					}
@@ -1786,12 +1793,12 @@ public class RxNovaCommonUtil extends BasePage{
 				while(tokenizer.hasMoreTokens()) {
 					String currToken = tokenizer.nextToken();
 					if(options.contains(currToken)) {
-						System.out.println("Table Object contains " + currToken);
+						Log.info("Table Object contains " + currToken);
 						hasContents = true;
 						break;
 					}
 					else {
-						System.out.println("Table Object does not contain " + currToken);
+						Log.info("Table Object does not contain " + currToken);
 						hasContents = false;
 					}
 				}
@@ -1808,7 +1815,7 @@ public class RxNovaCommonUtil extends BasePage{
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		public int randomIntegerGenerator(int maxValue) {
 			Random rnd = new Random();
-			System.out.println("here is" + maxValue);
+			Log.info("here is" + maxValue);
 			int randomInt = rnd.nextInt(maxValue) + 1;
 			System.out.println(randomInt);
 			return(randomInt);
@@ -1846,7 +1853,7 @@ public class RxNovaCommonUtil extends BasePage{
 				}
 				catch (Exception e) {
 					clickable = false;
-					System.out.println("Element not found yet, waiting and trying again to see if clickable ..." + cnt);
+					Log.info("Element not found yet, waiting and trying again to see if clickable ..." + cnt);
 					cnt++;
 					Thread.sleep(5);
 					continue;
@@ -1863,7 +1870,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		public void performClick(String ObjPath) {
-			System.out.println("Element associated with this xpath will be clicked on ..." + "...xpath = " + ObjPath);
+			Log.info("Element associated with this xpath will be clicked on ..." + "...xpath = " + ObjPath);
 			$(ObjPath).click();
 		}
 		
@@ -1877,14 +1884,14 @@ public class RxNovaCommonUtil extends BasePage{
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		public boolean MCScheckContents(String ObjPath) {
-			System.out.println("Checking whether Master Customer Set dropdown contains list ...");
+			Log.info("Checking whether Master Customer Set dropdown contains list ...");
 			List<String> options = $(ObjPath).getSelectOptions();
 			boolean hasContents = options.size() > 1;
 			if(hasContents == true) {
-				System.out.println("Master Customer Set dropdown has more than one option; thusly it is considered to be valid.");
+				Log.info("Master Customer Set dropdown has more than one option; thusly it is considered to be valid.");
 			}
 			else {
-				System.out.println("Master Customer Set dropdown has either only default option or has no options in its dropdown list");
+				Log.info("Master Customer Set dropdown has either only default option or has no options in its dropdown list");
 			}
 			return(hasContents);
 		}
@@ -1897,8 +1904,8 @@ public class RxNovaCommonUtil extends BasePage{
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		public boolean objectContainsExpectedText(String ObjPath, String expectedDisplay) {
-			System.out.println("The following are the text strings contained in the WebElement of the following xpath: " + ObjPath);
-			System.out.println($(ObjPath).getText());
+			Log.info("The following are the text strings contained in the WebElement of the following xpath: " + ObjPath);
+			Log.info($(ObjPath).getText());
 			boolean containsExpected = $(ObjPath).getText().contains(expectedDisplay);
 			return(containsExpected);
 		}
@@ -1911,7 +1918,7 @@ public class RxNovaCommonUtil extends BasePage{
 		// Author:
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		public boolean objectIsDisabled(String ObjPath) {
-			System.out.println("Determining whether object of following xpath is disabled: " + "...xpath = " + ObjPath);
+			Log.info("Determining whether object of following xpath is disabled: " + "...xpath = " + ObjPath);
 			String isDisabled = $(ObjPath).getAttribute("class");
 			boolean disabled = false;
 			if(isDisabled.contains("disabled"))
@@ -1919,10 +1926,10 @@ public class RxNovaCommonUtil extends BasePage{
 				disabled = true;
 			}
 			if(disabled == true) {
-				System.out.println(ObjPath + " xpath object is disabled");
+				Log.info(ObjPath + " xpath object is disabled");
 			}
 			else {
-				System.out.println(ObjPath + " xpath object is enabled");
+				Log.info(ObjPath + " xpath object is enabled");
 			}
 			
 			return(disabled);	
@@ -1937,18 +1944,18 @@ public class RxNovaCommonUtil extends BasePage{
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		public boolean checkCurrentFieldDisplay(String ObjPath, String expectedDisplay) {
 			String currText = $(ObjPath).getText();
-			System.out.println("This is the current xpath " + "... " + ObjPath + " following is current text display of object.");
-			System.out.println(currText);
-			System.out.println("___________________________________________________________");
+			Log.info("This is the current xpath " + "... " + ObjPath + " following is current text display of object.");
+			Log.info(currText);
+			Log.info("___________________________________________________________");
 			boolean match = false;
 			if(currText.isEmpty()) {
 				match = true;
 			}
 			if(match == true) {
-				System.out.println(ObjPath + " xpath has correct expected text display.");
+				Log.info(ObjPath + " xpath has correct expected text display.");
 			}
 			else {
-				System.out.println(ObjPath + " xpath does not have correct expected text display.");
+				Log.info(ObjPath + " xpath does not have correct expected text display.");
 			}
 			return(match);
 		}
@@ -2002,7 +2009,7 @@ public class RxNovaCommonUtil extends BasePage{
 					 			    case "VIEW":
 					 			          strTblCols.get(strCol).click();
 					 			          checkBusyState();
-					 			          System.out.println("Click on the Condition ID: "+strValue);
+					 			          Log.info("Click on the Condition ID: "+strValue);
 					 			         booleanOperationSearch = true;
 					 			          break;
 					 			 	case "COPY":
@@ -2012,7 +2019,7 @@ public class RxNovaCommonUtil extends BasePage{
 					 			        	  if(btn.findElements(By.xpath("//*[text()='Copy']")).size()>0)
 					 			        	  {
 					 			        		 btn.click();
-					 			        		 System.out.println("Click on the Copy button for Condition ID: "+strValue);
+					 			        		 Log.info("Click on the Copy button for Condition ID: "+strValue);
 					 			        		 break;
 					 			        	  }
 					 			          }
@@ -2026,7 +2033,7 @@ public class RxNovaCommonUtil extends BasePage{
 					 			        	  if(btn.findElements(By.xpath("//*[text()='Report']")).size()>0)
 					 			        	  {
 					 			        		 btn.click();
-					 			        		 System.out.println("Click on the Report button for Condition ID: "+strValue);
+					 			        		 Log.info("Click on the Report button for Condition ID: "+strValue);
 					 			        		 break;
 					 			        	  }
 					 			          }
@@ -2051,7 +2058,7 @@ public class RxNovaCommonUtil extends BasePage{
 				 }	
 				 if(booleanOperationSearch==false)
 				  {
-					System.out.println("Webelement with name  : '" + ObjPath + "' was not found");
+					Log.info("Webelement with name  : '" + ObjPath + "' was not found");
 				  }
 				
 				return booleanOperationSearch;		

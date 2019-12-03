@@ -37,7 +37,12 @@ public class CommonBackGroundSteps {
 		actorOnLaunchPage.launch_application();
 	}
 	
-	@When("^They enter valid username, valid password and click on Login$")	
+//	@When("^They enter valid username, valid password and click on Login$")	
+//	public void login() throws InterruptedException	{
+//		actorOnLaunchPage.perform_login();
+//	}
+	
+	@When("^enter valid username, valid password and click on Login button$")	
 	public void login() throws InterruptedException	{
 		actorOnLaunchPage.perform_login();
 	}
@@ -52,11 +57,17 @@ public class CommonBackGroundSteps {
 		actorOnRegionSelectionPage.select_application_region();	
 	}
 	
-	@Then("^User navigates from Landing page to \"(.*)\" application$")
+
+//	@Then("^User navigates from Landing page to \"(.*)\" application$")
+//	public void navigateToApplication(String strApplication) throws Throwable{
+//		rxNovaCommonUtil.navigateApplication(strApplication);
+//	}
+	
+	@Then("^navigates from Landing page to \"(.*)\" application$")
 	public void navigateToApplication(String strApplication) throws Throwable{
 		rxNovaCommonUtil.navigateApplication(strApplication);
 	}
-	
+
 	@Then("^User enters the following data into Condition Home Search Panel and presses \"(.*)\"$")
 	public void searchingForConditiontoDelete(String ObjKey, DataTable data) throws InterruptedException {
 		actorOnConditionsPage.searchingForConditiontoDelete(ObjKey, data);
