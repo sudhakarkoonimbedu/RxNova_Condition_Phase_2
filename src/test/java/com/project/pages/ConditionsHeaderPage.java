@@ -16,7 +16,7 @@ import com.psqframework.core.page.BasePage;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Steps;
-import Locators.Conditions_Locators.Condtions_HomePage;
+//import Locators.Conditions_Locators.Condtions_HomePage;
 
 public class ConditionsHeaderPage extends BasePage {
 	

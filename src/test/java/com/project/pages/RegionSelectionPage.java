@@ -68,7 +68,7 @@ public class RegionSelectionPage extends BasePage {
 					
 			if(globalMessageinfo.getText().contains("Login Failure") ||globalMessageinfo.getText().contains("Account Locked"))
 			{
-				assertEquals("Login Failure","Login Failure1");
+				assertEquals("Forcing Login Failure","Login Failure","Login Failure1");
 			}		
 		
 		}
