@@ -31,7 +31,7 @@ public class ActorConditionCopyPage {
 		String strStatus = copyData.get(1).get(2);
 		String strTrackingID = copyData.get(1).get(3);
 		String strReason = copyData.get(1).get(4);
-	    String strNotes = copyData.get(1).get(5);
+		String strNotes = copyData.get(1).get(5);
 		
 	    conditionCopyPage.verifyCopyConditionWindowIsDisplayed();
 	    conditionCopyPage.enterConditionID(strConditionID);

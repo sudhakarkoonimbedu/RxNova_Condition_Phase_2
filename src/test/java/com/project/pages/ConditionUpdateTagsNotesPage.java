@@ -1,5 +1,6 @@
 package com.project.pages;
 
+import com.project.common.util.ConditionsCommonUtil;
 import com.project.common.util.RxNovaCommonUtil;
 import com.project.locators.Conditions.CondtionsUpdateTagsNotesPage;
 import com.psqframework.core.element.BaseElement;
@@ -11,6 +12,8 @@ public class ConditionUpdateTagsNotesPage extends BasePage{
 	
 	@Steps
 	RxNovaCommonUtil rxNovaCommonUtil;
+	@Steps
+	ConditionsCommonUtil conditionsCommonUtil;
 	
 	@FindBy(linkText = CondtionsUpdateTagsNotesPage.CONDITION_TAGSNOTES_LINK)
 	private BaseElement CONDITION_TAGSNOTES_LINK;
@@ -120,7 +123,7 @@ public class ConditionUpdateTagsNotesPage extends BasePage{
 	
 	public boolean removeTags(String strTags,String strTagsAddMessage,String strTagsRemoveMessage) throws Throwable {
 		if (!strTags.isEmpty() && UPDATE_TAGSNOTES_TAGS_TABLE.isDisplayed()) {
-			return rxNovaCommonUtil.addOrRemoveTags(UPDATE_TAGSNOTES_TAGS_EDIT,UPDATE_TAGSNOTES_TAGS_TABLE,UPDATE_TAGSNOTES_TAGS_SUCCESS_MESSAGE,strTags,strTagsAddMessage,strTagsRemoveMessage);
+			return conditionsCommonUtil.addOrRemoveTags(UPDATE_TAGSNOTES_TAGS_EDIT,UPDATE_TAGSNOTES_TAGS_TABLE,UPDATE_TAGSNOTES_TAGS_SUCCESS_MESSAGE,strTags,strTagsAddMessage,strTagsRemoveMessage);
 		} else {
 			return false;
 		}

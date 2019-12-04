@@ -1,5 +1,6 @@
 package com.project.pages;
 
+import com.project.common.util.ConditionsCommonUtil;
 import com.project.common.util.RxNovaCommonUtil;
 import com.project.locators.Conditions.CondtionsHomePage;
 import com.psqframework.core.element.BaseElement;
@@ -11,6 +12,8 @@ public class ConditionHomePage extends BasePage {
 
 	@Steps
 	RxNovaCommonUtil rxNovaCommonUtil;
+	@Steps
+	ConditionsCommonUtil conditionsCommonUtil;
 
 	@FindBy(xpath = CondtionsHomePage.CONDITION_HOME)
 	private BaseElement CONDITION_HOME_TEXT;
@@ -178,7 +181,7 @@ public class ConditionHomePage extends BasePage {
 	
 	public boolean enterTags(String strTags,String strTagsAddMessage,String strTagsRemoveMessage) throws Throwable {
 		if (!strTags.isEmpty() && CONDITION_HOME_TAGS_EDIT.isDisplayed()) {
-			return rxNovaCommonUtil.addOrRemoveTags(CONDITION_HOME_TAGS_EDIT,CONDITION_HOME_TAGS_TABLE,CONDITION_HOME_TAGS_SUCCESS_MESSAGE,strTags,strTagsAddMessage,strTagsRemoveMessage);
+			return conditionsCommonUtil.addOrRemoveTags(CONDITION_HOME_TAGS_EDIT,CONDITION_HOME_TAGS_TABLE,CONDITION_HOME_TAGS_SUCCESS_MESSAGE,strTags,strTagsAddMessage,strTagsRemoveMessage);
 		} else {
 			return false;
 		}
@@ -205,7 +208,7 @@ public class ConditionHomePage extends BasePage {
 	}
 	
 	public boolean operationSearch(String strOperation,String strConditionID) throws Throwable {
-			return rxNovaCommonUtil.operationSearch(CONDITION_HOME_RESULTS_TABLE,strOperation,strConditionID);
+			return conditionsCommonUtil.operationSearch(CONDITION_HOME_RESULTS_TABLE,strOperation,strConditionID);
 	}
 	
 	public boolean verifyErrorMessage() {

@@ -1,9 +1,11 @@
 package com.project.pages;
 
+import com.project.common.util.ConditionsCommonUtil;
 import com.project.common.util.RxNovaCommonUtil;
 import com.project.locators.Conditions.CondtionsCompoundDetailPage;
 import com.psqframework.core.element.BaseElement;
 import com.psqframework.core.page.BasePage;
+
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.annotations.Steps;
 
@@ -11,6 +13,9 @@ public class ConditionDetailsCompoundPage extends BasePage {
 	
 	@Steps
 	RxNovaCommonUtil rxNovaCommonUtil;
+	@Steps
+	ConditionsCommonUtil conditionsCommonUtil;
+	
 	
 	@FindBy(id = CondtionsCompoundDetailPage.ADD_DETAILS_COMPOUND_OPERATOR_LIST)
 	private BaseElement ADD_DETAILS_COMPOUND_OPERATOR_LIST;
@@ -61,7 +66,7 @@ public class ConditionDetailsCompoundPage extends BasePage {
 	
 	public boolean addOrRemoveCondition(String strConditionData) throws Throwable {
 		if (!strConditionData.isEmpty() && ADD_DETAILS_CONDITION_ID_EDIT.isDisplayed()) {
-			return rxNovaCommonUtil.addOrRemoveCondition(ADD_DETAILS_CONDITION_ID_EDIT,ADD_DETAILS_COMPOUND_TABLE,strConditionData);
+			return conditionsCommonUtil.addOrRemoveCondition(ADD_DETAILS_CONDITION_ID_EDIT,ADD_DETAILS_COMPOUND_TABLE,strConditionData);
 		} else {
 			return false;
 		}

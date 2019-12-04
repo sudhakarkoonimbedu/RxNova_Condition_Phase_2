@@ -1,5 +1,6 @@
 package com.project.pages;
 
+import com.project.common.util.ConditionsCommonUtil;
 import com.project.common.util.RxNovaCommonUtil;
 import com.project.locators.Conditions.ConditionsViewCompoundDetailsPage;
 import com.psqframework.core.element.BaseElement;
@@ -11,6 +12,8 @@ public class ConditionViewDetailsCompoundPage extends BasePage {
 
 	@Steps
 	RxNovaCommonUtil rxNovaCommonUtil;
+	@Steps
+	ConditionsCommonUtil conditionsCommonUtil;
 
 	@FindBy(xpath = ConditionsViewCompoundDetailsPage.VIEW_DETAILS_COMPOUND_OPERATOR_TABLE)
 	private BaseElement VIEW_DETAILS_COMPOUND_OPERATOR_TABLE;
@@ -64,6 +67,6 @@ public class ConditionViewDetailsCompoundPage extends BasePage {
 	}
 	
 	public boolean verifyConditionDetails(String strConditionDetails) throws Throwable{		
-		return rxNovaCommonUtil.condition_MultipleTable_VerifyCellData(VIEW_DETAILS_CONDITION_DETAILS,strConditionDetails);
+		return conditionsCommonUtil.condition_MultipleTable_VerifyCellData(VIEW_DETAILS_CONDITION_DETAILS,strConditionDetails);
 	}		
 }

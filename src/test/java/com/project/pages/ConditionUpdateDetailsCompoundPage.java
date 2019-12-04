@@ -1,5 +1,6 @@
 package com.project.pages;
 
+import com.project.common.util.ConditionsCommonUtil;
 import com.project.common.util.RxNovaCommonUtil;
 import com.project.locators.Conditions.ConditionsUpdateHeaderPage;
 import com.project.locators.Conditions.CondtionsUpdateCompoundDetailPage;
@@ -12,6 +13,8 @@ public class ConditionUpdateDetailsCompoundPage extends BasePage {
 	
 	@Steps
 	RxNovaCommonUtil rxNovaCommonUtil;
+	@Steps
+	ConditionsCommonUtil conditionsCommonUtil;
 	
 	@FindBy(linkText = CondtionsUpdateCompoundDetailPage.CONDITION_DETAILS_LINK)
 	private BaseElement CONDITION_DETAILS_LINK;
@@ -119,7 +122,7 @@ public class ConditionUpdateDetailsCompoundPage extends BasePage {
 	
 	public boolean addOrRemoveCondition(String strConditionData) throws Throwable {
 		if (!strConditionData.isEmpty() && UPDATE_DETAILS_CONDITION_ID_EDIT.isDisplayed()) {
-			return rxNovaCommonUtil.addOrRemoveCondition(UPDATE_DETAILS_CONDITION_ID_EDIT,UPDATE_DETAILS_COMPOUND_TABLE,strConditionData);
+			return conditionsCommonUtil.addOrRemoveCondition(UPDATE_DETAILS_CONDITION_ID_EDIT,UPDATE_DETAILS_COMPOUND_TABLE,strConditionData);
 		} else {
 			return false;
 		}

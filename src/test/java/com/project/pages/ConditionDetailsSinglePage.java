@@ -1,5 +1,6 @@
 package com.project.pages;
 
+import com.project.common.util.ConditionsCommonUtil;
 import com.project.common.util.RxNovaCommonUtil;
 import com.project.locators.Conditions.CondtionsSingleDetailPage;
 import com.psqframework.core.element.BaseElement;
@@ -11,6 +12,8 @@ public class ConditionDetailsSinglePage extends BasePage {
 	
 	@Steps
 	RxNovaCommonUtil rxNovaCommonUtil;
+	@Steps
+	ConditionsCommonUtil conditionsCommonUtil;
 	
 	@FindBy(id = CondtionsSingleDetailPage.ADD_DETAILS_SOURCE_LIST)
 	private BaseElement ADD_DETAILS_SOURCE_LIST;
@@ -84,7 +87,7 @@ public class ConditionDetailsSinglePage extends BasePage {
 	
 	public boolean selectFieldOperator(String strFieldOperator) throws Throwable {
 		if (!strFieldOperator.isEmpty() && rxNovaCommonUtil.objectIsDisplayed(ADD_DETAILS_FIELD_OPERATOR_LIST)) {
-			rxNovaCommonUtil.condition_SelectFromDropdownUsingText(ADD_DETAILS_FIELD_OPERATOR_LIST,strFieldOperator);
+		    conditionsCommonUtil.condition_SelectFromDropdownUsingText(ADD_DETAILS_FIELD_OPERATOR_LIST,strFieldOperator);
 			return true;
 		} else {
 			return false;
