@@ -10,18 +10,17 @@ import java.util.Random;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumhq.jetty9.util.StringUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.project.pages.LandingPage.Apps;
 import com.psqframework.core.element.BaseElement;
@@ -1075,8 +1074,12 @@ public class RxNovaCommonUtil extends BasePage{
 			 {
 				String strName = ObjPath.getAttribute("name");
 				ObjPath.clear();
-				ObjPath.sendKeys(strValue);
-				Thread.sleep(1000);
+					
+				//@Sreenu - implemented time delay 
+				for (int i = 0; i < strValue.length(); i++) {
+				    ObjPath.sendKeys(strValue.substring(i, i+1));
+				    Thread.sleep(1000);
+				}				
 				
 				int value = getDriver().findElements(By.linkText(strValue)).size();
 				if (value > 0) {

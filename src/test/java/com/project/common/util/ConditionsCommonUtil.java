@@ -359,6 +359,9 @@ public class ConditionsCommonUtil extends RxNovaCommonUtil {
  				  {
  						
  					Boolean booleanOperationSearch = false;
+ 					Boolean blnElementFound=false;
+ 					
+ 					Log.info(" operation search - performing search");
  					
  					if(ObjPath.exists(5000))
  					  {
@@ -368,7 +371,7 @@ public class ConditionsCommonUtil extends RxNovaCommonUtil {
  						A:
  						do {
  						List<WebElement> strTblRows = objElement.findElements(By.tagName("tr"));
- 						
+ 						System.out.println("");
  						for(int strRow=0;strRow<strTblRows.size();strRow++)
  						 {
  						 	List<WebElement> strTblCols = strTblRows.get(strRow).findElements(By.tagName("td"));
@@ -385,6 +388,7 @@ public class ConditionsCommonUtil extends RxNovaCommonUtil {
  						 			          checkBusyState();
  						 			          Log.info("Click on the Condition ID: "+strValue);
  						 			         booleanOperationSearch = true;
+ 						 			         blnElementFound=true;
  						 			          break;
  						 			 	case "COPY":
  						 			 		  List<WebElement> strBtn1 = strTblRows.get(strRow).findElements(By.tagName("button"));
@@ -394,10 +398,11 @@ public class ConditionsCommonUtil extends RxNovaCommonUtil {
  						 			        	  {
  						 			        		 btn.click();
  						 			        		 Log.info("Click on the Copy button for Condition ID: "+strValue);
+ 						 			        		 blnElementFound=true;
  						 			        		 break;
  						 			        	  }
  						 			          }
- 						 			          checkBusyState();
+ 						 			          checkBusyState(); 						 			          
  						 			         booleanOperationSearch = true;
  						 			          break;
  						 			 	case "REPORT":
@@ -408,10 +413,11 @@ public class ConditionsCommonUtil extends RxNovaCommonUtil {
  						 			        	  {
  						 			        		 btn.click();
  						 			        		 Log.info("Click on the Report button for Condition ID: "+strValue);
+ 						 			        		blnElementFound=true;
  						 			        		 break;
  						 			        	  }
  						 			          }
- 						 			          checkBusyState();
+ 						 			          checkBusyState(); 						 			          
  						 			         booleanOperationSearch = true;
  						 			          break;
  						 			 }
@@ -422,20 +428,32 @@ public class ConditionsCommonUtil extends RxNovaCommonUtil {
  						 			break A;
  						 		}
  						 	}
- 						 }
- 						 if(booleanOperationSearch==false && getDriver().findElement(By.xpath("(//span[text()='Next'])[1]")).isEnabled())
- 						   {
- 							  clickOnButton(By.xpath("(//span[text()='Next'])[1]"));
+ 						 } 	
+ 						//@Sreenu - added block to verify if the next icon is enabled or not 
+ 						boolean isNextFound=false;
+ 						try {
+ 						if(getDriver().findElement(By.xpath("//a[contains(@id,'next-link')]")).isDisplayed()) {
+ 						   isNextFound=true;
+ 						} 						
+ 						}
+ 						catch(Exception r1) {
+ 						   isNextFound=false;
+ 						   booleanOperationSearch=true;
+ 						} 						
+ 						if(booleanOperationSearch==false && isNextFound==true)
+ 						//if(booleanOperationSearch==false && getDriver().findElement(By.xpath("(//span[text()='Next'])[1]")).isEnabled())
+ 						 {
+ 							  clickOnButton(By.xpath("//a[contains(@id,'next-link')]"));
  							  checkBusyState();
  						   }
  						} while(booleanOperationSearch==false);
  					 }	
- 					 if(booleanOperationSearch==false)
+ 					 if(blnElementFound==false)
  					  {
  						Log.info("Webelement with name  : '" + ObjPath + "' was not found");
  					  }
  					
- 					return booleanOperationSearch;		
+ 					return blnElementFound;		
  				 }
 
  	 

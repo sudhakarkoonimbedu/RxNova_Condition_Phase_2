@@ -39,6 +39,7 @@ public class ActorConditionDetailsSinglePage {
 			  conditionDetailsSinglePage.selectFieldOperator(strFieldOperator);
 			  conditionDetailsSinglePage.enterFieldValue(strFieldValue);
 			  break;
+		//@Sreenu - DRUG LIST & PRESCRIBER LIST have same data inputs hence common implementation for both
 		case "DRUG LIST":
 		case "PRESCRIBER LIST":
 			  strBCS = detailsData.get(1).get(4);
