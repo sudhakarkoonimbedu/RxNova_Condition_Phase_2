@@ -1009,7 +1009,7 @@ public class RxNovaCommonUtil extends BasePage {
 	    Log.info("ERROR: ***********************Region parameter is empty*******************");
 	} catch (Exception e) {
 	    // InputRegion = utils.pf.getProperty("Region");
-	    InputRegion = Project.Env.userName();
+	    InputRegion = Project.Env.region();
 	    Log.info("InputRegion from properties file : " + InputRegion);
 	}
 
