@@ -3,6 +3,7 @@ package com.project.pages;
 import com.project.common.util.RxNovaCommonUtil;
 import com.psqframework.core.element.BaseElement;
 import com.psqframework.core.page.BasePage;
+import com.psqframework.core.util.BaseStepListener;
 import com.psqframework.core.util.Project;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
@@ -10,6 +11,8 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 public class LaunchPage extends BasePage {
 	
 	RxNovaCommonUtil rxNovaCommonUtils;
+	
+	
 
 	@FindBy(id="loginForm:principal")
 	private BaseElement userName;
@@ -25,6 +28,9 @@ public class LaunchPage extends BasePage {
 	private BaseElement globalMessageinfo;
 	
 	public void performLogin()  throws InterruptedException  {
+	    	    		    	
+	    BaseStepListener.isLoggedIn=true;
+	    	
 		System.out.println("-----------user enters valid username, valid password and click on Login-------------");
 		String InputUsername = null, InputPassword = null;
 				

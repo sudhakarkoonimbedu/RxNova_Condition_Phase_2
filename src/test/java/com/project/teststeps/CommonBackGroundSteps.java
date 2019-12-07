@@ -5,6 +5,7 @@ import com.project.actors.ActorRegionSelectionPage;
 import com.project.actors.ActorConditionsHomePage;
 import com.project.actors.ActorConditionsDetailsPage;
 import com.project.common.util.RxNovaCommonUtil;
+import com.psqframework.core.util.BaseStepListener;
 
 import cucumber.api.DataTable;
 
@@ -65,6 +66,9 @@ public class CommonBackGroundSteps {
 	
 	@Then("^navigates from Landing page to \"(.*)\" application$")
 	public void navigateToApplication(String strApplication) throws Throwable{
+	    if(BaseStepListener.isNavigationToAppDone==true) {
+		return;
+	    }
 		rxNovaCommonUtil.navigateApplication(strApplication);
 	}
 

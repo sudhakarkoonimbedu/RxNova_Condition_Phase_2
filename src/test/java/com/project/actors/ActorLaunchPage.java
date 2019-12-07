@@ -2,6 +2,7 @@ package com.project.actors;
 
 import com.project.common.util.RxNovaCommonUtil;
 import com.project.pages.LaunchPage;
+import com.psqframework.core.util.BaseStepListener;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
@@ -15,13 +16,18 @@ public class ActorLaunchPage {
 		
 	@Step	
 	public void launch_application() {
-
-		rxNovaCommonUtils.navigateToRxNovaApplication();	
+	    if(BaseStepListener.isLaunched==true) {
+		    return;	
+	    }
+	    rxNovaCommonUtils.navigateToRxNovaApplication();
 	}
 	
 	@Step
 	public void perform_login() throws InterruptedException {
-		launchPage.performLogin();
+	    if(BaseStepListener.isLoggedIn==true) {
+	    	    return;
+	    }
+	    launchPage.performLogin();
 	}	
 
 }

@@ -18,8 +18,16 @@ public class BaseStepListener implements StepListener {
 
 	private static final Logger Log = LoggerFactory.getLogger(BaseStepListener.class);
 
+	 public static boolean isLaunched=false;
+	 public static boolean isLoggedIn=false;
+	 public static boolean isNavigationToAppDone=false;
+	 
+	
 	public BaseStepListener() {
 		Log.info("BaseStepListener()");
+		isLaunched=false;
+		isLoggedIn=false;
+		isNavigationToAppDone=false;
 	}
 
 	public void testSuiteStarted(final Class<?> testCase) {
@@ -38,6 +46,10 @@ public class BaseStepListener implements StepListener {
 
 	public void testSuiteStarted(final Story story) {
 		Log.info("test suite started");
+		isLaunched=false;
+		isLoggedIn=false;
+		isNavigationToAppDone=false;
+		 
 		/*
 		 * //custom driver implementation
 		 * if(System.getProperty("MavenChromeDriverVersion")==null) {
@@ -51,13 +63,12 @@ public class BaseStepListener implements StepListener {
 	}
 
 	public void testStarted(final String testName) {
-		Log.info("test started " + testName);
+		Log.info("test started " + testName );
 		Project.beforeStep();
 	}
 
 	public void testStarted(String description, String id) {
-
-		Log.info("test started " + description);
+		Log.info("#################################test started " + description + "#################################");
 	}
 
 	public void testFinished(TestOutcome result) {

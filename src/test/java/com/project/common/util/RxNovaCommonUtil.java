@@ -24,6 +24,7 @@ import com.project.pages.LandingPage.Apps;
 import com.project.pages.RegionSelectionPage;
 import com.psqframework.core.element.BaseElement;
 import com.psqframework.core.page.BasePage;
+import com.psqframework.core.util.BaseStepListener;
 import com.psqframework.core.util.Project;
 
 public class RxNovaCommonUtil extends BasePage {
@@ -39,6 +40,10 @@ public class RxNovaCommonUtil extends BasePage {
 
     private String RxNova_URL;
     public static boolean isProduction;
+//    public static boolean isLaunched=false;
+//    public static boolean isLoggedIn=false;
+//    public static boolean isNavigationToAppDone=false;
+ 
 
     // Logger logger = LoggerFactory.getLogger(RxNovaCommonUtil.class);
     // logger.info("Clicked on Element" + element);
@@ -53,8 +58,10 @@ public class RxNovaCommonUtil extends BasePage {
     // Author:
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public void navigateApplicationMenu(String strAppMenu) throws InterruptedException {
+	
+	BaseStepListener.isNavigationToAppDone=true;
 	// try
-	// {
+	// {	
 	Thread.sleep(3000);
 	/*
 	 * if(!driver.findElement(By.className("argusLogoRebrand")).isDisplayed()) {
@@ -79,6 +86,15 @@ public class RxNovaCommonUtil extends BasePage {
 		Thread.sleep(8000);
 	    }
 	}
+	
+//	// Sreenu Added - Checking to get hold or Landing page (JBOSS) or RxNova Login Page( WAS)
+//	for (String s : handles) {
+//	    if (!getDriver().switchTo().window(s).getTitle().contains("Landing Page") || !getDriver().switchTo().window(s).getTitle().contains("RxNova Login")) {
+//			Log.info(" Closing Page with title " + getDriver().getTitle());			
+//			getDriver().close();
+//	    }
+//	}
+		
 
 	Boolean boolNavigateApplicationMenu = false;
 	int intCounter = 0;
@@ -1002,6 +1018,9 @@ public class RxNovaCommonUtil extends BasePage {
     // Author:
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public void navigateToRxNovaApplication() {
+	
+	BaseStepListener.isLaunched=true;
+	
 	Log.info("-----------Open firefox and start RxNova Application-------------");
 	try {
 	    InputRegion = System.getProperty("Region");
@@ -1154,6 +1173,7 @@ public class RxNovaCommonUtil extends BasePage {
 	// driver.get(RxNova_URL);
 	// invoke(Project.Env.url());
 	invoke(RxNova_URL);
+	BaseStepListener.isLaunched=true;
 	Log.info("-----------Completed Open firefox and start RxNova Application-------------");
     }
 
@@ -1166,7 +1186,7 @@ public class RxNovaCommonUtil extends BasePage {
     // Author:
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public boolean objectIsDisplayed(BaseElement ObjPath) {
-	return ObjPath.exists(20000);
+	return ObjPath.exists(10000);
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

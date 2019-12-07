@@ -1,5 +1,7 @@
 package com.project.pages;
 
+import org.openqa.selenium.NoSuchFrameException;
+
 import com.project.common.util.ConditionsCommonUtil;
 import com.project.common.util.RxNovaCommonUtil;
 import com.project.locators.Conditions.CondtionsHomePage;
@@ -76,7 +78,30 @@ public class ConditionHomePage extends BasePage {
 
 	public boolean verifyConditionHomeTextIsDisplayed() {
 		//boolean isDisplayed = CONDITION_HOME_TEXT.isDisplayed();
-		return (rxNovaCommonUtil.objectIsDisplayed(CONDITION_HOME_TEXT));
+	    
+	    if(rxNovaCommonUtil.objectIsDisplayed(CONDITION_HOME_TEXT)) {
+		return true;
+	    }else {
+		//getDriver().execute_script("location.reload()")
+		getDriver().navigate().refresh();
+		int cnt = 0;
+		    while (cnt < 600) {
+			try {
+			    getDriver().switchTo().defaultContent();
+			    getDriver().switchTo().frame(0);
+			    break;
+			} catch (NoSuchFrameException e) {
+			    cnt += 200;
+			    Log.info("Waiting for page to load ...");
+			    sleep(2000);
+			    continue;
+			}
+		    }
+		return(rxNovaCommonUtil.objectIsDisplayed(CONDITION_HOME_TEXT));
+	    }
+	    	//@Sreenu - Added to refersh a page if it is not in base state
+	    	
+		
 	}
 	
 	public boolean selectMasterCustomerSet(String strMCS) throws Throwable {
