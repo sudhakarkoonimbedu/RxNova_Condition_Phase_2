@@ -78,7 +78,7 @@ public class ConditionHomePage extends BasePage {
 
 	public boolean verifyConditionHomeTextIsDisplayed() {
 		//boolean isDisplayed = CONDITION_HOME_TEXT.isDisplayed();
-	    
+	    //@Sreenu - Added to refersh a page if it is not in base state
 	    if(rxNovaCommonUtil.objectIsDisplayed(CONDITION_HOME_TEXT)) {
 		return true;
 	    }else {
@@ -99,7 +99,6 @@ public class ConditionHomePage extends BasePage {
 		    }
 		return(rxNovaCommonUtil.objectIsDisplayed(CONDITION_HOME_TEXT));
 	    }
-	    	//@Sreenu - Added to refersh a page if it is not in base state
 	    	
 		
 	}
