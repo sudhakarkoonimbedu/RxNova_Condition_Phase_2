@@ -1,4 +1,4 @@
-Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore status
+Feature: Advanced Search Single Field DEA Code Condition with Do Not Use Anymore status And Copy the Condition
 
   Background: 
     Given User opens the browser and goes to RxNova URL
@@ -13,9 +13,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
   	
   	Examples:
   		| Master_Customer_Set | Type   | Condition_ID | Name | Status | Update_Tracking_ID | Update_Status | Delete_Tracking_ID |
-  		| QTP_Master_1        | Single | FNDCON15     |      |        | Update Tracking ID | Not Ready     | Delete Tracking ID |
+  		| QTP_Master_1        | Single | FDECON15     |      |        | Update Tracking ID | Not Ready     | Delete Tracking ID |
+  		| QTP_Master_1        | Single | FDECPY15      |      |        | Update Tracking ID | Not Ready     | Delete Tracking ID |
   
-  Scenario Outline: Add the Single Field NDC Name Condition
+  Scenario Outline: Add the Single Field DEA Code Condition
  		Given User navigates to the Condition Header tab and submits the following details
   		| Header_Tracking_ID   | Header_Reason   | Header_Notes   | Master_Customer_Set   | Condition_ID   | Name   | Status   | Type   |
   		| <Header_Tracking_ID> | <Header_Reason> | <Header_Notes> | <Master_Customer_Set> | <Condition_ID> | <Name> | <Status> | <Type> |
@@ -31,9 +32,9 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
   	
   	Examples:
   		| Header_Tracking_ID | Header_Reason | Header_Notes | Master_Customer_Set | Condition_ID | Name                  | Status             | Type   | Source | Field_Name | Field_Operator | Field_Value | Benefit_Customer_Set | Operator | Value | Notes                      | Tags     | Tags_Add_Success_Message                 | Tags_Remove_Success_Message                           | Condition_Add_Success_Message         |
-      | Test TrackingID    | Test Reason   | Test Notes   | QTP_Master_1        | FNDCON15     | Field NDC Condition15 | Do Not Use Anymore | Single | Field  | NDC Name   | Is the Same As | 89754612315 |                      |          |       | Single Field NDC Condition | Add^Tag1 | Tag successfully added to the condition. | Tag(s) successfully removed from the search criteria. | The condition was successfully added. |
+      | Test TrackingID    | Test Reason   | Test Notes   | QTP_Master_1        | FDECON15     | Field DEA Condition15 | Do Not Use Anymore | Single | Field  | DEA CODE   | Includes       | F           |                      |          |       | Single Field DEA Condition | Add^Tag1 | Tag successfully added to the condition. | Tag(s) successfully removed from the search criteria. | The condition was successfully added. |
   
-  Scenario Outline: Search and View Single Field NDC Name Condition from Search Results table using Master Customer Set
+  Scenario Outline: Search and View Single Field DEA Code Condition from Search Results table using Master Customer Set
     Given User search for the existing condition from Search Results table
       | Master_Customer_Set   | Type   | Status   | Operation   | Condition_ID   |
       | <Master_Customer_Set> | <Type> | <Status> | <Operation> | <Condition_ID> |
@@ -51,10 +52,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |
     
     Examples: 
-      | Master_Customer_Set | Type | Status             | Operation | Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        |      | Do Not Use Anymore | View      | CDFNDCON15   | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type | Status             | Operation | Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        |      | Do Not Use Anymore | View      | CDFDECON15   | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
     
-  Scenario Outline: Search and View Single Field NDC Name Condition from Search Results table using Master Customer Set and Type
+  Scenario Outline: Search and View Single Field DEA Code Condition from Search Results table using Master Customer Set and Type
     Given User search for the existing condition from Search Results table
       | Master_Customer_Set   | Type   | Status   | Operation   | Condition_ID   |
       | <Master_Customer_Set> | <Type> | <Status> | <Operation> | <Condition_ID> |
@@ -72,10 +73,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |
     
     Examples: 
-      | Master_Customer_Set | Type   | Status             | Operation | Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        | Single | Do Not Use Anymore | View      | CDFNDCON15   | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type   | Status             | Operation | Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        | Single | Do Not Use Anymore | View      | CDFDECON15   | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
   
-  Scenario Outline: Search and View Single Field NDC Name Condition using Condition ID
+  Scenario Outline: Search and View Single Field DEA Code Condition using Condition ID
     Given User search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
@@ -93,10 +94,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |        
     
     Examples: 
-      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        | Single | FNDCON15     |      | Do Not Use Anymore |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        | Single | FDECON15     |      | Do Not Use Anymore |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
     
-  Scenario Outline: Search and View Single Field NDC Name Condition using Condition Name
+  Scenario Outline: Search and View Single Field DEA Code Condition using Condition Name
     Given User search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
@@ -114,10 +115,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |        
     
     Examples: 
-      | Master_Customer_Set | Type   | Condition_ID | Name                  | Status             | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        | Single |              | Field NDC Condition15 | Do Not Use Anymore |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type   | Condition_ID | Name                  | Status             | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        | Single |              | Field DEA Condition15 | Do Not Use Anymore |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
   
-  Scenario Outline: Search and View Single Field NDC Name Condition using Condition ID and Source details
+  Scenario Outline: Search and View Single Field DEA Code Condition using Condition ID and Source details
     Given User search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
@@ -135,10 +136,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |        
     
     Examples: 
-      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field    | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        | Single | FNDCON15     |      | Do Not Use Anymore | Field  | NDC Name |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field    | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        | Single | FDECON15     |      | Do Not Use Anymore | Field  | DEA CODE |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
   
-  Scenario Outline: Advanced Search and View Single Field NDC Name Condition from Search Results table using Master Customer Set and Sub-status
+  Scenario Outline: Advanced Search and View Single Field DEA Code Condition from Search Results table using Master Customer Set and Sub-status
     Given User perform Advanced Search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   | Sub_Status   | Tags   | Tags_Add_Success_Message   | Tags_Remove_Success_Message   | Operation   | View_Condition_ID   | 
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> | <Sub_Status> | <Tags> | <Tags_Add_Success_Message> | <Tags_Remove_Success_Message> | <Operation> | <View_Condition_ID> |
@@ -156,10 +157,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |
     
     Examples: 
-      | Master_Customer_Set | Type | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status     | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        |      |              |      | Do Not Use Anymore |        |       |                      |      | Not Associated |      |                          |                             | View      | CDFNDCON15        | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status     | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        |      |              |      | Do Not Use Anymore |        |       |                      |      | Not Associated |      |                          |                             | View      | CDFDECON15        | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
     
-  Scenario Outline: Advanced Search and View Single Field NDC Name Condition from Search Results table using Master Customer Set, Type and Sub-status
+  Scenario Outline: Advanced Search and View Single Field DEA Code Condition from Search Results table using Master Customer Set, Type and Sub-status
     Given User perform Advanced Search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   | Sub_Status   | Tags   | Tags_Add_Success_Message   | Tags_Remove_Success_Message   | Operation   | View_Condition_ID   | 
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> | <Sub_Status> | <Tags> | <Tags_Add_Success_Message> | <Tags_Remove_Success_Message> | <Operation> | <View_Condition_ID> |
@@ -177,10 +178,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |
     
     Examples: 
-      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status     | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        | Single |              |      | Do Not Use Anymore |        |       |                      |      | Not Associated |      |                          |                             | View      | CDFNDCON15        | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status     | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        | Single |              |      | Do Not Use Anymore |        |       |                      |      | Not Associated |      |                          |                             | View      | CDFDECON15        | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
   
-  Scenario Outline: Advanced Search and View Single Field NDC Name Condition using Condition ID and Sub-status
+  Scenario Outline: Advanced Search and View Single Field DEA Code Condition using Condition ID and Sub-status
     Given User perform Advanced Search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   | Sub_Status   | Tags   | Tags_Add_Success_Message   | Tags_Remove_Success_Message   | Operation   | View_Condition_ID   | 
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> | <Sub_Status> | <Tags> | <Tags_Add_Success_Message> | <Tags_Remove_Success_Message> | <Operation> | <View_Condition_ID> |
@@ -198,10 +199,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |        
     
     Examples: 
-      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status     | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        | Single | FNDCON15     |      | Do Not Use Anymore |        |       |                      |      | Not Associated |      |                          |                             |           |                   | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status     | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        | Single | FDECON15     |      | Do Not Use Anymore |        |       |                      |      | Not Associated |      |                          |                             |           |                   | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
     
-  Scenario Outline: Advanced Search and View Single Field NDC Name Condition using Condition Name and Sub-status
+  Scenario Outline: Advanced Search and View Single Field DEA Code Condition using Condition Name and Sub-status
     Given User perform Advanced Search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   | Sub_Status   | Tags   | Tags_Add_Success_Message   | Tags_Remove_Success_Message   | Operation   | View_Condition_ID   | 
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> | <Sub_Status> | <Tags> | <Tags_Add_Success_Message> | <Tags_Remove_Success_Message> | <Operation> | <View_Condition_ID> |
@@ -219,10 +220,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |        
     
     Examples: 
-      | Master_Customer_Set | Type   | Condition_ID | Name                  | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status     | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        | Single |              | Field NDC Condition15 | Do Not Use Anymore |        |       |                      |      | Not Associated |      |                          |                             |           |                   | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type   | Condition_ID | Name                  | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status     | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        | Single |              | Field DEA Condition15 | Do Not Use Anymore |        |       |                      |      | Not Associated |      |                          |                             |           |                   | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
   
-  Scenario Outline: Advanced Search and View Single Field NDC Name Condition using Condition ID, Sub-status and Source details
+  Scenario Outline: Advanced Search and View Single Field DEA Code Condition using Condition ID, Sub-status and Source details
     Given User perform Advanced Search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   | Sub_Status   | Tags   | Tags_Add_Success_Message   | Tags_Remove_Success_Message   | Operation   | View_Condition_ID   | 
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> | <Sub_Status> | <Tags> | <Tags_Add_Success_Message> | <Tags_Remove_Success_Message> | <Operation> | <View_Condition_ID> |
@@ -240,10 +241,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |        
     
     Examples: 
-      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field    | Benefit_Customer_Set | List | Sub_Status     | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        | Single | FNDCON15     |      | Do Not Use Anymore | Field  | NDC Name |                      |      | Not Associated |      |                          |                             |           |                   | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field    | Benefit_Customer_Set | List | Sub_Status     | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        | Single | FDECON15     |      | Do Not Use Anymore | Field  | DEA CODE |                      |      | Not Associated |      |                          |                             |           |                   | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
   
- #Scenario Outline: Search and View Single Field NDC Name Condition using Condition ID, Sub status and Tags       ***** This Search condition is commented due to application issue with Tags *****
+ #Scenario Outline: Search and View Single Field DEA Code Condition using Condition ID, Sub status and Tags       ***** This Search condition is commented due to application issue with Tags *****
     #Given User perform Advanced Search for the existing condition with the following details
       #| Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   | Sub_Status   | Tags   | Tags_Add_Success_Message   | Tags_Remove_Success_Message   | Operation   | View_Condition_ID   | 
       #| <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> | <Sub_Status> | <Tags> | <Tags_Add_Success_Message> | <Tags_Remove_Success_Message> | <Operation> | <View_Condition_ID> |
@@ -261,10 +262,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       #| <Notes> | <Tags> |        
     
     #Examples: 
-      #| Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status     | Tags     | Tags_Add_Success_Message                 | Tags_Remove_Success_Message                           | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      #| QTP_Master_1        | Single | FNDCON15     |      | Do Not Use Anymore |        |       |                      |      | Not Associated | Add^Tag1 | Tag successfully added to the condition. | Tag(s) successfully removed from the search criteria. |           |                   | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      #| Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status     | Tags     | Tags_Add_Success_Message                 | Tags_Remove_Success_Message                           | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      #| QTP_Master_1        | Single | FDECON15     |      | Do Not Use Anymore |        |       |                      |      | Not Associated | Add^Tag1 | Tag successfully added to the condition. | Tag(s) successfully removed from the search criteria. |           |                   | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
     
-  Scenario Outline: Wildcard search using Condition ID and View Single Field NDC Name Condition
+  Scenario Outline: Wildcard search using Condition ID and View Single Field DEA Code Condition
     Given User perform Advanced Search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   | Sub_Status   | Tags   | Tags_Add_Success_Message   | Tags_Remove_Success_Message   | Operation   | View_Condition_ID   | 
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> | <Sub_Status> | <Tags> | <Tags_Add_Success_Message> | <Tags_Remove_Success_Message> | <Operation> | <View_Condition_ID> |
@@ -282,10 +283,10 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |        
     
     Examples: 
-      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        | Single | *CON*        |      | Do Not Use Anymore |        |       |                      |      |            |      |                          |                             | View      | CDFNDCON15        | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        | Single | *CON*        |      | Do Not Use Anymore |        |       |                      |      |            |      |                          |                             | View      | CDFDECON15        | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
     
-  Scenario Outline: Wildcard search using Condition Name and View Single Field NDC Name Condition
+  Scenario Outline: Wildcard search using Condition Name and View Single Field DEA Code Condition
     Given User perform Advanced Search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   | Sub_Status   | Tags   | Tags_Add_Success_Message   | Tags_Remove_Success_Message   | Operation   | View_Condition_ID   | 
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> | <Sub_Status> | <Tags> | <Tags_Add_Success_Message> | <Tags_Remove_Success_Message> | <Operation> | <View_Condition_ID> |
@@ -303,10 +304,51 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
       | <Notes> | <Tags> |        
     
     Examples: 
-      | Master_Customer_Set | Type   | Condition_ID | Name        | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
-      | QTP_Master_1        | Single |              | *Condition* | Do Not Use Anymore |        |       |                      |      |            |      |                          |                             | View      | CDFNDCON15        | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON15    | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON15 | Name:^Field NDC Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | Master_Customer_Set | Type   | Condition_ID | Name        | Status             | Source | Field | Benefit_Customer_Set | List | Sub_Status | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description  | Notes                      | Tags          |
+      | QTP_Master_1        | Single |              | *Condition* | Do Not Use Anymore |        |       |                      |      |            |      |                          |                             | View      | CDFDECON15        | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECON15    | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECON15 | Name:^Field DEA Condition15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes F         | Single Field DEA Condition | Tag Name^tag1 |
+   
+   
     
-  Scenario Outline: Delete the Single Single Field NDC Name Condition
+  Scenario Outline: Copy Single Field DEA Condition
+    Given User search for the existing condition with the following details
+      | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
+      | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
+    And verify the Condition Header tab and click on Copy button
+    When he submits the following details in Copy a Condition window
+      | Copy_Condition_ID   | Copy_Name   | Copy_Status   | Copy_TrackingID   | Copy_Reason   | Copy_Notes   |
+      | <Copy_Condition_ID> | <Copy_Name> | <Copy_Status> | <Copy_TrackingID> | <Copy_Reason> | <Copy_Notes> |
+    Then verify the Condition Copy Success message at the top of the page
+      | Condition_Copy_Success_Message   |
+      | <Condition_Copy_Success_Message> |
+    
+    Examples: 
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Copy_Condition_ID | Copy_Name                 | Copy_Status        | Copy_TrackingID | Copy_Reason | Copy_Notes | Condition_Copy_Success_Message         |
+      | QTP_Master_1        | Single | FDECON15      |      | Do Not Use Anymore |        |       |                      |      | FDECPY15           | Field DEA Condition Copy15 | Do Not Use Anymore | Test TrackingID |             |            | The condition was successfully copied. |
+
+  Scenario Outline: View the Copied Single Field DEA Condition
+    Given User search for the existing condition with the following details
+      | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
+      | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
+    And verify the Condition Header Summary details
+      | Header_Summary_Master_Customer_Set   | Header_Summary_Condition_ID     | Header_Summary_Name     | Header_Summary_Status   |
+      | <Header_Summary_Master_Customer_Set> | <Header_Summary_Condition_ID>   | <Header_Summary_Name>   | <Header_Summary_Status> |
+    And verify the Condition Header details
+      | Header_Master_Customer_Set   | Header_Condition_ID     | Header_Name     | Header_Status   | Header_Type   |
+      | <Header_Master_Customer_Set> | <Header_Condition_ID>   | <Header_Name>   | <Header_Status> | <Header_Type> |
+    And verify the Condition Definition details
+      | View_Source   | View_Benefit_Customer_Set   | View_Condition_Description   |
+      | <View_Source> | <View_Benefit_Customer_Set> | <View_Condition_Description> |
+    And verify the Tags/Notes details
+      | Notes   | Tags   |
+      | <Notes> | <Tags> |        
+    
+    Examples: 
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name             | Header_Summary_Status      | Header_Master_Customer_Set        | Header_Condition_ID     | Header_Name                     | Header_Status              | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description | Notes                      | Tags          |
+      | QTP_Master_1        | Single | FDECPY15      |      | Do Not Use Anymore |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFDECPY15     | Name:^Field DEA Condition Copy15 | Status:^Do Not Use Anymore | Master customer set:^QTP_Master_1 | Condition ID:^CDFDECPY15 | Name:^Field DEA Condition Copy15 | Status:^Do Not Use Anymore | Type:^Single | Source:^Field |                           | DEA CODE includes C        | Single Field DEA Condition | Tag Name^tag1 |
+ 
+   
+    
+  Scenario Outline: Delete the Single Single Field DEA Code Condition
     Given User search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
       | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
@@ -325,4 +367,5 @@ Feature: Advanced Search Single Field NDC Name Condition with Do Not Use Anymore
     
     Examples: 
       | Master_Customer_Set | Type   | Condition_ID | Name | Status             | Source | Field | Benefit_Customer_Set | List | Update_Tracking_ID | Update_Reason | Update_Notes | Update_Name | Update_Status | Condition_Update_Success_Message      | Delete_Tracking_ID | Delete_Reason | Delete_Notes | Condition_Delete_Success_Message        |
-      | QTP_Master_1        | Single | FNDCON15     |      | Do Not Use Anymore |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |    
+      | QTP_Master_1        | Single | FDECON15     |      | Do Not Use Anymore |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |    
+	  | QTP_Master_1        | Single | FDECPY15      |      | Do Not Use Anymore |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |

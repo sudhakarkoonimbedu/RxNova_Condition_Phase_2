@@ -1,4 +1,4 @@
-Feature: Advanced Search Single Pharmacy List Condition with Ready for Use status
+Feature: Advanced Search Single Pharmacy List Condition with Ready for Use status And Copy the Condition
 
   Background: 
     Given User opens the browser and goes to RxNova URL
@@ -14,6 +14,7 @@ Feature: Advanced Search Single Pharmacy List Condition with Ready for Use statu
   	Examples:
   		| Master_Customer_Set | Type   | Condition_ID | Name | Status | Update_Tracking_ID | Update_Status | Delete_Tracking_ID |
   		| QTP_Master_1        | Single | PHRCON13     |      |        | Update Tracking ID | Not Ready     | Delete Tracking ID |
+  		| QTP_Master_1        | Single | PHRCPY13      |      |        | Update Tracking ID | Not Ready     | Delete Tracking ID |
   
   Scenario Outline: Add the Single PharmacyList Condition
  		Given User navigates to the Condition Header tab and submits the following details
@@ -305,6 +306,45 @@ Feature: Advanced Search Single Pharmacy List Condition with Ready for Use statu
     Examples: 
       | Master_Customer_Set | Type   | Condition_ID | Name        | Status        | Source | Field | Benefit_Customer_Set | List | Sub_Status | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name             | Header_Summary_Status | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                     | Header_Status         | Header_Type  | View_Source           | View_Benefit_Customer_Set | View_Condition_Description                         | Notes                          | Tags          |
       | QTP_Master_1        | Single |              | *Condition* | Ready for Use |        |       |                      |      |            |      |                          |                             | View      | CDPHRCON13        | Master customer set:^QTP_Master_1  | Condition ID:^CDPHRCON13    | Name:^Pharmacy List Condition13 | Status:^Ready for Use | Master customer set:^QTP_Master_1 | Condition ID:^CDPHRCON13 | Name:^Pharmacy List Condition13 | Status:^Ready for Use | Type:^Single | Source:^Pharmacy List |                           | Pharmacy is not included in pharmacy list PTTPPHI7 | Single Pharmacy List Condition | Tag Name^tag1 |
+  
+   Scenario Outline: Copy Single PharmacyList Condition
+    Given User search for the existing condition with the following details
+      | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
+      | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
+    And verify the Condition Header tab and click on Copy button
+    When he submits the following details in Copy a Condition window
+      | Copy_Condition_ID   | Copy_Name   | Copy_Status   | Copy_TrackingID   | Copy_Reason   | Copy_Notes   |
+      | <Copy_Condition_ID> | <Copy_Name> | <Copy_Status> | <Copy_TrackingID> | <Copy_Reason> | <Copy_Notes> |
+    Then verify the Condition Copy Success message at the top of the page
+      | Condition_Copy_Success_Message   |
+      | <Condition_Copy_Success_Message> |
+    
+    Examples: 
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status        | Source | Field | Benefit_Customer_Set | List | Copy_Condition_ID | Copy_Name                     | Copy_Status   | Copy_TrackingID | Copy_Reason | Copy_Notes | Condition_Copy_Success_Message         |
+      | QTP_Master_1        | Single | PHRCON13      |      | Ready for Use |        |       |                      |      | PHRCPY13           | Pharmacy List Condition Copy13 | Ready for Use | Test TrackingID |             |            | The condition was successfully copied. |
+
+  Scenario Outline: View the Copied Single PharmacyList Condition
+    Given User search for the existing condition with the following details
+      | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
+      | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
+    And verify the Condition Header Summary details
+      | Header_Summary_Master_Customer_Set   | Header_Summary_Condition_ID     | Header_Summary_Name     | Header_Summary_Status   |
+      | <Header_Summary_Master_Customer_Set> | <Header_Summary_Condition_ID>   | <Header_Summary_Name>   | <Header_Summary_Status> |
+    And verify the Condition Header details
+      | Header_Master_Customer_Set   | Header_Condition_ID     | Header_Name     | Header_Status   | Header_Type   |
+      | <Header_Master_Customer_Set> | <Header_Condition_ID>   | <Header_Name>   | <Header_Status> | <Header_Type> |
+    And verify the Condition Definition details
+      | View_Source   | View_Benefit_Customer_Set   | View_Condition_Description   |
+      | <View_Source> | <View_Benefit_Customer_Set> | <View_Condition_Description> |
+    And verify the Tags/Notes details
+      | Notes   | Tags   |
+      | <Notes> | <Tags> |        
+    
+    Examples: 
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status        | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name                 | Header_Summary_Status | Header_Master_Customer_Set        | Header_Condition_ID     | Header_Name                         | Header_Status         | Header_Type  | View_Source           | View_Benefit_Customer_Set | View_Condition_Description                     | Notes                          | Tags          |
+      | QTP_Master_1        | Single | PHRCPY13      |      | Ready for Use |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDPHRCPY13     | Name:^Pharmacy List Condition Copy13 | Status:^Ready for Use | Master customer set:^QTP_Master_1 | Condition ID:^CDPHRCPY13 | Name:^Pharmacy List Condition Copy13 | Status:^Ready for Use | Type:^Single | Source:^Pharmacy List |                           | Pharmacy is included in pharmacy list PTTPPHI4 | Single Pharmacy List Condition | Tag Name^tag1 |
+    
+  
     
   Scenario Outline: Delete the Single PharmacyList Condition
     Given User search for the existing condition with the following details
@@ -325,4 +365,5 @@ Feature: Advanced Search Single Pharmacy List Condition with Ready for Use statu
     
     Examples: 
       | Master_Customer_Set | Type   | Condition_ID | Name | Status        | Source | Field | Benefit_Customer_Set | List | Update_Tracking_ID | Update_Reason | Update_Notes | Update_Name | Update_Status | Condition_Update_Success_Message      | Delete_Tracking_ID | Delete_Reason | Delete_Notes | Condition_Delete_Success_Message        |
-      | QTP_Master_1        | Single | PHRCON13     |      | Ready for Use |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |    
+      | QTP_Master_1        | Single | PHRCON13     |      | Ready for Use |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |
+      | QTP_Master_1        | Single | PHRCPY13      |      | Ready for Use |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |    

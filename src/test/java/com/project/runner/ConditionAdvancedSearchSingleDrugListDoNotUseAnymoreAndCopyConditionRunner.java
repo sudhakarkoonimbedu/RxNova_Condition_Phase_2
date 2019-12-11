@@ -6,7 +6,8 @@ import org.junit.runner.RunWith;
  
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features= {
-		"src/test/resources/features/Condition_AdvancedSearch_Single_PrescriberList_ReadyforUse.feature"		
+		//"src/test/resources/features/Condition_AdvancedSearch_Single_DrugList_DoNotUseAnymore.feature"
+		"src/test/resources/features/Condition_AdvancedSearch_Single_DrugList_DoNotUseAnymore_And_Copy.feature"
 		},glue = { "com.project.teststeps" 
 		},plugin =  {"pretty","html:target/cucumber-html-report", "json:target/cucumber-json-report.json"})
-public class ConditionAdvancedSearchSinglePrescriberListReadyforUseRunner {}
+public class ConditionAdvancedSearchSingleDrugListDoNotUseAnymoreAndCopyConditionRunner {}

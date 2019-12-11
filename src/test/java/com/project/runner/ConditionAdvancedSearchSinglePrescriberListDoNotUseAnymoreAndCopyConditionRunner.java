@@ -6,7 +6,8 @@ import org.junit.runner.RunWith;
  
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features= {
-		"src/test/resources/features/Condition_AdvancedSearch_Single_Field_NDC_NotReady.feature"		
+		//"src/test/resources/features/Condition_AdvancedSearch_Single_PrescriberList_DoNotUseAnymore.feature"
+		"src/test/resources/features/Condition_AdvancedSearch_Single_PrescriberList_DoNotUseAnymore_And_Copy.feature"
 		},glue = { "com.project.teststeps" 
 		},plugin =  {"pretty","html:target/cucumber-html-report", "json:target/cucumber-json-report.json"})
-public class ConditionAdvancedSearchSingleFieldNDCNotReadyRunner {}
+public class ConditionAdvancedSearchSinglePrescriberListDoNotUseAnymoreAndCopyConditionRunner {}

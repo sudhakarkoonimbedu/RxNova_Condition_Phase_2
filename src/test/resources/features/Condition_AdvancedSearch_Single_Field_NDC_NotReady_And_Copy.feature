@@ -14,6 +14,7 @@ Feature: Advanced Search Single Field NDC Name Condition with Not Ready status
   	Examples:
   		| Master_Customer_Set | Type   | Condition_ID | Name | Status | Update_Tracking_ID | Update_Status | Delete_Tracking_ID |
   		| QTP_Master_1        | Single | FNDCON14     |      |        | Update Tracking ID | Not Ready     | Delete Tracking ID |
+  		| QTP_Master_1        | Single | FNDCPY14      |      |        | Update Tracking ID | Not Ready     | Delete Tracking ID |
   
   Scenario Outline: Add the Single Field NDC Name Condition
  		Given User navigates to the Condition Header tab and submits the following details
@@ -306,6 +307,45 @@ Feature: Advanced Search Single Field NDC Name Condition with Not Ready status
       | Master_Customer_Set | Type   | Condition_ID | Name        | Status    | Source | Field | Benefit_Customer_Set | List | Sub_Status | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name         | Header_Summary_Status | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                 | Header_Status     | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
       | QTP_Master_1        | Single |              | *Condition* | Not Ready |        |       |                      |      |            |      |                          |                             | View      | CDFNDCON14        | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON14    | Name:^Field NDC Condition14 | Status:^Not Ready     | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON14 | Name:^Field NDC Condition14 | Status:^Not Ready | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
     
+ Scenario Outline: Copy Single Field NDC Condition
+    Given User search for the existing condition with the following details
+      | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
+      | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
+    And verify the Condition Header tab and click on Copy button
+    When he submits the following details in Copy a Condition window
+      | Copy_Condition_ID   | Copy_Name   | Copy_Status   | Copy_TrackingID   | Copy_Reason   | Copy_Notes   |
+      | <Copy_Condition_ID> | <Copy_Name> | <Copy_Status> | <Copy_TrackingID> | <Copy_Reason> | <Copy_Notes> |
+    Then verify the Condition Copy Success message at the top of the page
+      | Condition_Copy_Success_Message   |
+      | <Condition_Copy_Success_Message> |
+    
+    Examples: 
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status    | Source | Field | Benefit_Customer_Set | List | Copy_Condition_ID | Copy_Name                 | Copy_Status | Copy_TrackingID | Copy_Reason | Copy_Notes | Condition_Copy_Success_Message         |
+      | QTP_Master_1        | Single | FNDCON14      |      | Not Ready |        |       |                      |      | FNDCPY14           | Field NDC Condition Copy14 | Not Ready   | Test TrackingID |             |            | The condition was successfully copied. |
+
+  Scenario Outline: View the Copied Single Field NDC Condition
+    Given User search for the existing condition with the following details
+      | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
+      | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
+    And verify the Condition Header Summary details
+      | Header_Summary_Master_Customer_Set   | Header_Summary_Condition_ID     | Header_Summary_Name     | Header_Summary_Status   |
+      | <Header_Summary_Master_Customer_Set> | <Header_Summary_Condition_ID>   | <Header_Summary_Name>   | <Header_Summary_Status> |
+    And verify the Condition Header details
+      | Header_Master_Customer_Set   | Header_Condition_ID     | Header_Name     | Header_Status   | Header_Type   |
+      | <Header_Master_Customer_Set> | <Header_Condition_ID>   | <Header_Name>   | <Header_Status> | <Header_Type> |
+    And verify the Condition Definition details
+      | View_Source   | View_Benefit_Customer_Set   | View_Condition_Description   |
+      | <View_Source> | <View_Benefit_Customer_Set> | <View_Condition_Description> |
+    And verify the Tags/Notes details
+      | Notes   | Tags   |
+      | <Notes> | <Tags> |        
+    
+    Examples: 
+      | Master_Customer_Set | Type   | Condition_ID | Name | Status    | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name             | Header_Summary_Status | Header_Master_Customer_Set        | Header_Condition_ID     | Header_Name                     | Header_Status     | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description          | Notes                      | Tags          |
+      | QTP_Master_1        | Single | FNDCPY14      |      | Not Ready |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCPY14     | Name:^Field NDC Condition Copy14 | Status:^Not Ready     | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCPY14 | Name:^Field NDC Condition Copy14 | Status:^Not Ready | Type:^Single | Source:^Field |                           | NDC Name is the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+    
+    
+    
   Scenario Outline: Delete the Single Single Field NDC Name Condition
     Given User search for the existing condition with the following details
       | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
@@ -325,4 +365,5 @@ Feature: Advanced Search Single Field NDC Name Condition with Not Ready status
     
     Examples: 
       | Master_Customer_Set | Type   | Condition_ID | Name | Status    | Source | Field | Benefit_Customer_Set | List | Update_Tracking_ID | Update_Reason | Update_Notes | Update_Name | Update_Status | Condition_Update_Success_Message      | Delete_Tracking_ID | Delete_Reason | Delete_Notes | Condition_Delete_Success_Message        |
-      | QTP_Master_1        | Single | FNDCON14     |      | Not Ready |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |    
+      | QTP_Master_1        | Single | FNDCON14     |      | Not Ready |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |
+      | QTP_Master_1        | Single | FNDCPY14      |      | Not Ready |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |    
