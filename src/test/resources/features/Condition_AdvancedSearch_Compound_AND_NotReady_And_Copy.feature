@@ -1,4 +1,5 @@
-Feature: Advanced Search Compound Condition with AND operator and Not Ready status
+@Funtional @All @Regression 
+Feature: Advanced Search Compound Condition with AND operator and Not Ready status And Copy the Condition
 
   Background: 
     Given User opens the browser and goes to RxNova URL
@@ -13,7 +14,8 @@ Feature: Advanced Search Compound Condition with AND operator and Not Ready stat
   	
   	Examples:
   		| Master_Customer_Set | Type   | Condition_ID | Name | Status | Update_Tracking_ID | Update_Status | Delete_Tracking_ID |
-  		| QTP_Master_1        | Single | CMPCON20     |      |        | Update Tracking ID | Not Ready     | Delete Tracking ID |
+  		| QTP_Master_1        | Compound | CMPCON20     |      |        | Update Tracking ID | Not Ready     | Delete Tracking ID |
+  		| QTP_Master_1        | Compound | CMPCPY20     |      |        | Update Tracking ID | Not Ready     | Delete Tracking ID |
   
   Scenario Outline: Add the Compound Condition
     Given User navigates to the Condition Header tab and submits the following details
@@ -305,6 +307,44 @@ Feature: Advanced Search Compound Condition with AND operator and Not Ready stat
     Examples: 
       | Master_Customer_Set | Type     | Condition_ID | Name        | Status    | Source | Field | Benefit_Customer_Set | List | Sub_Status | Tags | Tags_Add_Success_Message | Tags_Remove_Success_Message | Operation | View_Condition_ID | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name        | Header_Summary_Status | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                | Header_Status     | Header_Type    | View_Compound_Operator | View_Condition_ID1      | View_Condition_Name1 | View_Condition_ID2      | View_Condition_Name2 | View_Condition_Description                                                              | View_Condition_Details_Description | View_Condition_Details                                                                             | Notes              | Tags          |
       | QTP_Master_1        | Compound |              | *Condition* | Not Ready |        |       |                      |      |            |      |                          |                             | View      | CDCMPCON20        | Master customer set:^QTP_Master_1  | Condition ID:^CDCMPCON20    | Name:^Compound Condition20 | Status:^Not Ready     | Master customer set:^QTP_Master_1 | Condition ID:^CDCMPCON20 | Name:^Compound Condition20 | Status:^Not Ready | Type:^Compound | Compound operator:^AND | Condition ID^CDTPCOND27 | Name^TPCOND27        | Condition ID^CDTPCOND28 | Name^TPCOND28        | CDCMPCON1: (COMPOUND CODE is the same as 1 AND NDC Name is not the same as 18860067870) | CDCMPCON1: Compound Condition1     | CDTPCOND27: COMPOUND CODE is the same as 1^AND^CDTPCOND28: NDC Name is not the same as 18860067870 | Compound Condition | Tag Name^tag1 |
+
+ Scenario Outline: Copy Compound AND Condition
+    Given User search for the existing condition with the following details
+      | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
+      | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
+    And verify the Condition Header tab and click on Copy button
+    When he submits the following details in Copy a Condition window
+      | Copy_Condition_ID   | Copy_Name   | Copy_Status   | Copy_TrackingID   | Copy_Reason   | Copy_Notes   |
+      | <Copy_Condition_ID> | <Copy_Name> | <Copy_Status> | <Copy_TrackingID> | <Copy_Reason> | <Copy_Notes> |
+    Then verify the Condition Copy Success message at the top of the page
+      | Condition_Copy_Success_Message   |
+      | <Condition_Copy_Success_Message> |
+    
+    Examples: 
+      | Master_Customer_Set | Type     | Condition_ID | Name | Status    | Source | Field | Benefit_Customer_Set | List | Copy_Condition_ID | Copy_Name                 | Copy_Status | Copy_TrackingID | Copy_Reason | Copy_Notes | Condition_Copy_Success_Message         |
+      | QTP_Master_1        | Compound | CMPCON20     |      | Not Ready |        |       |                      |      | CMPCPY20          | Compound Condition Copy20 | Not Ready   | Test TrackingID |             |            | The condition was successfully copied. |
+   
+  Scenario Outline: View the Copied Compound AND Condition
+    Given User search for the existing condition with the following details
+      | Master_Customer_Set   | Type   | Condition_ID   | Name   | Status   | Source   | Field   | Benefit_Customer_Set   | List   |  
+      | <Master_Customer_Set> | <Type> | <Condition_ID> | <Name> | <Status> | <Source> | <Field> | <Benefit_Customer_Set> | <List> |
+    And verify the Condition Header Summary details
+      | Header_Summary_Master_Customer_Set   | Header_Summary_Condition_ID     | Header_Summary_Name     | Header_Summary_Status   |
+      | <Header_Summary_Master_Customer_Set> | <Header_Summary_Condition_ID>   | <Header_Summary_Name>   | <Header_Summary_Status> |
+    And verify the Condition Header details
+      | Header_Master_Customer_Set   | Header_Condition_ID     | Header_Name     | Header_Status   | Header_Type   |
+      | <Header_Master_Customer_Set> | <Header_Condition_ID>   | <Header_Name>   | <Header_Status> | <Header_Type> |
+    And verify the Compound Condition Definition details
+      | View_Compound_Operator   | View_Condition_ID1   | View_Condition_Name1   | View_Condition_ID2   | View_Condition_Name2   | View_Condition_Description  | View_Condition_Details_Description   | View_Condition_Details   |
+      | <View_Compound_Operator> | <View_Condition_ID1> | <View_Condition_Name1> | <View_Condition_ID2> | <View_Condition_Name2> |<View_Condition_Description> | <View_Condition_Details_Description> | <View_Condition_Details> |
+    And verify the Tags/Notes details
+      | Notes   | Tags   |
+      | <Notes> | <Tags> |       
+    
+    Examples: 
+      | Master_Customer_Set | Type     | Condition_ID | Name | Status    | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name             | Header_Summary_Status | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                     | Header_Status     | Header_Type    | View_Compound_Operator | View_Condition_ID1      | View_Condition_Name1 | View_Condition_ID2      | View_Condition_Name2 | View_Condition_Description                                                               | View_Condition_Details_Description    | View_Condition_Details                                                                             | Notes              | Tags          |
+      | QTP_Master_1        | Compound | CMPCPY20     |      | Not Ready |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDCMPCPY20    | Name:^Compound Condition Copy20 | Status:^Not Ready     | Master customer set:^QTP_Master_1 | Condition ID:^CDCMPCPY20 | Name:^Compound Condition Copy20 | Status:^Not Ready | Type:^Compound | Compound operator:^AND | Condition ID^CDTPCOND15 | Name^TPCOND15        | Condition ID^CDTPCOND16 | Name^TPCOND16        | CDCMPCPY20: (COMPOUND CODE is the same as 1 AND NDC Name is not the same as 18860067870) | CDCMPCPY20: Compound Condition Copy20 | CDTPCOND15: COMPOUND CODE is the same as 1^AND^CDTPCOND16: NDC Name is not the same as 18860067870 | Compound Condition | Tag Name^tag1 |
+ 
     
   Scenario Outline: Delete the Compound Condition
     Given User search for the existing condition with the following details
@@ -325,4 +365,5 @@ Feature: Advanced Search Compound Condition with AND operator and Not Ready stat
     
     Examples: 
       | Master_Customer_Set | Type     | Condition_ID | Name | Status    | Source | Field | Benefit_Customer_Set | List | Update_Tracking_ID | Update_Reason | Update_Notes | Update_Name | Update_Status | Condition_Update_Success_Message      | Delete_Tracking_ID | Delete_Reason | Delete_Notes | Condition_Delete_Success_Message        |
-      | QTP_Master_1        | Compound | CMPCON20     |      | Not Ready |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |    
+      | QTP_Master_1        | Compound | CMPCON20     |      | Not Ready |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |
+      | QTP_Master_1        | Compound | CMPCPY20     |      | Not Ready |        |       |                      |      | Update Tracking ID |               |              |             | Not Ready     | The condition was successfully saved. | Delete Tracking ID | Delete Reason | Delete Notes | The condition was successfully deleted. |    

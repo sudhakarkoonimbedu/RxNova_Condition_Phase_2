@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Advanced Search Single Field DEA Code Condition with Ready for Use status And Copy the Condition
 
   Background: 

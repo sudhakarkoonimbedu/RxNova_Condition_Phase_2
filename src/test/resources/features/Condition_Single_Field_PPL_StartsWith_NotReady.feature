@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field PHARMACY PLAN ID Condition with Starts With operator and Not Ready status
 
   Background: 

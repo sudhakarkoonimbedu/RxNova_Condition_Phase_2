@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Pharmacy List Condition with Is Included In operator and Not Ready status
 
   Background: 

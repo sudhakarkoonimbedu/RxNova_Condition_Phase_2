@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Copy Compound Condition with OR operator and Not Ready status from Search Results table
  
   Background: 

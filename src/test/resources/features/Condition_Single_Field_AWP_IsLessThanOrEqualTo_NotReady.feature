@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field AWP Cost Condition with Is Less Than or Equal To operator and Not Ready status
 
   Background: 

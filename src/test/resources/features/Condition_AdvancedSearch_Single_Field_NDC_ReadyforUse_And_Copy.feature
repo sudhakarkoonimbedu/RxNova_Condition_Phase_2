@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Advanced Search Single Field NDC Name Condition with Ready for Use status And Copy the condition
 
   Background: 

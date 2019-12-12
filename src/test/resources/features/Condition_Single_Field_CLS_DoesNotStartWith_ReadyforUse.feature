@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field Claim Source Condition with Does Not Start With operator and Ready for Use status
 
   Background: 

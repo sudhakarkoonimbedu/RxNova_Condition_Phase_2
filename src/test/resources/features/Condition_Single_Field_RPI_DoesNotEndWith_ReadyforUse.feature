@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field REPACKAGED INDICATOR Condition with Does Not End With operator and Ready for Use status
 
   Background: 

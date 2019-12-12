@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field Conflict Code Condition with Does Not Include operator and Do Not Use Anymore status
 
   Background: 

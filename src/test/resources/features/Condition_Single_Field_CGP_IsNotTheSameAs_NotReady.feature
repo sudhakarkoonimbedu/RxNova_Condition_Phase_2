@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field City Group Condition with Is Not the Same As operator and Not Ready status
 
   Background: 

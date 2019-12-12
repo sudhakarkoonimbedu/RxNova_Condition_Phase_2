@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Compound Condition with AND operator and Not Ready status
 
   Background: 

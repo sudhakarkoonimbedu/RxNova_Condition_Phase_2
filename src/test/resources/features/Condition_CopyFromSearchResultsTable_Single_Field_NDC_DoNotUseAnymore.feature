@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Copy Single Field NDC Condition with Do Not Use Anymore status from Search Results table
 
   Background: 

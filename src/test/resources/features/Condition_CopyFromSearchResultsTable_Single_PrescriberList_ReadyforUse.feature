@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Copy Single Prescriber List Condition with Ready for Use status from Search Results table
 
   Background: 

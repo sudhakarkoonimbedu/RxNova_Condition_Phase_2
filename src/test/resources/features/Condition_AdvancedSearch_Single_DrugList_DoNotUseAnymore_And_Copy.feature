@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Advanced Search Single Drug List Condition with Do Not Use Anymore status and Copy the Condition 
 
 Background: 

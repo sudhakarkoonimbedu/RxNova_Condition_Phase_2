@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Advanced Search Single Field NDC Name Condition with Not Ready status
 
   Background: 

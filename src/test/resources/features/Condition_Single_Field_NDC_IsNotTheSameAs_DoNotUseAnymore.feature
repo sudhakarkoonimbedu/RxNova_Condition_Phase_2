@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field NDC Name Condition with Is Not the Same As operator and Do Not Use Anymore status
 
   Background: 

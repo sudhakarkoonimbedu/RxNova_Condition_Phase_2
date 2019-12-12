@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field QUANTITY Condition with Is Not Equal To operator and Not Ready status
 
   Background: 

@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Drug List Condition with Is Included In operator and Do Not Use Anymore status
 
   Background: 

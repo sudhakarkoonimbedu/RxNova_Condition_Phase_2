@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field DEA CODE Condition with Includes operator and Do Not Use Anymore status
 
   Background: 

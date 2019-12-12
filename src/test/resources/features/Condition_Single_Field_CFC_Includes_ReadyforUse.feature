@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field Conflict Code Condition with Includes operator and Ready for Use status
 
   Background: 

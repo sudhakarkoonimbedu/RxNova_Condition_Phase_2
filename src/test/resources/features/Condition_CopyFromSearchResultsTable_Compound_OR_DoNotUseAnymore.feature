@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Copy Compound Condition with OR operator and Do Not Use Anymore status from Search Results table
  
   Background: 

@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Field QUANTITY Condition with Is Equal To operator and Do Not Use Anymore status
 
   Background: 

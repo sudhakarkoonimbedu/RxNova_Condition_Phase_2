@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Copy Single Drug List Condition with Do Not Use Anymore status from Search Results table
 
   Background: 

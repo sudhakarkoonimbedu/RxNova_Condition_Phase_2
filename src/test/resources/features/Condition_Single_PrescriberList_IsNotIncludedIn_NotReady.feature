@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Single Prescriber List Condition with Is Not Included In operator and Not Ready status
 
   Background: 

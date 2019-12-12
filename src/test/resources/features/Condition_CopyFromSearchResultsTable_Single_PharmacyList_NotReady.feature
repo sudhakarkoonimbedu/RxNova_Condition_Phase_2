@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Copy Single Pharmacy List Condition with Not Ready status from Search Results table
 
   Background: 

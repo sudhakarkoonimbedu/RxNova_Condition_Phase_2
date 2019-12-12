@@ -1,3 +1,4 @@
+@Funtional @All @Regression 
 Feature: Copy Single Prescriber List Condition with Not Ready status from Search Results table
 
   Background: 

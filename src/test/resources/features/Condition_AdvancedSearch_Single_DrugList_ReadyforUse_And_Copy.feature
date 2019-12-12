@@ -1,3 +1,4 @@
+@Funtional @All @Regression @Core
 Feature: Advanced Search Single Drug List Condition with Ready for Use status And Copy the condition
 
   Background: 
