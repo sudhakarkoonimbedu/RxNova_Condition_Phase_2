@@ -1,4 +1,4 @@
-@Funtional @All @Regression 
+@Funtional @All @Regression @Core
 Feature: Compound Condition with AND operator and Ready for Use status
 
   Background: 

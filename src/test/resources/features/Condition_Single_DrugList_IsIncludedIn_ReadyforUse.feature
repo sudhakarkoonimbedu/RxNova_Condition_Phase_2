@@ -1,4 +1,4 @@
-@Funtional @All @Regression 
+@Funtional @All @Regression @Core
 Feature: Single Drug List Condition with Is Included In operator and Ready for Use status
 
   Background: 
