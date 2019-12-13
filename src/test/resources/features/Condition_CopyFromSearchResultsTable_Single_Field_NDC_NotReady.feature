@@ -33,7 +33,7 @@ Feature: Copy Single Field NDC Condition with Not Ready status from Search Resul
 
     Examples: 
       | Header_Tracking_ID | Header_Reason | Header_Notes | Master_Customer_Set | Condition_ID | Name                  | Status    | Type   | Source | Field_Name | Field_Operator     | Field_Value | Benefit_Customer_Set | Operator | Value | Notes                      | Tags     | Tags_Add_Success_Message                 | Tags_Remove_Success_Message                           | Condition_Add_Success_Message         |
-      | Test TrackingID    | Test Reason   | Test Notes   | QTP_Master_1        | FNDCON11     | Field NDC Condition11 | Not Ready | Single | Field  | NDC Name   | Is Not the Same As | 89754612315 |                      |          |       | Single Field NDC Condition | Add^Tag1 | Tag successfully added to the condition. | Tag(s) successfully removed from the search criteria. | The condition was successfully added. |
+      | Test TrackingID    | Test Reason   | Test Notes   | QTP_Master_1        | FNDCON11     | Field NDC Condition11 | Not Ready | Single | Field  | NDC Name   | Is Not the Same As | 89754619315 |                      |          |       | Single Field NDC Condition | Add^Tag1 | Tag successfully added to the condition. | Tag(s) successfully removed from the search criteria. | The condition was successfully added. |
 
   Scenario Outline: Copy Single Field NDC Condition from Search Results table
     Given User search for the existing condition from Search Results table
@@ -69,7 +69,7 @@ Feature: Copy Single Field NDC Condition with Not Ready status from Search Resul
 
     Examples: 
       | Master_Customer_Set | Type   | Condition_ID | Name | Status    | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name              | Header_Summary_Status | Header_Master_Customer_Set        | Header_Condition_ID      | Header_Name                      | Header_Status     | Header_Type  | View_Source       | View_Benefit_Customer_Set | View_Condition_Description              | Notes                      | Tags          |
-      | QTP_Master_1        | Single | FNDCPY11     |      | Not Ready |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCPY11    | Name:^Field NDC Condition Copy11 | Status:^Not Ready     | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCPY11 | Name:^Field NDC Condition Copy11 | Status:^Not Ready | Type:^Single | Source:^Field NDC |                           | NDC NAME is not the same as 89754612315 | Single Field NDC Condition | Tag Name^tag1 |
+      | QTP_Master_1        | Single | FNDCPY11     |      | Not Ready |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCPY11    | Name:^Field NDC Condition Copy11 | Status:^Not Ready     | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCPY11 | Name:^Field NDC Condition Copy11 | Status:^Not Ready | Type:^Single | Source:^Field NDC |                           | NDC NAME is not the same as 89754619315 | Single Field NDC Condition | Tag Name^tag1 |
 
   Scenario Outline: Delete the Single Field NDC Condition
     Given User search for the existing condition with the following details

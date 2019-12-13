@@ -31,7 +31,7 @@ Feature: Single Field NDC Name Condition with Is Not the Same As operator and Re
 
     Examples: 
       | Header_Tracking_ID | Header_Reason | Header_Notes | Master_Customer_Set | Condition_ID | Name                 | Status        | Type   | Source | Field_Name | Field_Operator     | Field_Value | Benefit_Customer_Set | Operator | Value | Notes                       | Tags     | Tags_Add_Success_Message                 | Tags_Remove_Success_Message                           | Condition_Add_Success_Message         |
-      | Test TrackingID    | Test Reason   | Test Notes   | QTP_Master_1        | FNDCON4      | Field NDC Condition4 | Ready for Use | Single | Field  | NDC Name   | Is Not the Same As | 89754612315 |                      |          |       | Single Field NDC Condition4 | Add^Tag1 | Tag successfully added to the condition. | Tag(s) successfully removed from the search criteria. | The condition was successfully added. |
+      | Test TrackingID    | Test Reason   | Test Notes   | QTP_Master_1        | FNDCON4      | Field NDC Condition4 | Ready for Use | Single | Field  | NDC Name   | Is Not the Same As | 89794612315 |                      |          |       | Single Field NDC Condition4 | Add^Tag1 | Tag successfully added to the condition. | Tag(s) successfully removed from the search criteria. | The condition was successfully added. |
 
   Scenario Outline: View the Single Field NDC Name Condition
     Given User search for the existing condition with the following details
@@ -51,7 +51,7 @@ Feature: Single Field NDC Name Condition with Is Not the Same As operator and Re
       | <Notes> | <Tags> |       
     Examples: 
       | Master_Customer_Set | Type   | Condition_ID | Name | Status        | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name        | Header_Summary_Status | Header_Master_Customer_Set        | Header_Condition_ID     | Header_Name                | Header_Status         | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description              | Notes                       | Tags          |
-      | QTP_Master_1        | Single | FNDCON4      |      | Ready for Use |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON4     | Name:^Field NDC Condition4 | Status:^Ready for Use | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON4 | Name:^Field NDC Condition4 | Status:^Ready for Use | Type:^Single | Source:^Field |                           | NDC Name is not the same as 89754612315 | Single Field NDC Condition4 | Tag Name^tag1 |
+      | QTP_Master_1        | Single | FNDCON4      |      | Ready for Use |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON4     | Name:^Field NDC Condition4 | Status:^Ready for Use | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON4 | Name:^Field NDC Condition4 | Status:^Ready for Use | Type:^Single | Source:^Field |                           | NDC Name is not the same as 89794612315 | Single Field NDC Condition4 | Tag Name^tag1 |
   
   Scenario Outline: Update the Single Field NDC Name Condition
     Given User search for the existing condition with the following details
@@ -77,7 +77,7 @@ Feature: Single Field NDC Name Condition with Is Not the Same As operator and Re
       | <Condition_Update_Success_Message> |    
     Examples: 
       | Master_Customer_Set | Type   | Condition_ID | Name  | Status        | Source    | Field | Benefit_Customer_Set | List | Update_Tracking_ID | Update_Reason      | Update_Notes      | Update_Name                 | Update_Status | Update_Source | Update_Field_Name | Update_Field_Operator | Update_Field_Value | Update_Operator    | Update_Value | Update_TagsNotes            | Update_Tags | Tags_Add_Success_Message                 | Tags_Remove_Success_Message                           | Condition_Update_Success_Message      |
-      | QTP_Master_1        | Single | FNDCON4      |       | Ready for Use |           |       |                      |      | Update Tracking ID | Update Test Reason | Update Test Notes | Update Field NDC Condition4 | Ready for Use | Field         | NDC Name          | Is Not the Same As    | 89754612315        |                    |              | Update Field NDC Condition4 | Remove^Tag1 | Tag successfully added to the condition. | Tag(s) successfully removed from the search criteria. | The condition was successfully saved. | 
+      | QTP_Master_1        | Single | FNDCON4      |       | Ready for Use |           |       |                      |      | Update Tracking ID | Update Test Reason | Update Test Notes | Update Field NDC Condition4 | Ready for Use | Field         | NDC Name          | Is Not the Same As    | 89794612315        |                    |              | Update Field NDC Condition4 | Remove^Tag1 | Tag successfully added to the condition. | Tag(s) successfully removed from the search criteria. | The condition was successfully saved. | 
 
   Scenario Outline: View the Single Field NDC Name Condition
     Given User search for the existing condition with the following details
@@ -97,7 +97,7 @@ Feature: Single Field NDC Name Condition with Is Not the Same As operator and Re
       | <Notes> | <Tags> |       
     Examples: 
       | Master_Customer_Set | Type   | Condition_ID | Name | Status        | Source | Field | Benefit_Customer_Set | List | Header_Summary_Master_Customer_Set | Header_Summary_Condition_ID | Header_Summary_Name               | Header_Summary_Status | Header_Master_Customer_Set        | Header_Condition_ID     | Header_Name                       | Header_Status         | Header_Type  | View_Source   | View_Benefit_Customer_Set | View_Condition_Description              | Notes                       | Tags |
-      | QTP_Master_1        | Single | FNDCON4      |      | Ready for Use |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON4     | Name:^Update Field NDC Condition4 | Status:^Ready for Use | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON4 | Name:^Update Field NDC Condition4 | Status:^Ready for Use | Type:^Single | Source:^Field |                           | NDC Name Is Not the Same As 89754612315 | Update Field NDC Condition4 |      |
+      | QTP_Master_1        | Single | FNDCON4      |      | Ready for Use |        |       |                      |      | Master customer set:^QTP_Master_1  | Condition ID:^CDFNDCON4     | Name:^Update Field NDC Condition4 | Status:^Ready for Use | Master customer set:^QTP_Master_1 | Condition ID:^CDFNDCON4 | Name:^Update Field NDC Condition4 | Status:^Ready for Use | Type:^Single | Source:^Field |                           | NDC Name Is Not the Same As 89794612315 | Update Field NDC Condition4 |      |
 
   Scenario Outline: Delete the Single Field NDC Name Condition
     Given User search for the existing condition with the following details
